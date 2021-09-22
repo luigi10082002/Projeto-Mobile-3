@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   boxUser: {
-    width: '20%',
+    width: '30%',
     height: '17%',
     marginLeft: '2%',
   },

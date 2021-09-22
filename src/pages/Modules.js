@@ -3,8 +3,6 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, CheckBox } from 'r
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-import { Header } from "../components/Header";
-
 export default function Modules() {
   const navigation = useNavigation();
 
@@ -17,7 +15,9 @@ export default function Modules() {
   return(
     <View style={styles.container}>
       <View style={styles.boxCodigo}>
+        
         <Text style={styles.text}>Código</Text>
+        
         <View style={styles.input}>
           <TextInput
             style={styles.textInput}
@@ -25,28 +25,25 @@ export default function Modules() {
           <TouchableOpacity style={styles.scanner} onPress={Scanner}>
             <FontAwesome name="qrcode" size={20} color="#000"/>
           </TouchableOpacity>
-          <View>
-          <CheckBox
-            value={isSelected}
-            onValueChange={setSelection}
-            style={styles.checkbox}
-          />
-          <Text>Incluir Qauntidade</Text>
+        </View>
+
+          <View style={styles.checkbox}>
+            <CheckBox
+              value={isSelected}
+              onValueChange={setSelection}
+              style={styles.checkbox}
+            />
+            <Text>Incluir Qauntidade</Text>
           </View>
-        <View style={styles.boxCodigo}>
-        <Text style={styles.text}>Qauntidade</Text>
+
+        <View style={styles.boxQuantidade}>
+          <Text style={styles.text}>Quantidade</Text>
+       
         <View style={styles.input}>
           <TextInput
             style={styles.textInput}
           ></TextInput>
-            </View>
-          </View>
         </View>
-
-        <View>
-          <TouchableOpacity>
-            <Text>Confirmar</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -60,6 +57,13 @@ const styles = StyleSheet.create({
   boxCodigo: {
     width: '84%',
     height: '18%',
+    marginTop: '10%',
+    alignSelf: 'center',
+  },
+  boxQuantidade: {
+    backgroundColor: '#000',
+    width: '84%',
+    height: '50%%',
     marginTop: '10%',
     alignSelf: 'center',
   },

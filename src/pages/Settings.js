@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert, Switch,TouchableOpacity } from 'react-native';
 
-import { Header } from "../components/Header";
-
 export default function Settings() {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -47,7 +45,7 @@ export default function Settings() {
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
-          onChange={setDelete}
+          onChange={setServer}
         />
       </View>
       <View style={styles.separador}/>

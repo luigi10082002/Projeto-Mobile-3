@@ -5,10 +5,10 @@ import Routes  from './routes/index';
 
 export default function App() {
 
-    return (
-        <>
-          <StatusBar barStyle='dark-content' backgroundColor='transparent' translucent />
-          <Routes/>
-        </>
-    )
+  return (
+    <>
+      <StatusBar barStyle='dark-content' backgroundColor='transparent' translucent />
+      <Routes/>
+    </>
+  )
 }
