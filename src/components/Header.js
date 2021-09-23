@@ -4,15 +4,13 @@ import { Feather } from "@expo/vector-icons";
 import { Text, View, StyleSheet } from "react-native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
-export function Header({ title, action, modelo }) {
+export function Header({ title, action }) {
   const navigation = useNavigation();
 
   function handleGoBack() {
-    const tipo = modelo === "" ? "Home" : modelo;
-    const screen = modelo === "PMod" ? "1" : modelo === "SMod" ? "2" : "";
     navigation.navigate("Home", {
-      id: screen,
-      screen: "Home",
+      
+      screen: "Modules",
       backScreen: "Home",
     });
   }
@@ -24,7 +22,7 @@ export function Header({ title, action, modelo }) {
         name="arrow-left"
         size={24}
         color={"#fff"}
-        style={{ marginTop: "7%" }}
+        style={{ marginTop: "5%" }}
       />
 
       <Text style={styles.title}>{title}</Text>
@@ -37,7 +35,7 @@ export function Header({ title, action, modelo }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "20%",
+    height: 110,
     //paddingTop: getStatusBarHeight(),
     paddingHorizontal: 24,
     flexDirection: "row",
@@ -50,6 +48,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     color: "#fff",
-    marginTop: "7%",
+    marginTop: "5%",
   },
 });

@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   boxServer: {
     width: '100%',
     height: '13%',
+    marginTop: '15%',
     justifyContent: 'space-between',
     flexDirection: 'row'  
   },
@@ -81,8 +82,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    marginTop: '5%',
-    marginLeft: '5%'
+    marginLeft: '5%',
+    alignSelf: 'center'
   },
   textDelete: {
     fontSize: 20,

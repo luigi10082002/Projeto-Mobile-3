@@ -4,7 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Home() {
+function Home() {
   const navigation = useNavigation();
 
   function NewProduto() {
@@ -48,9 +48,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   boxUser: {
-    width: '30%',
+    width: '35%',
     height: '17%',
-    marginLeft: '2%',
+    marginLeft: '4%',
+    marginTop: '30%',
   },
   boxProdutos: {
     flexDirection: 'row',
@@ -109,3 +110,5 @@ const styles = StyleSheet.create({
     borderRadius: 9,
   },
 })
+
+export default Home;
