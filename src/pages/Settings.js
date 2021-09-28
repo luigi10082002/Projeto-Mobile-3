@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert, Switch,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Alert, Switch,TouchableOpacity, AsyncStorage } from 'react-native';
+
+import { Header } from '../components/Header';
 
 export default function Settings() {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -31,12 +33,16 @@ export default function Settings() {
       },
       {
         text: 'Confirmar',
+        onPress: async () => {
+          AsyncStorage.clear();
+        },
       }
     ])
   }
 
   return (
     <View style={styles.container}>
+      <Header title="Histórico"/>
       <View style={styles.boxServer}>
         <Text style={styles.text}>Sincronizar inventário</Text>
         <Switch
@@ -66,7 +72,6 @@ const styles = StyleSheet.create({
   boxServer: {
     width: '100%',
     height: '13%',
-    marginTop: '15%',
     justifyContent: 'space-between',
     flexDirection: 'row'  
   },

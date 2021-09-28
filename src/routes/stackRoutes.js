@@ -6,7 +6,7 @@ import { createSharedElementStackNavigator } from 'react-navigation-shared-eleme
 import { TabNavi } from './tabRoutes';
 import Modules from '../pages/Modules';
 import Historic from '../pages/Historic';
-import QRcode from '../pages/QRcode';
+import Card from '../pages/QRcode';
 
 enableScreens();
 
@@ -32,10 +32,12 @@ const AppRoutes = () => (
             component={Modules}
         />
 
-        <stackRoutes.Screen 
-            name="QRcode"
-            component={QRcode}
+
+<stackRoutes.Screen 
+            name="Card"
+            component={Card}
         />
+
 
         <stackRoutes.Screen 
             name="Historic"

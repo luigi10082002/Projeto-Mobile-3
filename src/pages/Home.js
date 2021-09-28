@@ -1,18 +1,37 @@
-import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native';
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 function Home() {
   const navigation = useNavigation();
+
+  const [Produto, setProduto] = useState([]);
 
   function NewProduto() {
     navigation.navigate("Modules")
   }
 
+  function NewProd() {
+    navigation.navigate("Card")
+  }
+
   function Historic() {
     navigation.navigate("Historic")
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      loadSpots();
+    }, [Produto])
+  );
+
+  async function loadSpots() {
+    const response = await AsyncStorage.getItem("@Produtos");
+    const storage = response ? JSON.parse(response) : [];
+
+    setProduto(storage);
   }
 
   return (
@@ -24,7 +43,7 @@ function Home() {
 
       <View style={styles.boxProdutos}>
         <Text style={styles.TextProdutos}>Total de produtos</Text>
-        <Text style={styles.TextNumber}>128</Text>
+        <Text style={styles.TextNumber}>{Produto.length}</Text>
       </View>
 
       <View style={styles.boxButton}>
@@ -36,6 +55,13 @@ function Home() {
 
       <View style={styles.boxButton}> 
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>
+          <AntDesign name="clockcircleo" size={20} color="#FFF"/>
+          <Text  style={styles.TextPlus}>LISTAR PRODUTOS</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.boxButton}> 
+        <TouchableOpacity style={styles.ButtonHistoric} onPress={NewProd}>
           <AntDesign name="clockcircleo" size={20} color="#FFF"/>
           <Text  style={styles.TextPlus}>LISTAR PRODUTOS</Text>
         </TouchableOpacity>

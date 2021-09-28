@@ -1,14 +1,61 @@
-import React from "react";
-import { View, Text, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import React, { useState, useCallback } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  AsyncStorage,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+} from "react-native";
+import { RectButton } from "react-native-gesture-handler";
+import { useFocusEffect } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
 
 export default function Historic() {
-  return(
-    <SafeAreaView style={styles.container}>
-      <Header title="Histórico"/>
-      <View style={styles.box}>
+  const [Produto, setProduto] = useState([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadSpots();
+    }, [Produto])
+  );
+
+  async function loadSpots() {
+    const response = await AsyncStorage.getItem("@Produtos");
+    const storage = response ? JSON.parse(response) : [];
+
+    setProduto(storage);
+  }
+
+  async function handleRemove(item) {
+    const id = Produto.findIndex((element) => element.id == item.id);
+
+    Alert.alert("Remover", `Deseja remover este produto?`, [
+      {
+        text: "Não ",
+        style: "cancel",
+      },
+      {
+        text: "Sim ",
+        onPress: async () => {
+          Produto.splice(id, 1);
+          await AsyncStorage.setItem("@Produto", JSON.stringify(Produto));
+        },
+      },
+    ]);
+  }
+
+  return (
+    <>
+      <ScrollView>
+        <View style={styles.container}>
+          <Header title="Histórico" />
+          <View style={styles.box}>
         <Text style={styles.text}>Pesquisa</Text>
       </View>
 
@@ -20,23 +67,22 @@ export default function Historic() {
           <FontAwesome name="search" size={25} color="#000"/>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.card}>
-        <View style={styles.codigo}>
-          <Text style={styles.info}>Codigo</Text>
-        </View>
-        <View style={styles.details}>
-          <Text style={styles.info}>Data</Text>
-          <Text style={styles.info}> Hora</Text>
-          <Text style={styles.info}> - </Text>
-          <Text style={styles.info}>2 unidade(s)</Text>
-            <TouchableOpacity style={styles.trash}>
-              <FontAwesome name="trash" size={30} color="#f00"/>
-            </TouchableOpacity>
-        </View>
+      <FlatList
+        data={Produto}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => (
+          <View style={styles.list}>
+            <View style={styles.card}>
+              <Text>{item.produto}</Text>
+            </View>
+          </View>
+        )}
+        showsVerticalScrollIndicator={false}
+      />
       </View>
-    </SafeAreaView>
-  )
+      </ScrollView>
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -55,10 +101,9 @@ const styles = StyleSheet.create({
   input: {
     marginTop: '8%',
     width: '90%',
-    height:'5%',
+    height:'13%',
     marginLeft: '5%',
     flexDirection: 'row',
-    alignSelf: "stretch",
   },
   inputText: {
     backgroundColor: '#C0C0C0',
@@ -79,11 +124,15 @@ const styles = StyleSheet.create({
   card : {
     alignSelf: 'center',
     backgroundColor: '#F5F5F5',
-    marginTop: '5%',
     width: '80%',
-    height: '10%',
+    height: '60%',
     padding: '3%',
     borderRadius: 8,
+  },
+  list: {
+    backgroundColor: "#f00",
+
+    marginTop: '5%',
   },
   codigo: {
     marginTop: '2%',
@@ -105,4 +154,4 @@ const styles = StyleSheet.create({
     marginLeft: '18%',
     alignItems: 'center'
   },
-})
+});

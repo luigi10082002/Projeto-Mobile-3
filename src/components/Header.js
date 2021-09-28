@@ -8,11 +8,7 @@ export function Header({ title, action }) {
   const navigation = useNavigation();
 
   function handleGoBack() {
-    navigation.navigate("Home", {
-      
-      screen: "Modules",
-      backScreen: "Home",
-    });
+    navigation.navigate("Home");
   }
 
   return (
@@ -22,7 +18,7 @@ export function Header({ title, action }) {
         name="arrow-left"
         size={24}
         color={"#fff"}
-        style={{ marginTop: "5%" }}
+        style={{ marginTop: "15%" }}
       />
 
       <Text style={styles.title}>{title}</Text>
@@ -48,6 +44,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     color: "#fff",
-    marginTop: "5%",
+    marginTop: "15%",
   },
 });
