@@ -51,8 +51,6 @@ export default function Historic() {
   }
 
   return (
-    <View>
-      <ScrollView>
         <View style={styles.container}>
           <Header title="Histórico" />
 
@@ -66,7 +64,7 @@ export default function Historic() {
                     <TouchableOpacity style={styles.info}>
                       <Text style={styles.textCod}>{item.produto}</Text>
                       <View style={styles.details}>
-                        <Text>{item.data}</Text>
+                        <Text>{item.date}</Text>
                         <Text> {item.hora}</Text>
                         <Text> - </Text>
                         <Text>{item.qtd} </Text>
@@ -88,8 +86,6 @@ export default function Historic() {
             />
           </View>
         </View>
-      </ScrollView>
-    </View>
   );
 }
 
@@ -108,7 +104,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     borderRadius: 8,
-    height: "70%",
+    marginTop: '5%',
+    height: "58%",
     width: "90%",
     padding: 20,
   },

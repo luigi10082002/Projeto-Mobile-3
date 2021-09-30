@@ -14,7 +14,7 @@ function Home() {
   }
 
   function NewProd() {
-    navigation.navigate("Card")
+    navigation.navigate("Produto")
   }
 
   function Historic() {
@@ -57,6 +57,13 @@ function Home() {
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>
           <AntDesign name="clockcircleo" size={20} color="#FFF"/>
           <Text  style={styles.TextPlus}>LISTAR PRODUTOS</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.boxButton}>
+        <TouchableOpacity style={styles.ButtonAdd} onPress={NewProd}>
+          <Entypo name="plus" size={30} color="#FFF"/>
+          <Text style={styles.TextPlus}>NOVO PRODUTO</Text>
         </TouchableOpacity>
       </View>
 

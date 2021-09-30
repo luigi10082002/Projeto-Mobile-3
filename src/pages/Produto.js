@@ -9,7 +9,7 @@ import {
   AsyncStorage,
   Alert,
   FlatList,
-  } from "react-native";
+} from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
 import uuid from "react-native-uuid";
@@ -17,9 +17,6 @@ import uuid from "react-native-uuid";
 import { Header } from "../components/Header";
 
 export default function Modules() {
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
-
   const [qtd, setQtd] = useState(1);
   const [codigo, setCodigo] = useState();
 
@@ -114,36 +111,22 @@ export default function Modules() {
       <ScrollView>
         <View style={styles.container}>
           <Header title="Contagem de invenatario" />
-
-          <View style={styles.scanner}>
-            <BarCodeScanner
-              style={{ height: 500, width: 500 }}
-            />
-
-            <View style={styles.btn}>
-              <TouchableOpacity style={styles.button} onPress={Capture}>
-                <Text style={styles.buttonText}>CAPTURAR</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-
           <View style={styles.info}>
-            <Text style={styles.textQtd}>Quantidade</Text>
             <Text style={styles.textCod}>Código</Text>
+            <Text style={styles.textQtd}>Quantidade</Text>
           </View>
-
           <View style={styles.input}>
-            <TextInput
-              style={styles.labelQtd}
-              autoCorrect={false}
-              onChangeText={setQtd}
-            ></TextInput>
-
             <TextInput
               style={styles.labelCod}
               autoCorrect={false}
               onChangeText={setCodigo}
               value={codigo}
+            ></TextInput>
+
+            <TextInput
+              style={styles.labelQtd}
+              autoCorrect={false}
+              onChangeText={setQtd}
             ></TextInput>
           </View>
 
@@ -153,9 +136,11 @@ export default function Modules() {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.listProdutos}>
-            <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
-          </View>
+          <Text>A</Text>
+          <Text>A</Text>
+          <Text>A</Text>
+          <Text>A</Text>
+
         </View>
       </ScrollView>
     </View>
@@ -178,7 +163,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: "5%",
     width: "100%",
-    height: "5%",
+    height: "15%",
   },
   buttonSave: {
     alignSelf: "center",
@@ -186,22 +171,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: "5%",
     width: "90%",
-    height: "8%",
-  },
-  listProdutos: {
-    marginTop: "5%",
-    marginLeft: "5%",
-    width: "40%",
-    height: "50%",
+    height: "15%",
   },
   //CSS dos Textos
   textQtd: {
+    marginLeft: "48%",
     height: "auto",
     width: "32%",
     fontSize: 20,
   },
   textCod: {
-    marginLeft: "5%",
     height: "auto",
     width: "auto",
     fontSize: 20,
@@ -211,14 +190,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 15,
   },
-  textList: {
-    fontSize: 20,
-  },
   //CSS dos Inputs
   labelQtd: {
     backgroundColor: "#CACACA",
     borderRadius: 8,
     paddingHorizontal: "3%",
+    marginLeft: "5%",
     height: "100%",
     width: "29%",
   },
@@ -228,7 +205,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: "3%",
     height: "100%",
     width: "56%",
-    marginLeft: "5%",
   },
   //CSS do Botão SALVAR
   save: {
@@ -238,40 +214,5 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 8,
-  },
-
-  scanner: {
-    alignSelf: "center",
-    alignItems: "center",
-    height: "25%",
-    width: "75%",
-    overflow: "hidden",
-    borderRadius: 10,
-    marginLeft: "5%",
-    marginTop: "5%",
-  },
-  button: {
-    backgroundColor: "#4B7DFE",
-    width: "45%",
-    height: "20%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 8,
-  },
-  btn: {
-    width: "100%",
-    height: "100%",
-    marginTop: "25%",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-    position: "absolute",
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
-  list: {
-    backgroundColor: "#00f"
   },
 });

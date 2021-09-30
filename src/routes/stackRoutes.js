@@ -6,6 +6,7 @@ import { createSharedElementStackNavigator } from 'react-navigation-shared-eleme
 import { TabNavi } from './tabRoutes';
 import Modules from '../pages/Modules';
 import Historic from '../pages/Historic';
+import Produto from '../pages/Produto';
 
 enableScreens();
 
@@ -34,6 +35,11 @@ const AppRoutes = () => (
         <stackRoutes.Screen 
             name="Historic"
             component={Historic}
+        />
+
+<stackRoutes.Screen 
+            name="Produto"
+            component={Produto}
         />
      
     </stackRoutes.Navigator>
