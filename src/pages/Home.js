@@ -60,12 +60,6 @@ function Home() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.boxButton}> 
-        <TouchableOpacity style={styles.ButtonHistoric} onPress={NewProd}>
-          <AntDesign name="clockcircleo" size={20} color="#FFF"/>
-          <Text  style={styles.TextPlus}>LISTAR PRODUTOS</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   )
 }

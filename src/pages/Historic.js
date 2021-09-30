@@ -71,11 +71,11 @@ export default function Historic() {
                     <Text>unidade(s)</Text>
                   </View>
                 </TouchableOpacity>
-                <View style={styles.delete}>
-                <TouchableOpacity style={styles.buttonDelete}>
+              </View>
+              <View style={styles.delete}>
+                <TouchableOpacity style={styles.buttonDelete} onPress={handleRemove}>
                   <FontAwesome name="trash" size={35} color="#f00" />
                 </TouchableOpacity>
-              </View>
               </View>
             </View>
           )}
@@ -97,20 +97,31 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   card: {
-    backgroundColor: "#C0C0C0",
+    backgroundColor: "#CACACA",
 
     flexDirection: 'row',
     borderRadius: 8,
     height: '100%',
-    width: '80%',
-    paddingHorizontal: 20,
-    paddingVertical: 25,
+    width: '90%',
+    padding: 20,
+    //paddingVertical: 25,
   },
   textCod: {
     fontSize: 15,
     fontWeight: 'bold',
   },
   details: {
-    flexDirection: 'row'
+
+    flexDirection: 'row',
+    height: '100%',
+    width: '90%',
+  },
+  delete: {
+    width: '13%',
+    height: 'auto',
+    marginTop: '5%'
+  },
+  buttonDelete: {
+    marginLeft: '10%',
   },
 });
