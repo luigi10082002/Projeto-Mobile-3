@@ -44,44 +44,51 @@ export default function Historic() {
         text: "Sim ",
         onPress: async () => {
           Produto.splice(id, 1);
-          await AsyncStorage.setItem("@Produto", JSON.stringify(Produto));
+          await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
         },
       },
     ]);
   }
 
   return (
-    <View style={styles.container}>
-      <Header title="Histórico" />
+    <View>
+      <ScrollView>
+        <View style={styles.container}>
+          <Header title="Histórico" />
 
-      <View style={styles.listItems}>
-        <FlatList
-          data={Produto}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => (
-            <View style={styles.card}>
-              <View style={styles.details}>
-                <TouchableOpacity style={styles.info}>
-                  <Text style={styles.textCod}>{item.produto}</Text>
+          <View style={styles.listItems}>
+            <FlatList
+              data={Produto}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item }) => (
+                <View style={styles.card}>
                   <View style={styles.details}>
-                    <Text>{item.data}</Text>
-                    <Text> {item.hora}</Text>
-                    <Text> - </Text>
-                    <Text>{item.qtd}</Text>
-                    <Text>unidade(s)</Text>
+                    <TouchableOpacity style={styles.info}>
+                      <Text style={styles.textCod}>{item.produto}</Text>
+                      <View style={styles.details}>
+                        <Text>{item.data}</Text>
+                        <Text> {item.hora}</Text>
+                        <Text> - </Text>
+                        <Text>{item.qtd} </Text>
+                        <Text>unidade(s)</Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.delete}>
-                <TouchableOpacity style={styles.buttonDelete} onPress={handleRemove}>
-                  <FontAwesome name="trash" size={35} color="#f00" />
-                </TouchableOpacity>
-              </View>
-            </View>
-          )}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+                  <View style={styles.delete}>
+                    <TouchableOpacity
+                      style={styles.buttonDelete}
+                      onPress={handleRemove}
+                    >
+                      <FontAwesome name="trash" size={30} color="#f00" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -98,30 +105,28 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "#CACACA",
-
-    flexDirection: 'row',
+    flexDirection: "row",
+    alignSelf: "center",
     borderRadius: 8,
-    height: '100%',
-    width: '90%',
+    height: "70%",
+    width: "90%",
     padding: 20,
-    //paddingVertical: 25,
   },
   textCod: {
     fontSize: 15,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   details: {
-
-    flexDirection: 'row',
-    height: '100%',
-    width: '90%',
+    flexDirection: "row",
+    height: "100%",
+    width: "90%",
   },
   delete: {
-    width: '13%',
-    height: 'auto',
-    marginTop: '5%'
+    width: "13%",
+    height: "auto",
+    marginTop: "5%",
   },
   buttonDelete: {
-    marginLeft: '10%',
+    marginLeft: "10%",
   },
 });

@@ -4,11 +4,12 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
   AsyncStorage,
-  Alert} from "react-native";
+  Alert,
+  FlatList,
+  } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
 import uuid from "react-native-uuid";
@@ -116,7 +117,7 @@ export default function Produto() {
 
           <View style={styles.scanner}>
             <BarCodeScanner
-              style={{ height: 800, width: 800 }}
+              style={{ height: 500, width: 500 }}
             />
 
             <View style={styles.btn}>
@@ -155,6 +156,8 @@ export default function Produto() {
           <View style={styles.listProdutos}>
             <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
           </View>
+
+          
         </View>
       </ScrollView>
     </View>
@@ -240,9 +243,10 @@ const styles = StyleSheet.create({
   },
 
   scanner: {
+    alignSelf: "center",
     alignItems: "center",
-    height: "15%",
-    width: "90%",
+    height: "25%",
+    width: "75%",
     overflow: "hidden",
     borderRadius: 10,
     marginLeft: "5%",
@@ -259,7 +263,7 @@ const styles = StyleSheet.create({
   btn: {
     width: "100%",
     height: "100%",
-    marginTop: "18%",
+    marginTop: "25%",
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
