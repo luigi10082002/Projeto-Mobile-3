@@ -51,6 +51,8 @@ export default function Produto() {
       id: uuid.v4(),
       produto: data,
       qtd: 1,
+      data: data,
+      hora: hora,
     };
 
     const storage = await AsyncStorage.getItem("@Produtos");
@@ -79,12 +81,9 @@ export default function Produto() {
   async function Save() {
     const newProd = {
       id: uuid.v4(),
-      //id de identificação do produto
       produto: codigo,
-      //código do produto
       qtd: qtd,
-      //quantidade do produto
-      date: data,
+      data: data,
       hora: hora,
     };
 
@@ -103,7 +102,11 @@ export default function Produto() {
         JSON.stringify([...Produto, newProd])
       );
     }
-    alert("Produto salvo");
+    Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
+      {
+        text: "Ok",
+      },
+    ]);
   }
   return (
     <View>

@@ -29,11 +29,6 @@ export default function Card() {
     <View style={styles.container}>
       <View style={styles.card}>
         <TouchableOpacity style={styles.buttonCard}>
-          <Text>A</Text>
-          <Text>A</Text>
-          <Text>A</Text>
-          <Text>A</Text>
-          <Text>A</Text>
         </TouchableOpacity>
         <View style={styles.delete}>
           <TouchableOpacity style={styles.buttonDelete}>
@@ -48,7 +43,6 @@ export default function Card() {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    justifyContent: 'center', 
     alignSelf: 'center',
     width: '100%',
     height: '100%',
@@ -58,24 +52,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#DCDCDC',
     flexDirection: 'row',
     marginLeft: '10%',
+    marginTop: '100%',
     width: '75%',
-    height: '15%',
-    borderRadius: 8, 
+    height: '85%',
+    borderRadius: 8
   },
   buttonCard: {
-    backgroundColor: '#0ff',
-    width: '100%',
+    width: '80%',
     height: '100%',
-    borderRadius: 8, 
   },
   delete: {
-    backgroundColor: '#f0f',
-    position: "absolute",
-    alignSelf: "center",
-    direction: 'rtl',
-    width: '10%',
-    height: '27%',    
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: '20%',
+    height: '100%',
   },
   buttonDelete: {
+    marginTop: '80%'
   },
 })

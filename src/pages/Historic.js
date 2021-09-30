@@ -51,37 +51,38 @@ export default function Historic() {
   }
 
   return (
-    <>
-      <ScrollView>
-        <View style={styles.container}>
-          <Header title="Histórico" />
-          <View style={styles.box}>
-        <Text style={styles.text}>Pesquisa</Text>
-      </View>
+    <View style={styles.container}>
+      <Header title="Histórico" />
 
-      <View style={styles.input}>
-        <TextInput
-          style={styles.inputText}
-        />
-        <TouchableOpacity style={styles.icon}>
-          <FontAwesome name="search" size={25} color="#000"/>
-        </TouchableOpacity>
-      </View>
-      <FlatList
-        data={Produto}
-        keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => (
-          <View style={styles.list}>
+      <View style={styles.listItems}>
+        <FlatList
+          data={Produto}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
             <View style={styles.card}>
-              <Text>{item.produto}</Text>
+              <View style={styles.details}>
+                <TouchableOpacity style={styles.info}>
+                  <Text style={styles.textCod}>{item.produto}</Text>
+                  <View style={styles.details}>
+                    <Text>{item.data}</Text>
+                    <Text> {item.hora}</Text>
+                    <Text> - </Text>
+                    <Text>{item.qtd}</Text>
+                    <Text>unidade(s)</Text>
+                  </View>
+                </TouchableOpacity>
+                <View style={styles.delete}>
+                <TouchableOpacity style={styles.buttonDelete}>
+                  <FontAwesome name="trash" size={35} color="#f00" />
+                </TouchableOpacity>
+              </View>
+              </View>
             </View>
-          </View>
-        )}
-        showsVerticalScrollIndicator={false}
-      />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
       </View>
-      </ScrollView>
-    </>
+    </View>
   );
 }
 
@@ -89,69 +90,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  box: {
-    marginTop: '5%',
-    marginLeft: '5%',
-    width: '50%',
-    height: '1%',
+  listItems: {
+    alignSelf: "center",
+    marginTop: "30%",
+    height: "70%",
+    width: "90%",
   },
-  text: {
-    fontSize: 25,
-  },
-  input: {
-    marginTop: '8%',
-    width: '90%',
-    height:'13%',
-    marginLeft: '5%',
-    flexDirection: 'row',
-  },
-  inputText: {
-    backgroundColor: '#C0C0C0',
-    width: '90%',
-    height: '100%',
-    paddingHorizontal: '5%',
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8
-  },
-  icon: {
-    width: '10%',
-    height: '100%',
-    justifyContent: 'center',
-    backgroundColor: '#C0C0C0',
-    borderTopRightRadius: 8,
-    borderBottomRightRadius: 8
-  },
-  card : {
-    alignSelf: 'center',
-    backgroundColor: '#F5F5F5',
-    width: '80%',
-    height: '60%',
-    padding: '3%',
-    borderRadius: 8,
-  },
-  list: {
-    backgroundColor: "#f00",
+  card: {
+    backgroundColor: "#C0C0C0",
 
-    marginTop: '5%',
+    flexDirection: 'row',
+    borderRadius: 8,
+    height: '100%',
+    width: '80%',
+    paddingHorizontal: 20,
+    paddingVertical: 25,
   },
-  codigo: {
-    marginTop: '2%',
-    width: '20%',
-    height: '20%',
+  textCod: {
+    fontSize: 15,
+    fontWeight: 'bold',
   },
   details: {
-    flexDirection: 'row',
-    marginTop: '4%',
-    height: '70%',
-    alignContent: 'stretch',
-  },
-  info: {
-    fontSize: 16,
-  },
-  trash: {
-    width: '10%',
-    height: '70%',
-    marginLeft: '18%',
-    alignItems: 'center'
+    flexDirection: 'row'
   },
 });
