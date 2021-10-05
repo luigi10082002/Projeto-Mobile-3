@@ -87,7 +87,13 @@ export default function Modules() {
 
     // verificar se codigo diferente branco 
 
-
+    if (qtd <= 0  || codigo == "") {
+      Alert.alert("Erro", "O produto não contem as informações necessárias", [
+        {
+          text: "OK",
+        }
+      ]);
+    } else {
 
     //Verifica se tem alguma coisa na storage
     const storage = await AsyncStorage.getItem("@Produtos");
@@ -107,6 +113,7 @@ export default function Modules() {
       },
     ]);
   }
+}
   return (
         <View style={styles.container}>
           <Header title="Contagem de Invenatario" />

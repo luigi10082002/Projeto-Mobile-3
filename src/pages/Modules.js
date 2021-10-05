@@ -64,12 +64,10 @@ export default function Modules() {
     setCodigo(data);
     setQtd(1);
     setScanned(true);
-    
   }
 
   function handleBarCodeSetScanned(){
     setScanned(false);
-    
   }
 
   async function Save() {

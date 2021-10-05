@@ -20,6 +20,7 @@ export default function Historic() {
 
   const [Produto, setProduto] = useState([]);
   const [codigo, setCodigo] = useState();
+  const [search, setSearch] = useState("");
 
   useFocusEffect(
     useCallback(() => {
@@ -30,7 +31,12 @@ export default function Historic() {
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
+
+    if(search){
+      setProduto(storage.filter((element) => element.produto == codigo));
+    }else{
     setProduto(storage);
+    }
   }
 
   async function handleRemove(item) {
@@ -60,27 +66,31 @@ export default function Historic() {
   }
 
   function Search() {
-    console.log()
+  
+    search == codigo ? setSearch('') : setSearch(codigo);
+
   }
 
   return (
         <View style={styles.container}>
           <Header title="Histórico" />
 
+          <View style={styles.searchBox}>
+            <Text style={styles.txtSearch}>Pesquisa</Text>
           <ScrollView>
-
           <View style={styles.search}>
             <TextInput
               style={styles.input}
               autoCorrect={false}
               onChangeText={setCodigo}
               value={codigo}
-            ></TextInput>
-            <TouchableOpacity style={styles.btn}>
+            />
+            <TouchableOpacity style={styles.btn} onPress={Search}>
               <FontAwesome name="search" size={30} color="#000" />
             </TouchableOpacity>
+            </View>
+            </ScrollView>
           </View>
-          </ScrollView>
 
           <ScrollView>
           
@@ -162,9 +172,11 @@ const styles = StyleSheet.create({
     search: {
       flexDirection: 'row',
       width: "90%",
-      height: 59,
-      marginTop: "5%",
+      height: 50,
       marginLeft: "5%",
+    },
+    searchBox: {
+      marginTop: "5%",
     },
     input: {
       backgroundColor: "#C0C0C0",
@@ -180,8 +192,11 @@ const styles = StyleSheet.create({
       alignSelf: "center",
       width: "12%",
       height: 50,
-      marginBottom: 20,
       borderBottomRightRadius: 8,
       borderTopRightRadius: 8
+    },
+    txtSearch: {
+      fontSize: 20,
+      marginLeft: '5%',
     },
 });
