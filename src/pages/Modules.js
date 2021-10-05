@@ -150,11 +150,12 @@ export default function Modules() {
             </TouchableOpacity>
           </View>
 
+
           <View style={styles.listProdutos}>
             <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
           </View>
         </View>
-      </ScrollView>
+        </ScrollView>
     </View>
   );
 }

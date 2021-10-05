@@ -92,7 +92,6 @@ export default function Historic() {
             </ScrollView>
           </View>
 
-          <ScrollView>
           
           <View style={styles.listItems}>
             <FlatList
@@ -125,7 +124,6 @@ export default function Historic() {
               showsVerticalScrollIndicator={false}
             />
           </View>
-          </ScrollView>
 
         </View>
   );
