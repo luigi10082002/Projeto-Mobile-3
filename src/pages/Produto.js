@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -10,12 +10,16 @@ import {
   Alert,
   FlatList,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
 import uuid from "react-native-uuid";
 
 import { Header } from "../components/Header";
 
 export default function Modules() {
+
+  const route = useRoute();
+  const paramMod = route.params.produto;
+
   const [qtd, setQtd] = useState(1);
   const [codigo, setCodigo] = useState();
 
@@ -34,6 +38,15 @@ export default function Modules() {
     new Date().getSeconds();
 
   const [Produto, setProduto] = useState([]);
+
+
+  useFocusEffect(
+    useCallback(() => {
+      setCodigo(paramMod.produto);
+      setQtd(paramMod.qtd.toString());
+    }, [paramMod])
+  );
+
 
   async function Capture({ data }) {
     setScanned(true);
@@ -69,29 +82,25 @@ export default function Modules() {
   }
 
   async function Save() {
-    const newProd = {
-      id: uuid.v4(),
-      produto: codigo,
-      qtd: qtd,
-      data: date,
-      hora: hora,
-    };
+    
+    ///verificar se qtd > 0
+
+    // verificar se codigo diferente branco 
+
+
 
     //Verifica se tem alguma coisa na storage
     const storage = await AsyncStorage.getItem("@Produtos");
     const Produto = storage ? JSON.parse(storage) : [];
 
-    const index = Produto.findIndex((element) => element.produto == codigo);
+    const index = Produto.findIndex((element) => element.id == paramMod.id);
 
     if (index >= 0) {
-      Produto[index].qtd = parseInt(Produto[index].qtd) + parseInt(qtd);
+      Produto[index].qtd =  parseInt(qtd);
+      Produto[index].produto =  codigo;
+      Produto[index].dtalteracao =  '18:30';
       await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
-    } else {
-      await AsyncStorage.setItem(
-        "@Produtos",
-        JSON.stringify([...Produto, newProd])
-      );
-    }
+    } 
     Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
       {
         text: "Ok",
@@ -99,7 +108,6 @@ export default function Modules() {
     ]);
   }
   return (
-    <>
         <View style={styles.container}>
           <Header title="Contagem de Invenatario" />
           <ScrollView>
@@ -114,6 +122,7 @@ export default function Modules() {
               style={styles.labelQtd}
               autoCorrect={false}
               onChangeText={setQtd}
+              value={qtd}
             />
 
             <TextInput
@@ -129,12 +138,8 @@ export default function Modules() {
               <Text style={styles.textSave}>SALVAR</Text>
             </TouchableOpacity>
           </View>
-
           </ScrollView>
-
-
         </View>
-    </>
   );
 }
 

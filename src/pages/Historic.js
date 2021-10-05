@@ -17,7 +17,9 @@ import { Header } from "../components/Header";
 
 export default function Historic() {
   const navigation = useNavigation();
+
   const [Produto, setProduto] = useState([]);
+  const [codigo, setCodigo] = useState();
 
   useFocusEffect(
     useCallback(() => {
@@ -28,20 +30,18 @@ export default function Historic() {
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
-
     setProduto(storage);
   }
 
   async function handleRemove(item) {
     const id = Produto.findIndex((element) => element.id == item.id);
-
     Alert.alert("Remover", `Deseja remover este produto?`, [
       {
-        text: "Não ",
-        style: "cancel",
+        text: "Não",
+        style: "Cancel",
       },
       {
-        text: "Sim ",
+        text: "Sim",
         onPress: async () => {
           Produto.splice(id, 1);
           await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
@@ -50,9 +50,17 @@ export default function Historic() {
     ]);
   }
 
-  function Edit() {
-    navigation.navigate("Produto")
+  function Edit(item) {
+    navigation.navigate("Produto",
+     {
+      screen: "Produto",
+      produto: item,
+    });
 
+  }
+
+  function Search() {
+    console.log()
   }
 
   return (
@@ -64,11 +72,17 @@ export default function Historic() {
           <View style={styles.search}>
             <TextInput
               style={styles.input}
+              autoCorrect={false}
+              onChangeText={setCodigo}
+              value={codigo}
             ></TextInput>
             <TouchableOpacity style={styles.btn}>
-            <FontAwesome name="search" size={30} color="#000" />
+              <FontAwesome name="search" size={30} color="#000" />
             </TouchableOpacity>
           </View>
+          </ScrollView>
+
+          <ScrollView>
           
           <View style={styles.listItems}>
             <FlatList
@@ -77,7 +91,7 @@ export default function Historic() {
               renderItem={({ item }) => (
                 <View style={styles.card}>
                   <View style={styles.details}>
-                    <TouchableOpacity style={styles.info} onPress={Edit}>
+                    <TouchableOpacity style={styles.info} onPress={(e) => {Edit(item)}}>
                       <Text style={styles.textCod}>{item.produto}</Text>
                       <View style={styles.details}>
                         <Text>{item.date}</Text>
@@ -91,7 +105,7 @@ export default function Historic() {
                   <View style={styles.delete}>
                     <TouchableOpacity
                       style={styles.buttonDelete}
-                      onPress={handleRemove}
+                      onPress={(e)=>{handleRemove(item)}}
                     >
                       <FontAwesome name="trash" size={30} color="#f00" />
                     </TouchableOpacity>
@@ -112,9 +126,7 @@ const styles = StyleSheet.create({
     flex: 1,
     },
     listItems: {
-      backgroundColor: '#00f',
     alignSelf: "center",
-    marginTop: "3%",
     height: "100%",
     width: "90%",
     },
@@ -150,13 +162,13 @@ const styles = StyleSheet.create({
     search: {
       flexDirection: 'row',
       width: "90%",
-      height: "10%",
+      height: 59,
       marginTop: "5%",
       marginLeft: "5%",
     },
     input: {
       backgroundColor: "#C0C0C0",
-      height: "100%",
+      height: 50,
       width: "88%",
       paddingHorizontal: '3%',
       borderBottomLeftRadius: 8,
@@ -167,7 +179,8 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignSelf: "center",
       width: "12%",
-      height: "100%",
+      height: 50,
+      marginBottom: 20,
       borderBottomRightRadius: 8,
       borderTopRightRadius: 8
     },

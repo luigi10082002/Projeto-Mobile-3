@@ -18,7 +18,7 @@ import { Header } from "../components/Header";
 
 export default function Modules() {
   const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
+  const [scanned, setScanned] = useState(true);
 
   const [qtd, setQtd] = useState(1);
   const [codigo, setCodigo] = useState();
@@ -44,39 +44,32 @@ export default function Modules() {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === "granted");
     })();
-  }, []);
+  }, [codigo, scanned, qtd]);
 
-  async function Capture({ data }) {
+  useFocusEffect(
+    useCallback(() => {
+      loadSpots();
+    }, [Produto])
+  );
+
+  async function loadSpots() {
+    const response = await AsyncStorage.getItem("@Produtos");
+    const storage = response ? JSON.parse(response) : [];
+    storage.splice(1,4);
+    setProduto(storage);
+  }
+
+  async function handleBarCodeScanned({ data }) {
+      console.log(data);
+    setCodigo(data);
+    setQtd(1);
     setScanned(true);
-    const newProd = {
-      id: uuid.v4(),
-      produto: data,
-      qtd: 1,
-      date: date,
-      hora: hora,
-    };
+    
+  }
 
-    const storage = await AsyncStorage.getItem("@Produtos");
-    const Produto = storage ? JSON.parse(storage) : [];
-
-    const index = Produto.findIndex((element) => element.produto == data);
-
-    if (index >= 0) {
-      Produto[index].qtd = parseInt(Produto[index].qtd) + 1;
-      await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
-    } else {
-      await AsyncStorage.setItem(
-        "@Produtos",
-        JSON.stringify([...Produto, newProd])
-      );
-    }
-
-    Alert.alert("Confirmação", "Produto Salva Com Sucesso", [
-      {
-        text: "OK",
-        onPress: () => setScanned(false),
-      },
-    ]);
+  function handleBarCodeSetScanned(){
+    setScanned(false);
+    
   }
 
   async function Save() {
@@ -108,6 +101,9 @@ export default function Modules() {
         text: "OK",
       },
     ]);
+
+    setCodigo("");
+
   }
   return (
     <View>
@@ -116,12 +112,13 @@ export default function Modules() {
           <Header title="Contagem de Invenatario" />
 
           <View style={styles.scanner}>
-            <BarCodeScanner
+          <BarCodeScanner
+                onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
               style={{ height: 500, width: 500 }}
             />
 
             <View style={styles.btn}>
-              <TouchableOpacity style={styles.button} onPress={Capture}>
+              <TouchableOpacity style={styles.button} onPress={handleBarCodeSetScanned}>
                 <Text style={styles.buttonText}>CAPTURAR</Text>
               </TouchableOpacity>
             </View>
@@ -137,14 +134,16 @@ export default function Modules() {
               style={styles.labelQtd}
               autoCorrect={false}
               onChangeText={setQtd}
-            ></TextInput>
+              value={qtd}
+              keyboardType="numeric"
+           />
 
             <TextInput
               style={styles.labelCod}
               autoCorrect={false}
               onChangeText={setCodigo}
               value={codigo}
-            ></TextInput>
+            />
           </View>
 
           <View style={styles.buttonSave}>
@@ -271,4 +270,5 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
   },
+  
 });
