@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,6 @@ import {
   Alert,
   FlatList,
 } from "react-native";
-import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
 import uuid from "react-native-uuid";
 
@@ -35,13 +34,6 @@ export default function Modules() {
     new Date().getSeconds();
 
   const [Produto, setProduto] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === "granted");
-    })();
-  }, []);
 
   async function Capture({ data }) {
     setScanned(true);
@@ -107,27 +99,29 @@ export default function Modules() {
     ]);
   }
   return (
-    <View>
-      <ScrollView>
+    <>
         <View style={styles.container}>
-          <Header title="Contagem de invenatario" />
+          <Header title="Contagem de Invenatario" />
+          <ScrollView>
+
           <View style={styles.info}>
-            <Text style={styles.textCod}>Código</Text>
             <Text style={styles.textQtd}>Quantidade</Text>
+            <Text style={styles.textCod}>Código</Text>
           </View>
+
           <View style={styles.input}>
+            <TextInput
+              style={styles.labelQtd}
+              autoCorrect={false}
+              onChangeText={setQtd}
+            />
+
             <TextInput
               style={styles.labelCod}
               autoCorrect={false}
               onChangeText={setCodigo}
               value={codigo}
-            ></TextInput>
-
-            <TextInput
-              style={styles.labelQtd}
-              autoCorrect={false}
-              onChangeText={setQtd}
-            ></TextInput>
+            />
           </View>
 
           <View style={styles.buttonSave}>
@@ -136,14 +130,11 @@ export default function Modules() {
             </TouchableOpacity>
           </View>
 
-          <Text>A</Text>
-          <Text>A</Text>
-          <Text>A</Text>
-          <Text>A</Text>
+          </ScrollView>
+
 
         </View>
-      </ScrollView>
-    </View>
+    </>
   );
 }
 
@@ -163,7 +154,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: "5%",
     width: "100%",
-    height: "15%",
+    height: 34,
   },
   buttonSave: {
     alignSelf: "center",
@@ -171,16 +162,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: "5%",
     width: "90%",
-    height: "15%",
+    height: 50,
+  },
+  listProdutos: {
+    marginTop: "5%",
+    marginLeft: "5%",
+    width: "40%",
+    height: "50%",
   },
   //CSS dos Textos
   textQtd: {
-    marginLeft: "48%",
     height: "auto",
     width: "32%",
     fontSize: 20,
   },
   textCod: {
+    marginLeft: "5%",
     height: "auto",
     width: "auto",
     fontSize: 20,
@@ -190,12 +187,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 15,
   },
+  textList: {
+    fontSize: 20,
+  },
   //CSS dos Inputs
   labelQtd: {
     backgroundColor: "#CACACA",
     borderRadius: 8,
     paddingHorizontal: "3%",
-    marginLeft: "5%",
     height: "100%",
     width: "29%",
   },
@@ -205,6 +204,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: "3%",
     height: "100%",
     width: "56%",
+    marginLeft: "5%",
   },
   //CSS do Botão SALVAR
   save: {
@@ -214,5 +214,37 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 8,
+  },
+
+  scanner: {
+    alignSelf: "center",
+    alignItems: "center",
+    height: "25%",
+    width: "75%",
+    overflow: "hidden",
+    borderRadius: 10,
+    marginLeft: "5%",
+    marginTop: "5%",
+  },
+  button: {
+    backgroundColor: "#4B7DFE",
+    width: "45%",
+    height: "20%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+  },
+  btn: {
+    width: "100%",
+    height: "100%",
+    marginTop: "25%",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    position: "absolute",
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
 });

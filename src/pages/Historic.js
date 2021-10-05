@@ -10,13 +10,13 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
 
 export default function Historic() {
+  const navigation = useNavigation();
   const [Produto, setProduto] = useState([]);
 
   useFocusEffect(
@@ -50,10 +50,26 @@ export default function Historic() {
     ]);
   }
 
+  function Edit() {
+    navigation.navigate("Produto")
+
+  }
+
   return (
         <View style={styles.container}>
           <Header title="Histórico" />
 
+          <ScrollView>
+
+          <View style={styles.search}>
+            <TextInput
+              style={styles.input}
+            ></TextInput>
+            <TouchableOpacity style={styles.btn}>
+            <FontAwesome name="search" size={30} color="#000" />
+            </TouchableOpacity>
+          </View>
+          
           <View style={styles.listItems}>
             <FlatList
               data={Produto}
@@ -61,7 +77,7 @@ export default function Historic() {
               renderItem={({ item }) => (
                 <View style={styles.card}>
                   <View style={styles.details}>
-                    <TouchableOpacity style={styles.info}>
+                    <TouchableOpacity style={styles.info} onPress={Edit}>
                       <Text style={styles.textCod}>{item.produto}</Text>
                       <View style={styles.details}>
                         <Text>{item.date}</Text>
@@ -85,6 +101,8 @@ export default function Historic() {
               showsVerticalScrollIndicator={false}
             />
           </View>
+          </ScrollView>
+
         </View>
   );
 }
@@ -92,38 +110,65 @@ export default function Historic() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  listItems: {
+    },
+    listItems: {
+      backgroundColor: '#00f',
     alignSelf: "center",
-    marginTop: "30%",
-    height: "70%",
+    marginTop: "3%",
+    height: "100%",
     width: "90%",
-  },
-  card: {
+    },
+    card: {
+    flex: 1,
     backgroundColor: "#CACACA",
     flexDirection: "row",
     alignSelf: "center",
     borderRadius: 8,
-    marginTop: '5%',
-    height: "58%",
+    marginTop: '2%',
+    marginBottom: '2%',
+    height: "85%",
     width: "90%",
     padding: 20,
-  },
-  textCod: {
+    },
+    textCod: {
     fontSize: 15,
     fontWeight: "bold",
-  },
-  details: {
+    },
+    details: {
     flexDirection: "row",
     height: "100%",
     width: "90%",
-  },
-  delete: {
+    },
+    delete: {
     width: "13%",
     height: "auto",
     marginTop: "5%",
-  },
-  buttonDelete: {
+    },
+    buttonDelete: {
     marginLeft: "10%",
-  },
+    },
+    search: {
+      flexDirection: 'row',
+      width: "90%",
+      height: "10%",
+      marginTop: "5%",
+      marginLeft: "5%",
+    },
+    input: {
+      backgroundColor: "#C0C0C0",
+      height: "100%",
+      width: "88%",
+      paddingHorizontal: '3%',
+      borderBottomLeftRadius: 8,
+      borderTopLeftRadius: 8
+    },
+    btn: {
+      backgroundColor: "#C0C0C0",
+      justifyContent: "center",
+      alignSelf: "center",
+      width: "12%",
+      height: "100%",
+      borderBottomRightRadius: 8,
+      borderTopRightRadius: 8
+    },
 });

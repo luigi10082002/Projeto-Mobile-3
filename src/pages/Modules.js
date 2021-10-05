@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -11,8 +11,8 @@ import {
   FlatList,
   } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { useNavigation } from "@react-navigation/native";
 import uuid from "react-native-uuid";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { Header } from "../components/Header";
 
@@ -105,7 +105,7 @@ export default function Modules() {
     }
     Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
       {
-        text: "Ok",
+        text: "OK",
       },
     ]);
   }
@@ -113,7 +113,7 @@ export default function Modules() {
     <View>
       <ScrollView>
         <View style={styles.container}>
-          <Header title="Contagem de invenatario" />
+          <Header title="Contagem de Invenatario" />
 
           <View style={styles.scanner}>
             <BarCodeScanner
@@ -270,8 +270,5 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
-  },
-  list: {
-    backgroundColor: "#00f"
   },
 });

@@ -13,10 +13,6 @@ function Home() {
     navigation.navigate("Modules")
   }
 
-  function NewProd() {
-    navigation.navigate("Produto")
-  }
-
   function Historic() {
     navigation.navigate("Historic")
   }
@@ -59,14 +55,6 @@ function Home() {
           <Text  style={styles.TextPlus}>LISTAR PRODUTOS</Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.boxButton}>
-        <TouchableOpacity style={styles.ButtonAdd} onPress={NewProd}>
-          <Entypo name="plus" size={30} color="#FFF"/>
-          <Text style={styles.TextPlus}>NOVO PRODUTO</Text>
-        </TouchableOpacity>
-      </View>
-
     </View>
   )
 }
