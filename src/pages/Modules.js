@@ -16,12 +16,11 @@ import uuid from "react-native-uuid";
 import {
   useNavigation,
   useFocusEffect,
-  useRoute,
 } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
-import Modal from '../components/Modal';
+import Modal from "../components/Modal";
 
 export default function Modules() {
   const navigation = useNavigation();
@@ -81,7 +80,8 @@ export default function Modules() {
     setScanned(false);
     setTimeout(() => {
       setScanned(true);
-    }, 1000);  }
+    }, 1000);
+  }
 
   async function Save() {
     const newProd = {
@@ -92,39 +92,39 @@ export default function Modules() {
       hora: hora,
     };
 
-    if (qtd <= 0  || codigo == "") {
+    if (qtd <= 0 || codigo == "") {
       Alert.alert("Erro", "O produto não contem as informações necessárias", [
         {
           text: "OK",
-        }
+        },
       ]);
     } else {
-      if(qtd <= 0){
-        qtd =1;
+      if (qtd <= 0) {
+        qtd = 1;
       }
-    //Verifica se tem alguma coisa na storage
-    const storage = await AsyncStorage.getItem("@Produtos");
-    const Produto = storage ? JSON.parse(storage) : [];
+      //Verifica se tem alguma coisa na storage
+      const storage = await AsyncStorage.getItem("@Produtos");
+      const Produto = storage ? JSON.parse(storage) : [];
 
-    const index = Produto.findIndex((element) => element.produto == codigo);
+      const index = Produto.findIndex((element) => element.produto == codigo);
 
-    if (index >= 0) {
-      Produto[index].qtd = parseInt(Produto[index].qtd) + parseInt(qtd);
-      await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
-    } else {
-      await AsyncStorage.setItem(
-        "@Produtos",
-        JSON.stringify([...Produto, newProd])
-      );
+      if (index >= 0) {
+        Produto[index].qtd = parseInt(Produto[index].qtd) + parseInt(qtd);
+        await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
+      } else {
+        await AsyncStorage.setItem(
+          "@Produtos",
+          JSON.stringify([...Produto, newProd])
+        );
+      }
+      Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
+        {
+          text: "OK",
+        },
+      ]);
+
+      setCodigo("");
     }
-    Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
-      {
-        text: "OK",
-      },
-    ]);
-
-    setCodigo("");
-  }
   }
 
   async function handleRemove(item) {
@@ -216,7 +216,12 @@ export default function Modules() {
               renderItem={({ item }) => (
                 <View style={styles.card}>
                   <View style={styles.detailsProd}>
-                  <TouchableOpacity onPress={(e) => {setModal(true);setprodItem(item)}}>
+                    <TouchableOpacity
+                      onPress={(e) => {
+                        setModal(true);
+                        setprodItem(item);
+                      }}
+                    >
                       <Text style={styles.codigo}>{item.produto}</Text>
                       <View style={styles.details}>
                         <Text>{item.date}</Text>
@@ -241,15 +246,10 @@ export default function Modules() {
               )}
               showsVerticalScrollIndicator={false}
             />
-            
           </ScrollView>
         </View>
       </KeyboardAvoidingView>
-      <Modal 
-          show={modal}
-          produtos={prodItem}
-          close={() => setModal(false)}
-        />
+      <Modal show={modal} produtos={prodItem} close={() => setModal(false)} />
     </View>
   );
 }
@@ -258,6 +258,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+
   //CSS das Views
   info: {
     flexDirection: "row",
@@ -271,6 +272,20 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 320,
     height: 45,
+  },
+  scanner: {
+    alignSelf: "center",
+    alignItems: "center",
+    height: 200,
+    width: "75%",
+    overflow: "hidden",
+    borderRadius: 10,
+    marginTop: "5%",
+  },
+  listItems: {
+    alignSelf: "center",
+    height: 255,
+    width: "95%",
   },
   buttonSave: {
     alignSelf: "center",
@@ -286,6 +301,34 @@ const styles = StyleSheet.create({
     width: "40%",
     height: 35,
   },
+  card: {
+    flex: 1,
+    backgroundColor: "#DCDCDC",
+    flexDirection: "row",
+    alignSelf: "center",
+    borderRadius: 8,
+    marginBottom: "2%",
+    height: 80,
+    width: "90%",
+    padding: 20,
+  },
+  detailsProd: {
+    flexDirection: "row",
+    height: "100%",
+    width: "90%",
+  },
+  details: {
+    flexDirection: "row",
+    height: "100%",
+    width: "90%",
+  },
+
+  delete: {
+    width: "13%",
+    height: "auto",
+    marginTop: "5%",
+  },
+
   //CSS dos Textos
   textQtd: {
     height: "auto",
@@ -306,6 +349,15 @@ const styles = StyleSheet.create({
   textList: {
     fontSize: 20,
   },
+  codigo: {
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+
   //CSS dos Inputs
   labelQtd: {
     backgroundColor: "#D3D3D3",
@@ -322,6 +374,7 @@ const styles = StyleSheet.create({
     width: "63%",
     marginLeft: "5%",
   },
+
   //CSS do Botão SALVAR
   save: {
     backgroundColor: "#4B7DFE",
@@ -330,16 +383,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 8,
-  },
-
-  scanner: {
-    alignSelf: "center",
-    alignItems: "center",
-    height: 200,
-    width: "75%",
-    overflow: "hidden",
-    borderRadius: 10,
-    marginTop: "5%",
   },
   button: {
     backgroundColor: "#4B7DFE",
@@ -357,45 +400,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     position: "absolute",
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
-  listItems: {
-    alignSelf: "center",
-    height: 255,
-    width: "95%",
-  },
-  card: {
-    flex: 1,
-    backgroundColor: "#DCDCDC",
-    flexDirection: "row",
-    alignSelf: "center",
-    borderRadius: 8,
-    marginBottom: "2%",
-    height: 80,
-    width: "90%",
-    padding: 20,
-  },
-  codigo: {
-    fontSize: 15,
-    fontWeight: "bold",
-  },
-  details: {
-    flexDirection: "row",
-    height: "100%",
-    width: "90%",
-  },
-  detailsProd: {
-    flexDirection: "row",
-    height: "100%",
-    width: "90%",
-  },
-  delete: {
-    width: "13%",
-    height: "auto",
-    marginTop: "5%",
   },
   buttonDelete: {
     marginLeft: "10%",

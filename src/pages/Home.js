@@ -1,5 +1,12 @@
-import React, { useState, useCallback } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage, KeyboardAvoidingView} from 'react-native';
+import React, { useState, useCallback } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  AsyncStorage,
+  KeyboardAvoidingView,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
@@ -10,11 +17,11 @@ function Home() {
   const [Produto, setProduto] = useState([]);
 
   function NewProduto() {
-    navigation.navigate("Modules")
+    navigation.navigate("Modules");
   }
 
   function Historic() {
-    navigation.navigate("Historic")
+    navigation.navigate("Historic");
   }
 
   useFocusEffect(
@@ -37,7 +44,7 @@ function Home() {
       >*/}
       <View style={styles.boxUser}>
         <Text style={styles.Text}>Olá</Text>
-        <Text style={styles.TextBold}>Usuário</Text> 
+        <Text style={styles.TextBold}>Usuário</Text>
       </View>
 
       <View style={styles.boxProdutos}>
@@ -47,88 +54,91 @@ function Home() {
 
       <View style={styles.boxButton}>
         <TouchableOpacity style={styles.ButtonAdd} onPress={NewProduto}>
-          <Entypo name="plus" size={30} color="#FFF"/>
+          <Entypo name="plus" size={30} color="#FFF" />
           <Text style={styles.TextPlus}>NOVO PRODUTO</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.boxButton}> 
+      <View style={styles.boxButton}>
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>
-          <AntDesign name="clockcircleo" size={20} color="#FFF"/>
-          <Text  style={styles.TextPlus}>LISTAR PRODUTOS</Text>
+          <AntDesign name="clockcircleo" size={20} color="#FFF" />
+          <Text style={styles.TextPlus}>LISTAR PRODUTOS</Text>
         </TouchableOpacity>
       </View>
       {/*</KeyboardAvoidingView>*/}
     </View>
-  )
+  );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  //CSS Views
   boxUser: {
-    width: '35%',
-    height: '17%',
-    marginLeft: '4%',
-    marginTop: '30%',
+    width: "35%",
+    height: "17%",
+    marginLeft: "4%",
+    marginTop: "30%",
   },
   boxProdutos: {
-    flexDirection: 'row',
-    backgroundColor: '#DCDCDC',
-    width: '85%',
-    height: '15%',
-    alignSelf: 'center',
-    marginTop: '5%',
+    flexDirection: "row",
+    backgroundColor: "#DCDCDC",
+    width: "85%",
+    height: "15%",
+    alignSelf: "center",
+    marginTop: "5%",
     borderRadius: 8,
   },
   boxButton: {
-    width: '85%',
-    height: '15%',
-    alignSelf: 'center',
-    marginTop: '4%',
+    width: "85%",
+    height: "15%",
+    alignSelf: "center",
+    marginTop: "4%",
   },
+  //CSS Texts
   Text: {
-    fontFamily: 'RobotoMono_400Regular',
+    fontFamily: "RobotoMono_400Regular",
     fontSize: 33,
   },
   TextBold: {
     fontSize: 33,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   TextNumber: {
-    alignSelf: 'center',
-    marginLeft: '18%',
-    fontWeight: 'bold',
-    fontSize: 30
+    alignSelf: "center",
+    marginLeft: "18%",
+    fontWeight: "bold",
+    fontSize: 30,
   },
   TextProdutos: {
-    alignSelf: 'center',
-    marginLeft: '8%',
-    fontSize: 18
+    alignSelf: "center",
+    marginLeft: "8%",
+    fontSize: 18,
   },
   TextPlus: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
-    marginLeft: '2%'
+    marginLeft: "2%",
   },
+  //CSS Buttons
   ButtonAdd: {
-    flexDirection: 'row',
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#4B7DFE',
+    flexDirection: "row",
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#4B7DFE",
     borderRadius: 9,
   },
   ButtonHistoric: {
-    flexDirection: 'row',
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#696969',
+    flexDirection: "row",
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#696969",
     borderRadius: 9,
   },
-})
+});
 
 export default Home;

@@ -54,9 +54,9 @@ export default function Modal({ show, close, produtos }) {
 
   const closeModal = () => {
     Animated.sequence([
-      Animated.timing(state.modal, { toValue: height, duration: 250, useNativeDriver: true }),
-      Animated.timing(state.opacity, { toValue: 0, duration: 300 }),
-      Animated.timing(state.container, { toValue: height, duration: 100 })
+      Animated.timing(state.modal, { toValue: height, duration: 200, useNativeDriver: true }),
+      Animated.timing(state.opacity, { toValue: 0, duration: 0 }),
+      Animated.timing(state.container, { toValue: height, duration: 10 })
     ]).start()
   }
 
