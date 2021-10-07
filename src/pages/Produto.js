@@ -11,7 +11,7 @@ import {
   FlatList,
   KeyboardAvoidingView,
 } from "react-native";
-import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
+import { useRoute, useFocusEffect } from "@react-navigation/native";
 import uuid from "react-native-uuid";
 
 import { Header } from "../components/Header";
@@ -120,7 +120,7 @@ export default function Modules() {
           <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-          <Header title="Contagem de Invenatario" />
+          <Header title="Edição de Produto"/>
           <ScrollView>
 
           <View style={styles.info}>

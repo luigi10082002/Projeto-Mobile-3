@@ -15,14 +15,17 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Entypo, FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
+import Modal from '../components/Modal';
 
 export default function Historic() {
   const navigation = useNavigation();
 
+  const [modal, setModal] = useState(false);
+
   const [Produto, setProduto] = useState([]);
   const [codigo, setCodigo] = useState();
   const [search, setSearch] = useState("");
-
+  const [prodItem, setprodItem] = useState([]);
   useFocusEffect(
     useCallback(() => {
       loadSpots();
@@ -57,14 +60,13 @@ export default function Historic() {
     ]);
   }
 
-  function Edit(item) {
-    navigation.navigate("Produto",
-     {
-      screen: "Produto",
-      produto: item,
-    });
-
-  }
+  //function Edit(item) {
+    //navigation.navigate("Produto",
+    //{
+     //screen: "Produto",
+     //produto: item,
+   //});
+  //}
 
   function Search() {
   
@@ -106,10 +108,11 @@ export default function Historic() {
               renderItem={({ item }) => (
                 <View style={styles.card}>
                   <View style={styles.details}>
-                    <TouchableOpacity onPress={(e) => {Edit(item)}}>
+                    <TouchableOpacity onPress={(e) => {setModal(true);setprodItem(item)}}>
+                    {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
                       <Text style={styles.textCod}>{item.produto}</Text>
                       <View style={styles.details}>
-                        <Text>{item.date}</Text>
+                        <Text>{item.data}</Text>
                         <Text> {item.hora}</Text>
                         <Text> - </Text>
                         <Text>{item.qtd} </Text>
@@ -126,12 +129,19 @@ export default function Historic() {
                     </TouchableOpacity>
                   </View>
                 </View>
+
+                
               )}
               showsVerticalScrollIndicator={false}
             />
           </View>
-          </KeyboardAvoidingView>
 
+          </KeyboardAvoidingView>
+          <Modal 
+            show={modal}
+            produtos={prodItem}
+            close={() => setModal(false)}
+          />
         </View>
   );
 }
@@ -178,12 +188,12 @@ const styles = StyleSheet.create({
     search: {
       flexDirection: 'row',
       width: "90%",
-      height: 50,
+      height: '100%',
       marginLeft: "5%",
     },
     input: {
       backgroundColor: "#D3D3D3",
-      height: 50,
+      height: 60,
       width: "88%",
       paddingHorizontal: '3%',
       borderBottomLeftRadius: 8,
@@ -194,7 +204,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignSelf: "center",
       width: "12%",
-      height: 50,
+      height: '100%',
       borderBottomRightRadius: 8,
       borderTopRightRadius: 8
     },

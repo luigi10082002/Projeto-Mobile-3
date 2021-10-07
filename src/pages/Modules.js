@@ -21,15 +21,19 @@ import {
 import { Entypo } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
+import Modal from '../components/Modal';
 
 export default function Modules() {
   const navigation = useNavigation();
+
+  const [modal, setModal] = useState(false);
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(true);
 
   const [qtd, setQtd] = useState(1);
   const [codigo, setCodigo] = useState();
+  const [prodItem, setprodItem] = useState([]);
 
   const date =
     new Date().getDate() +
@@ -84,10 +88,20 @@ export default function Modules() {
       id: uuid.v4(),
       produto: codigo,
       qtd: qtd,
-      data: date,
+      date: date,
       hora: hora,
     };
 
+    if (qtd <= 0  || codigo == "") {
+      Alert.alert("Erro", "O produto não contem as informações necessárias", [
+        {
+          text: "OK",
+        }
+      ]);
+    } else {
+      if(qtd <= 0){
+        qtd =1;
+      }
     //Verifica se tem alguma coisa na storage
     const storage = await AsyncStorage.getItem("@Produtos");
     const Produto = storage ? JSON.parse(storage) : [];
@@ -110,6 +124,7 @@ export default function Modules() {
     ]);
 
     setCodigo("");
+  }
   }
 
   async function handleRemove(item) {
@@ -171,7 +186,6 @@ export default function Modules() {
             onChangeText={setQtd}
             value={qtd}
             keyboardType="numeric"
-            placeholder="Quantidade"
           />
 
           <TextInput
@@ -202,11 +216,7 @@ export default function Modules() {
               renderItem={({ item }) => (
                 <View style={styles.card}>
                   <View style={styles.detailsProd}>
-                    <TouchableOpacity
-                      onPress={(e) => {
-                        Edit(item);
-                      }}
-                    >
+                  <TouchableOpacity onPress={(e) => {setModal(true);setprodItem(item)}}>
                       <Text style={styles.codigo}>{item.produto}</Text>
                       <View style={styles.details}>
                         <Text>{item.date}</Text>
@@ -231,9 +241,15 @@ export default function Modules() {
               )}
               showsVerticalScrollIndicator={false}
             />
+            
           </ScrollView>
         </View>
       </KeyboardAvoidingView>
+      <Modal 
+          show={modal}
+          produtos={prodItem}
+          close={() => setModal(false)}
+        />
     </View>
   );
 }

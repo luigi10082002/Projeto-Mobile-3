@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @expo-google-fonts
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @expo-google-fonts/RobotoMono
 
 PATH: 
   C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\windows\system32;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\twist\AppData\Local\Microsoft\WindowsApps;;C:\Users\twist\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\twist\AppData\Local\Yarn\bin;C:\Users\twist\AppData\Roaming\npm
@@ -14,8 +14,8 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@expo-google-fonts: Request "https://registry.yarnpkg.com/@expo-google-fonts" returned a 405
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66036:18)
+  Error: https://registry.yarnpkg.com/@expo-google-fonts%2fRobotoMono: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66027:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140539:22)
       at Request.emit (events.js:375:28)
       at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141511:10)
@@ -42,6 +42,8 @@ npm manifest:
       "@react-navigation/stack": "5.14.4",
       "expo": "~42.0.1",
       "expo-barcode-scanner": "^10.2.2",
+      "expo-font": "^9.2.1",
+      "expo-google-fonts": "^0.0.0",
       "expo-status-bar": "~1.0.4",
       "react": "16.13.1",
       "react-dom": "16.13.1",
@@ -2877,13 +2879,18 @@ Lockfile:
       expo-modules-core "~0.2.0"
       uuid "^3.4.0"
   
-  expo-font@~9.2.1:
+  expo-font@^9.2.1, expo-font@~9.2.1:
     version "9.2.1"
     resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-9.2.1.tgz#c7586b009bf3c4c2427d33c360015d354960bd70"
     integrity sha512-sT9nm2Dt1nTLz+Ir1fSpyzqH40eJX324Wu5sPyvT2Ivnmu2rw2rxt3gNa8Kvdb8BPRz4qrRvHR/E+YKMqa6ZgQ==
     dependencies:
       expo-modules-core "~0.2.0"
       fontfaceobserver "^2.1.0"
+  
+  expo-google-fonts@^0.0.0:
+    version "0.0.0"
+    resolved "https://registry.yarnpkg.com/expo-google-fonts/-/expo-google-fonts-0.0.0.tgz#1e0f91c9858095e707cb69946d9332954e14eb77"
+    integrity sha512-SpY1N5ZHGbNXuvN8s3E2HxjlcxR5NHWn72Uy8wl0uZJ0ueWd+JfTUXwZzfuF638WeTdgJKztRy2MWfuMORQ1yQ==
   
   expo-keep-awake@~9.2.0:
     version "9.2.0"

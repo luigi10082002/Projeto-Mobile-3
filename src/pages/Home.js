@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage,   KeyboardAvoidingView} from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage, KeyboardAvoidingView} from 'react-native';
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
@@ -32,9 +32,9 @@ function Home() {
 
   return (
     <View style={styles.container}>
-      <KeyboardAvoidingView
+      {/*<KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
+      >*/}
       <View style={styles.boxUser}>
         <Text style={styles.Text}>Olá</Text>
         <Text style={styles.TextBold}>Usuário</Text> 
@@ -58,8 +58,7 @@ function Home() {
           <Text  style={styles.TextPlus}>LISTAR PRODUTOS</Text>
         </TouchableOpacity>
       </View>
-      </KeyboardAvoidingView>
-
+      {/*</KeyboardAvoidingView>*/}
     </View>
   )
 }
@@ -89,6 +88,7 @@ const styles = StyleSheet.create({
     marginTop: '4%',
   },
   Text: {
+    fontFamily: 'RobotoMono_400Regular',
     fontSize: 33,
   },
   TextBold: {
