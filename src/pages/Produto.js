@@ -9,6 +9,7 @@ import {
   AsyncStorage,
   Alert,
   FlatList,
+  KeyboardAvoidingView,
 } from "react-native";
 import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
 import uuid from "react-native-uuid";
@@ -116,6 +117,9 @@ export default function Modules() {
 }
   return (
         <View style={styles.container}>
+          <KeyboardAvoidingView
+        ebehavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
           <Header title="Contagem de Invenatario" />
           <ScrollView>
 
@@ -130,6 +134,7 @@ export default function Modules() {
               autoCorrect={false}
               onChangeText={setQtd}
               value={qtd}
+              keyboardType="numeric"
             />
 
             <TextInput
@@ -137,6 +142,8 @@ export default function Modules() {
               autoCorrect={false}
               onChangeText={setCodigo}
               value={codigo}
+              keyboardType="numeric"
+              placeholder={Produto.produto}
             />
           </View>
 
@@ -146,6 +153,8 @@ export default function Modules() {
             </TouchableOpacity>
           </View>
           </ScrollView>
+          </KeyboardAvoidingView>
+
         </View>
   );
 }
@@ -166,7 +175,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: "5%",
     width: "100%",
-    height: 34,
+    height: 40,
   },
   buttonSave: {
     alignSelf: "center",
@@ -204,14 +213,14 @@ const styles = StyleSheet.create({
   },
   //CSS dos Inputs
   labelQtd: {
-    backgroundColor: "#CACACA",
+    backgroundColor: "#D3D3D3",
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",
     width: "29%",
   },
   labelCod: {
-    backgroundColor: "#CACACA",
+    backgroundColor: "#D3D3D3",
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",

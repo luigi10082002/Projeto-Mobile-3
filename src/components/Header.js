@@ -4,12 +4,18 @@ import { Feather } from "@expo/vector-icons";
 import { Text, View, StyleSheet } from "react-native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
-export function Header({ title, action }) {
+export function Header({ title, action, modelo }) {
   const navigation = useNavigation();
 
   function handleGoBack() {
-    navigation.navigate("Home");
-  }
+    const tipo = modelo === "" ? "Home" : modelo;
+    const screen = modelo === "Modules" ? "" : modelo === "Produto" ? "" : "";
+
+    navigation.navigate("Home", {
+      id: screen,
+      screen: "Modules",
+      backScreen: "Home",
+    });  }
 
   return (
     <View style={styles.container}>

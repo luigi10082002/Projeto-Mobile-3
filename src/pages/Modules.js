@@ -9,14 +9,22 @@ import {
   AsyncStorage,
   Alert,
   FlatList,
-  } from "react-native";
+  KeyboardAvoidingView,
+} from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import {
+  useNavigation,
+  useFocusEffect,
+  useRoute,
+} from "@react-navigation/native";
+import { Entypo } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
 
 export default function Modules() {
+  const navigation = useNavigation();
+
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(true);
 
@@ -55,20 +63,21 @@ export default function Modules() {
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
-    storage.splice(1,4);
+    storage.splice(4, 1);
     setProduto(storage);
   }
 
   async function handleBarCodeScanned({ data }) {
-      console.log(data);
     setCodigo(data);
     setQtd(1);
     setScanned(true);
   }
 
-  function handleBarCodeSetScanned(){
+  function handleBarCodeSetScanned() {
     setScanned(false);
-  }
+    setTimeout(() => {
+      setScanned(true);
+    }, 1000);  }
 
   async function Save() {
     const newProd = {
@@ -101,61 +110,130 @@ export default function Modules() {
     ]);
 
     setCodigo("");
-
   }
+
+  async function handleRemove(item) {
+    const id = Produto.findIndex((element) => element.id == item.id);
+    Alert.alert("Remover", `Deseja remover este produto?`, [
+      {
+        text: "Não",
+        style: "Cancel",
+      },
+      {
+        text: "Sim",
+        onPress: async () => {
+          Produto.splice(id, 1);
+          await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
+        },
+      },
+    ]);
+  }
+
+  function Edit(item) {
+    navigation.navigate("Produto", {
+      screen: "Produto",
+      produto: item,
+    });
+  }
+
   return (
-    <View>
-      <ScrollView>
-        <View style={styles.container}>
-          <Header title="Contagem de Invenatario" />
+    <View style={styles.container}>
+      <KeyboardAvoidingView
+        ebehavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <Header title="Contagem de Invenatario" />
 
-          <View style={styles.scanner}>
+        <View style={styles.scanner}>
           <BarCodeScanner
-                onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-              style={{ height: 500, width: 500 }}
-            />
+            onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+            style={{ height: 500, width: 500 }}
+          />
 
-            <View style={styles.btn}>
-              <TouchableOpacity style={styles.button} onPress={handleBarCodeSetScanned}>
-                <Text style={styles.buttonText}>CAPTURAR</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View style={styles.info}>
-            <Text style={styles.textQtd}>Quantidade</Text>
-            <Text style={styles.textCod}>Código</Text>
-          </View>
-
-          <View style={styles.input}>
-            <TextInput
-              style={styles.labelQtd}
-              autoCorrect={false}
-              onChangeText={setQtd}
-              value={qtd}
-              keyboardType="numeric"
-           />
-
-            <TextInput
-              style={styles.labelCod}
-              autoCorrect={false}
-              onChangeText={setCodigo}
-              value={codigo}
-            />
-          </View>
-
-          <View style={styles.buttonSave}>
-            <TouchableOpacity style={styles.save} onPress={Save}>
-              <Text style={styles.textSave}>SALVAR</Text>
+          <View style={styles.btn}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={handleBarCodeSetScanned}
+            >
+              <Text style={styles.buttonText}>CAPTURAR</Text>
             </TouchableOpacity>
           </View>
-
-
-          <View style={styles.listProdutos}>
-            <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
-          </View>
         </View>
-        </ScrollView>
+
+        <View style={styles.info}>
+          <Text style={styles.textQtd}>Quantidade</Text>
+          <Text style={styles.textCod}>Código</Text>
+        </View>
+
+        <View style={styles.input}>
+          <TextInput
+            style={styles.labelQtd}
+            autoCorrect={false}
+            onChangeText={setQtd}
+            value={qtd}
+            keyboardType="numeric"
+            placeholder="Quantidade"
+          />
+
+          <TextInput
+            style={styles.labelCod}
+            autoCorrect={false}
+            onChangeText={setCodigo}
+            value={codigo}
+            keyboardType="numeric"
+            placeholder="Código"
+          />
+        </View>
+
+        <View style={styles.buttonSave}>
+          <TouchableOpacity style={styles.save} onPress={Save}>
+            <Text style={styles.textSave}>SALVAR</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.listProdutos}>
+          <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
+        </View>
+
+        <View style={styles.listItems}>
+          <ScrollView>
+            <FlatList
+              data={Produto}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item }) => (
+                <View style={styles.card}>
+                  <View style={styles.detailsProd}>
+                    <TouchableOpacity
+                      onPress={(e) => {
+                        Edit(item);
+                      }}
+                    >
+                      <Text style={styles.codigo}>{item.produto}</Text>
+                      <View style={styles.details}>
+                        <Text>{item.date}</Text>
+                        <Text> {item.hora}</Text>
+                        <Text> - </Text>
+                        <Text>{item.qtd} </Text>
+                        <Text>unidade(s)</Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.delete}>
+                    <TouchableOpacity
+                      style={styles.buttonDelete}
+                      onPress={(e) => {
+                        handleRemove(item);
+                      }}
+                    >
+                      <Entypo name="trash" size={30} color="#f00" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          </ScrollView>
+        </View>
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -169,14 +247,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     marginTop: "5%",
-    height: "auto",
-    width: "90%",
+    height: 30,
+    width: 320,
   },
   input: {
     flexDirection: "row",
-    marginLeft: "5%",
-    width: "100%",
-    height: "5%",
+    alignSelf: "center",
+    width: 320,
+    height: 45,
   },
   buttonSave: {
     alignSelf: "center",
@@ -184,18 +262,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: "5%",
     width: "90%",
-    height: "8%",
+    height: 50,
   },
   listProdutos: {
     marginTop: "5%",
     marginLeft: "5%",
     width: "40%",
-    height: "50%",
+    height: 35,
   },
   //CSS dos Textos
   textQtd: {
     height: "auto",
-    width: "32%",
+    width: "auto",
     fontSize: 20,
   },
   textCod: {
@@ -214,18 +292,18 @@ const styles = StyleSheet.create({
   },
   //CSS dos Inputs
   labelQtd: {
-    backgroundColor: "#CACACA",
+    backgroundColor: "#D3D3D3",
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",
-    width: "29%",
+    width: "32%",
   },
   labelCod: {
-    backgroundColor: "#CACACA",
+    backgroundColor: "#D3D3D3",
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",
-    width: "56%",
+    width: "63%",
     marginLeft: "5%",
   },
   //CSS do Botão SALVAR
@@ -241,11 +319,10 @@ const styles = StyleSheet.create({
   scanner: {
     alignSelf: "center",
     alignItems: "center",
-    height: "25%",
+    height: 200,
     width: "75%",
     overflow: "hidden",
     borderRadius: 10,
-    marginLeft: "5%",
     marginTop: "5%",
   },
   button: {
@@ -269,5 +346,42 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
   },
-  
+  listItems: {
+    alignSelf: "center",
+    height: 255,
+    width: "95%",
+  },
+  card: {
+    flex: 1,
+    backgroundColor: "#DCDCDC",
+    flexDirection: "row",
+    alignSelf: "center",
+    borderRadius: 8,
+    marginBottom: "2%",
+    height: 80,
+    width: "90%",
+    padding: 20,
+  },
+  codigo: {
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  details: {
+    flexDirection: "row",
+    height: "100%",
+    width: "90%",
+  },
+  detailsProd: {
+    flexDirection: "row",
+    height: "100%",
+    width: "90%",
+  },
+  delete: {
+    width: "13%",
+    height: "auto",
+    marginTop: "5%",
+  },
+  buttonDelete: {
+    marginLeft: "10%",
+  },
 });

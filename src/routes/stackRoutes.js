@@ -37,7 +37,7 @@ const AppRoutes = () => (
             component={Historic}
         />
 
-<stackRoutes.Screen 
+        <stackRoutes.Screen 
             name="Produto"
             component={Produto}
         />

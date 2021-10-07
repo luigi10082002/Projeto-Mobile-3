@@ -9,9 +9,10 @@ import {
   TouchableOpacity,
   Alert,
   ScrollView,
+  KeyboardAvoidingView,
 } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
+import { Entypo, FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
 
@@ -73,10 +74,13 @@ export default function Historic() {
 
   return (
         <View style={styles.container}>
+          <KeyboardAvoidingView
+        ebehavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
           <Header title="Histórico" />
 
           <View style={styles.searchBox}>
-            <Text style={styles.txtSearch}>Pesquisa</Text>
+            <Text style={styles.txtSearch}></Text>
           <ScrollView>
           <View style={styles.search}>
             <TextInput
@@ -84,6 +88,8 @@ export default function Historic() {
               autoCorrect={false}
               onChangeText={setCodigo}
               value={codigo}
+              placeholder="Pesquisa"
+              keyboardType="numeric"
             />
             <TouchableOpacity style={styles.btn} onPress={Search}>
               <FontAwesome name="search" size={30} color="#000" />
@@ -100,7 +106,7 @@ export default function Historic() {
               renderItem={({ item }) => (
                 <View style={styles.card}>
                   <View style={styles.details}>
-                    <TouchableOpacity style={styles.info} onPress={(e) => {Edit(item)}}>
+                    <TouchableOpacity onPress={(e) => {Edit(item)}}>
                       <Text style={styles.textCod}>{item.produto}</Text>
                       <View style={styles.details}>
                         <Text>{item.date}</Text>
@@ -116,7 +122,7 @@ export default function Historic() {
                       style={styles.buttonDelete}
                       onPress={(e)=>{handleRemove(item)}}
                     >
-                      <FontAwesome name="trash" size={30} color="#f00" />
+                      <Entypo name="trash" size={30} color="#f00" />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -124,6 +130,7 @@ export default function Historic() {
               showsVerticalScrollIndicator={false}
             />
           </View>
+          </KeyboardAvoidingView>
 
         </View>
   );
@@ -135,12 +142,13 @@ const styles = StyleSheet.create({
     },
     listItems: {
     alignSelf: "center",
-    height: "100%",
-    width: "90%",
+    marginTop: '2%',
+    height: "75%",
+    width: "100%",
     },
     card: {
     flex: 1,
-    backgroundColor: "#CACACA",
+    backgroundColor: '#DCDCDC',
     flexDirection: "row",
     alignSelf: "center",
     borderRadius: 8,
@@ -173,11 +181,8 @@ const styles = StyleSheet.create({
       height: 50,
       marginLeft: "5%",
     },
-    searchBox: {
-      marginTop: "5%",
-    },
     input: {
-      backgroundColor: "#C0C0C0",
+      backgroundColor: "#D3D3D3",
       height: 50,
       width: "88%",
       paddingHorizontal: '3%',
@@ -185,7 +190,7 @@ const styles = StyleSheet.create({
       borderTopLeftRadius: 8
     },
     btn: {
-      backgroundColor: "#C0C0C0",
+      backgroundColor: "#D3D3D3",
       justifyContent: "center",
       alignSelf: "center",
       width: "12%",
