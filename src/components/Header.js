@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#4B7DFE",
   },
   title: {
+    fontFamily: "Rajdhani_600SemiBold",
     flex: 1,
     textAlign: "center",
     fontSize: 20,

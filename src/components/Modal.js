@@ -190,7 +190,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     position: 'absolute'
   },
-
   container_modal:{
     flex: 1,
   },
@@ -225,30 +224,27 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 50,
   },
-  listProdutos: {
-    marginTop: "5%",
-    marginLeft: "5%",
-    width: "40%",
-    height: "50%",
-  },
   //CSS dos Textos
   textQtd: {
+    fontFamily: "Rajdhani_600SemiBold",
     height: "auto",
     width: "32%",
     fontSize: 20,
   },
   textCod: {
+    fontFamily: "Rajdhani_600SemiBold",
     marginLeft: "5%",
     height: "auto",
     width: "auto",
     fontSize: 20,
   },
   textSave: {
+    fontFamily: "Rajdhani_600SemiBold",
     color: "#FFF",
-    fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 20,
   },
   textList: {
+    fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
   },
   //CSS dos Inputs
@@ -298,6 +294,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
   },
   textHeader: {
+    fontFamily: "Rajdhani_600SemiBold",
     textAlign: "center",
     fontSize: 20,
     color: "#fff",

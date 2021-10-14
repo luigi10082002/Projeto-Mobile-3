@@ -4,9 +4,11 @@ import { View, Text, StyleSheet, Alert, Switch,TouchableOpacity, AsyncStorage } 
 import { Header } from '../components/Header';
 
 export default function Settings() {
+  //Constantes do Switch
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+  //Lógica de login com o servidor
   function setServer(){
     Alert.alert("Sincronizar", 'Deseja sincronizar o inventário?', [
       {
@@ -25,6 +27,7 @@ export default function Settings() {
     ])
   }
 
+  //Lógica de deletar o inventário todo
   function setDelete() {
     Alert.alert("Remover Itens", 'Deseja remover todos os itens?', [
       {
@@ -42,9 +45,12 @@ export default function Settings() {
 
   return (
     <View style={styles.container}>
+
       <Header title="Histórico"/>
+
       <View style={styles.boxServer}>
         <Text style={styles.text}>Sincronizar inventário</Text>
+
         <Switch
           trackColor={{ false: "#767577", true: "#4B7DFE" }}
           thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
@@ -53,12 +59,17 @@ export default function Settings() {
           value={isEnabled}
           onChange={setServer}
         />
+
       </View>
+
       <View style={styles.separador}/>
+
       <View style={styles.boxDelete}>
+
         <TouchableOpacity style={styles.DeleteButton} onPress={setDelete}>
           <Text style={styles.textDelete}>EXCLUIR TODOS OS PRODUTOS</Text>  
         </TouchableOpacity> 
+
       </View>
       <View style={styles.separador}/>
     </View>
@@ -69,6 +80,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
   },
+  //CSS Views
   boxServer: {
     width: '100%',
     height: '13%',
@@ -79,12 +91,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '13%',
   },
+  //CSS Buttons
   DeleteButton: {
     width: '100%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center'
   },
+  //CSS Texts
   text: {
     fontSize: 20,
     marginLeft: '5%',
@@ -95,6 +109,7 @@ const styles = StyleSheet.create({
     color: '#f00',
     fontWeight: 'bold',
   },
+  //CSS Line
   separador: {
     backgroundColor: "#000",
     width: "100%",

@@ -12,18 +12,23 @@ import { Entypo } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 function Home() {
+  //Constante de navegação
   const navigation = useNavigation();
 
+  //Constante do array dos produtos 
   const [Produto, setProduto] = useState([]);
 
+  //Navegação para a tela de adicionar produto
   function NewProduto() {
     navigation.navigate("Modules");
   }
 
+  //Navegação para a tela de histórico
   function Historic() {
     navigation.navigate("Historic");
   }
 
+  //Callback do AsyncStorage dos produtos
   useFocusEffect(
     useCallback(() => {
       loadSpots();
@@ -53,13 +58,15 @@ function Home() {
       </View>
 
       <View style={styles.boxButton}>
+        {/*Bootão para adicionar produto */}
         <TouchableOpacity style={styles.ButtonAdd} onPress={NewProduto}>
-          <Entypo name="plus" size={30} color="#FFF" />
+          <Entypo name="plus" size={35} color="#FFF" />
           <Text style={styles.TextPlus}>NOVO PRODUTO</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.boxButton}>
+        {/*Botão que leva ao histórico*/}
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>
           <AntDesign name="clockcircleo" size={20} color="#FFF" />
           <Text style={styles.TextPlus}>LISTAR PRODUTOS</Text>
@@ -97,28 +104,31 @@ const styles = StyleSheet.create({
   },
   //CSS Texts
   Text: {
-    fontFamily: "RobotoMono_400Regular",
+    fontFamily: "Rajdhani_600SemiBold",
     fontSize: 33,
   },
   TextBold: {
     fontSize: 33,
-    fontWeight: "bold",
+    fontFamily: "Rajdhani_600SemiBold",
   },
   TextNumber: {
     alignSelf: "center",
     marginLeft: "18%",
     fontWeight: "bold",
     fontSize: 30,
+    fontFamily: "Rajdhani_600SemiBold",
   },
   TextProdutos: {
     alignSelf: "center",
     marginLeft: "8%",
-    fontSize: 18,
+    fontSize: 20,
+    fontFamily: "Rajdhani_600SemiBold",
   },
   TextPlus: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 20,
     marginLeft: "2%",
+    fontFamily: "Rajdhani_600SemiBold",
   },
   //CSS Buttons
   ButtonAdd: {
