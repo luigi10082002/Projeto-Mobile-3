@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { Entypo, FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
 import Modal from "../components/Modal";
@@ -150,7 +150,7 @@ export default function Historic() {
                       handleRemove(item);
                     }}
                   >
-                    <Entypo name="trash" size={30} color="#f00" />
+                    <FontAwesome5 name="trash" size={30} color="#f00" />
                   </TouchableOpacity>
                 </View>
               </View>

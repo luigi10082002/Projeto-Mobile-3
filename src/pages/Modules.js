@@ -14,7 +14,7 @@ import {
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { Entypo } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
 import Modal from "../components/Modal";
@@ -267,7 +267,7 @@ export default function Modules() {
                       }}
                     >
                       {/*Botão para remover o item*/}
-                      <Entypo name="trash" size={30} color="#f00" />
+                      <FontAwesome5 name="trash" size={30} color="#f00" />
                     </TouchableOpacity>
                   </View>
                 </View>
