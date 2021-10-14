@@ -85,11 +85,7 @@ export default function Modal({ show, close, produtos }) {
     }, [produtos])
   );
 
-  async function Save() {
-    //verificar se qtd > 0
-
-    // verificar se codigo diferente de branco
-
+  async function Add() {
     if (qtd <= 0 || codigo == "") {
       Alert.alert("Erro", "O produto não contem as informações necessárias", [
         {
@@ -109,14 +105,23 @@ export default function Modal({ show, close, produtos }) {
         Produto[index].dtalteracao = `${date} - ${hora}`;
         await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
       }
-
-      Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
-        {
-          text: "Ok",
-        },
-      ]);
     }
   }
+
+  async function Save() {
+    //verificar se qtd > 0
+
+    // verificar se codigo diferente de branco
+      Alert.alert("Aviso", `Você alterou o produto salvar assim mesmo?`, [
+        {
+          text: "CANCELAR",
+        },
+        {
+          text: "CONFIRMAR",
+          onPress: async () => {Add()}
+        }
+      ]);
+    }
 
   return (
     <Animated.View
