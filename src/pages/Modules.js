@@ -139,7 +139,7 @@ export default function Modules() {
       ]);
 
       setCodigo("");
-      setQtd("");
+      setQtd(1);
     }
   }
 
