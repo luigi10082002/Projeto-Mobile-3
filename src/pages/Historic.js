@@ -43,7 +43,7 @@ export default function Historic() {
     }, [Produto])
   );
 
-  //Lógica que compara o código pesquisadop com os códigos que foram adicionados
+  //Lógica que compara o código pesquisado com os códigos que foram adicionados
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];

@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
   },
   listItems: {
     alignSelf: "center",
-    height: 255,
+    height: 261,
     width: "95%",
   },
   card: {
