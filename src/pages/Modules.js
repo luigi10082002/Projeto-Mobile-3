@@ -32,7 +32,7 @@ export default function Modules() {
 
   //Constantes que armazenam os dados dos produto
   const [qtd, setQtd] = useState(1);
-  const [codigo, setCodigo] = useState();
+  const [codigo, setCodigo] = useState("");
 
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);

@@ -73,7 +73,7 @@ export default function Settings() {
           <Text style={styles.textDelete}>EXCLUIR TODOS OS PRODUTOS</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.separador} />
+      <View style={styles.separador}/>
     </View>
   );
 }

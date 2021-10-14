@@ -76,8 +76,6 @@ export default function Modal({ show, close, produtos }) {
     }
   }, [show]);
 
-  ///
-
   useFocusEffect(
     useCallback(() => {
       setCodigo(produtos.produto);
@@ -110,8 +108,7 @@ export default function Modal({ show, close, produtos }) {
 
   async function Save() {
     //verificar se qtd > 0
-
-    // verificar se codigo diferente de branco
+    //verificar se codigo diferente de branco
       Alert.alert("Aviso", `Você alterou o produto salvar assim mesmo?`, [
         {
           text: "CANCELAR",
