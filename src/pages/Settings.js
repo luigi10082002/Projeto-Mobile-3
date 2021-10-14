@@ -100,14 +100,15 @@ const styles = StyleSheet.create({
   },
   //CSS Texts
   text: {
+    fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
     marginLeft: '5%',
     alignSelf: 'center'
   },
   textDelete: {
+    fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
     color: '#f00',
-    fontWeight: 'bold',
   },
   //CSS Line
   separador: {

@@ -224,6 +224,15 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 50,
   },
+  header: {
+    backgroundColor: "#4B7DFE",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "20%",
+    width: "100%",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
   //CSS dos Textos
   textQtd: {
     fontFamily: "Rajdhani_600SemiBold",
@@ -246,6 +255,12 @@ const styles = StyleSheet.create({
   textList: {
     fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
+  },
+  textHeader: {
+    fontFamily: "Rajdhani_600SemiBold",
+    textAlign: "center",
+    fontSize: 20,
+    color: "#fff",
   },
   //CSS dos Inputs
   labelQtd: {
@@ -284,20 +299,5 @@ const styles = StyleSheet.create({
     height: 42,
     width: 42,
   },
-  header: {
-    backgroundColor: "#4B7DFE",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "20%",
-    width: "100%",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  textHeader: {
-    fontFamily: "Rajdhani_600SemiBold",
-    textAlign: "center",
-    fontSize: 20,
-    color: "#fff",
-  }
 })
 
