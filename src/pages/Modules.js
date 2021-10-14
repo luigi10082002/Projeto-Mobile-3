@@ -56,6 +56,7 @@ export default function Modules() {
 
   //Constante que armazena o produto no array
   const [Produto, setProduto] = useState([]);
+  const [list, setList] = useState([]);
 
   //Verificação da leitura do scanner
   useEffect(() => {
@@ -76,8 +77,9 @@ export default function Modules() {
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
-    storage.splice(4, 1);
-    setProduto(storage);
+    const last = storage.reverse();
+    const array = last.splice(0, 3)
+    setProduto(array);
   }
 
   //Lógica do scanner

@@ -21,7 +21,6 @@ export default function Settings() {
       {
         text: "Confirmar",
         onPress: async () => {
-          setIsEnabled(false);
         },
       }
     ])
