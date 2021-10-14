@@ -86,9 +86,9 @@ export default function Modal({ show, close, produtos }) {
   );
 
   async function Save() {
-    ///verificar se qtd > 0
+    //verificar se qtd > 0
 
-    // verificar se codigo diferente branco
+    // verificar se codigo diferente de branco
 
     if (qtd <= 0 || codigo == "") {
       Alert.alert("Erro", "O produto não contem as informações necessárias", [

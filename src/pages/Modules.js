@@ -160,16 +160,14 @@ export default function Modules() {
     ]);
   }
 
-  {
-    /*
-  function Edit(item) {
-    navigation.navigate("Produto", {
-      screen: "Produto",
-      produto: item,
-    });
-  }
-  */
-  }
+  {/*
+    function Edit(item) {
+      navigation.navigate("Produto", {
+        screen: "Produto",
+        produto: item,
+      });
+    }
+  */}
 
   return (
     <View style={styles.container}>
@@ -210,6 +208,7 @@ export default function Modules() {
             onChangeText={setQtd}
             value={qtd}
             keyboardType="numeric"
+            placeholder="1"
           />
 
           <TextInput
@@ -266,8 +265,7 @@ export default function Modules() {
                         handleRemove(item);
                       }}
                     >
-                      {/*Botão para remover o item
-                       */}
+                      {/*Botão para remover o item*/}
                       <Entypo name="trash" size={30} color="#f00" />
                     </TouchableOpacity>
                   </View>
