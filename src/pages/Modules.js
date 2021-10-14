@@ -56,7 +56,6 @@ export default function Modules() {
 
   //Constante que armazena o produto no array
   const [Produto, setProduto] = useState([]);
-  const [list, setList] = useState([]);
 
   //Verificação da leitura do scanner
   useEffect(() => {
