@@ -15,7 +15,7 @@ function Home() {
   //Constante de navegação
   const navigation = useNavigation();
 
-  //Constante do array dos produtos 
+  //Constante do array dos produtos
   const [Produto, setProduto] = useState([]);
 
   //Navegação para a tela de adicionar produto

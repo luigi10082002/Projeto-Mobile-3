@@ -1,51 +1,57 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert, Switch,TouchableOpacity, AsyncStorage } from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  Switch,
+  TouchableOpacity,
+  AsyncStorage,
+} from "react-native";
 
-import { Header } from '../components/Header';
+import { Header } from "../components/Header";
 
 export default function Settings() {
   //Constantes do Switch
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   //Lógica de login com o servidor
-  function setServer(){
-    Alert.alert("Sincronizar", 'Deseja sincronizar o inventário?', [
+  function setServer() {
+    Alert.alert("Sincronizar", "Deseja sincronizar o inventário?", [
       {
         text: "Cancelar",
         style: "cancel",
         onPress: async () => {
           setIsEnabled(false);
-        }
+        },
       },
       {
         text: "Confirmar",
-        onPress: async () => {
-        },
-      }
-    ])
+        onPress: async () => {},
+      },
+    ]);
   }
 
   //Lógica de deletar o inventário todo
   function setDelete() {
-    Alert.alert("Remover Itens", 'Deseja remover todos os itens?', [
+    Alert.alert("Remover Itens", "Deseja remover todos os itens?", [
       {
-        text: 'Cancelar', 
-        style: 'Cancel',
+        text: "Cancelar",
+        style: "Cancel",
       },
       {
-        text: 'Confirmar',
+        text: "Confirmar",
         onPress: async () => {
           AsyncStorage.clear();
         },
-      }
-    ])
+      },
+    ]);
   }
 
   return (
     <View style={styles.container}>
-
-      <Header title="Histórico"/>
+      <Header title="Histórico" />
 
       <View style={styles.boxServer}>
         <Text style={styles.text}>Sincronizar inventário</Text>
@@ -58,56 +64,53 @@ export default function Settings() {
           value={isEnabled}
           onChange={setServer}
         />
-
       </View>
 
-      <View style={styles.separador}/>
+      <View style={styles.separador} />
 
       <View style={styles.boxDelete}>
-
         <TouchableOpacity style={styles.DeleteButton} onPress={setDelete}>
-          <Text style={styles.textDelete}>EXCLUIR TODOS OS PRODUTOS</Text>  
-        </TouchableOpacity> 
-
+          <Text style={styles.textDelete}>EXCLUIR TODOS OS PRODUTOS</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.separador}/>
+      <View style={styles.separador} />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
+    flex: 1,
   },
   //CSS Views
   boxServer: {
-    width: '100%',
-    height: '13%',
-    justifyContent: 'space-between',
-    flexDirection: 'row'  
+    width: "100%",
+    height: "13%",
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   boxDelete: {
-    width: '100%',
-    height: '13%',
+    width: "100%",
+    height: "13%",
   },
   //CSS Buttons
   DeleteButton: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   //CSS Texts
   text: {
     fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
-    marginLeft: '5%',
-    alignSelf: 'center'
+    marginLeft: "5%",
+    alignSelf: "center",
   },
   textDelete: {
     fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
-    color: '#f00',
+    color: "#f00",
   },
   //CSS Line
   separador: {
@@ -115,4 +118,4 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 1,
   },
-})
+});

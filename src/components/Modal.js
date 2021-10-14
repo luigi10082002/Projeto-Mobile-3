@@ -1,23 +1,23 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  TouchableOpacity, 
-  Animated, 
-  Dimensions, 
+import React, { useState, useEffect, useCallback } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+  Dimensions,
   TextInput,
   Alert,
   KeyboardAvoidingView,
-  AsyncStorage
-} from 'react-native';
+  AsyncStorage,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import uuid from "react-native-uuid";
 import { useRoute, useFocusEffect } from "@react-navigation/native";
 
-const { height } = Dimensions.get('window')
+const { height } = Dimensions.get("window");
 
-export default function Modal({ show, close, produtos }) {  
+export default function Modal({ show, close, produtos }) {
   const [qtd, setQtd] = useState(1);
   const [codigo, setCodigo] = useState();
   const [modal, setModal] = useState(show);
@@ -41,32 +41,40 @@ export default function Modal({ show, close, produtos }) {
   const [state, setState] = useState({
     opacity: new Animated.Value(0),
     container: new Animated.Value(height),
-    modal: new Animated.Value(height)
-  })
+    modal: new Animated.Value(height),
+  });
 
   const openModal = () => {
     Animated.sequence([
       Animated.timing(state.container, { toValue: 0, duration: 10 }),
       Animated.timing(state.opacity, { toValue: 1, duration: 10 }),
-      Animated.spring(state.modal, { toValue: 0, bounciness: 5, useNativeDriver: true })
-    ]).start()
-  }
+      Animated.spring(state.modal, {
+        toValue: 0,
+        bounciness: 5,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
 
   const closeModal = () => {
     Animated.sequence([
-      Animated.timing(state.modal, { toValue: height, duration: 200, useNativeDriver: true }),
+      Animated.timing(state.modal, {
+        toValue: height,
+        duration: 200,
+        useNativeDriver: true,
+      }),
       Animated.timing(state.opacity, { toValue: 0, duration: 0 }),
-      Animated.timing(state.container, { toValue: height, duration: 10 })
-    ]).start()
-  }
+      Animated.timing(state.container, { toValue: height, duration: 10 }),
+    ]).start();
+  };
 
   useEffect(() => {
-    if(show){
-      openModal()
-    }else{
-      closeModal()
+    if (show) {
+      openModal();
+    } else {
+      closeModal();
     }
-  }, [show])
+  }, [show]);
 
   ///
 
@@ -77,128 +85,123 @@ export default function Modal({ show, close, produtos }) {
     }, [produtos])
   );
 
-  
-
   async function Save() {
-    
     ///verificar se qtd > 0
 
-    // verificar se codigo diferente branco 
+    // verificar se codigo diferente branco
 
-    if (qtd <= 0  || codigo == "") {
+    if (qtd <= 0 || codigo == "") {
       Alert.alert("Erro", "O produto não contem as informações necessárias", [
         {
           text: "OK",
-        }
+        },
       ]);
     } else {
+      //Verifica se tem alguma coisa na storage
+      const storage = await AsyncStorage.getItem("@Produtos");
+      const Produto = storage ? JSON.parse(storage) : [];
 
-    //Verifica se tem alguma coisa na storage
-    const storage = await AsyncStorage.getItem("@Produtos");
-    const Produto = storage ? JSON.parse(storage) : [];
+      const index = Produto.findIndex((element) => element.id == produtos.id);
 
-    const index = Produto.findIndex((element) => element.id == produtos.id);
+      if (index >= 0) {
+        Produto[index].qtd = parseInt(qtd);
+        Produto[index].produto = codigo;
+        Produto[index].dtalteracao = `${date} - ${hora}`;
+        await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
+      }
 
-    if (index >= 0) {
-      Produto[index].qtd =  parseInt(qtd);
-      Produto[index].produto =  codigo;
-      Produto[index].dtalteracao =  `${date} - ${hora}`;
-      await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
-    } 
- 
-    Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
-      {
-        text: "Ok",
-      },
-    ]);
+      Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
+        {
+          text: "Ok",
+        },
+      ]);
+    }
   }
-}
 
-  return( 
-    <Animated.View 
-      style={[styles.container, {
-        opacity: state.opacity,
-        transform: [
-          { translateY: state.container }
-        ]
-      }]}
+  return (
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          opacity: state.opacity,
+          transform: [{ translateY: state.container }],
+        },
+      ]}
     >
-        
-      <Animated.View 
-        style={[styles.modal, {
-          transform: [
-            { translateY: state.modal }
-          ]
-        }]}
+      <Animated.View
+        style={[
+          styles.modal,
+          {
+            transform: [{ translateY: state.modal }],
+          },
+        ]}
       >
-       
         <View style={styles.container_modal}>
-        <KeyboardAvoidingView
-        ebehavior={Platform.OS === "ios" ? "padding" : null}
-      >
+          <KeyboardAvoidingView
+            ebehavior={Platform.OS === "ios" ? "padding" : null}
+          >
+            <View style={styles.header}>
+              <Text style={styles.textHeader}>Edição de Produto</Text>
+            </View>
 
-          <View style={styles.header}>
-            <Text style={styles.textHeader}>Edição de Produto</Text>
-          </View>
+            <View style={styles.info}>
+              <Text style={styles.textQtd}>Quantidade</Text>
+              <Text style={styles.textCod}>Código</Text>
+            </View>
 
-          <View style={styles.info}>
-            <Text style={styles.textQtd}>Quantidade</Text>
-            <Text style={styles.textCod}>Código</Text>
-          </View>
+            <View style={styles.input}>
+              <TextInput
+                style={styles.labelQtd}
+                autoCorrect={false}
+                keyboardType="numeric"
+                onChangeText={setQtd}
+                value={qtd}
+              />
 
-          <View style={styles.input}>
-            <TextInput
-              style={styles.labelQtd}
-              autoCorrect={false}
-              keyboardType="numeric"
-              onChangeText={setQtd}
-              value = {qtd}
-            />
+              <TextInput
+                style={styles.labelCod}
+                autoCorrect={false}
+                keyboardType="numeric"
+                value={codigo}
+                onChangeText={setCodigo}
+              />
+            </View>
 
-            <TextInput
-              style={styles.labelCod}
-              autoCorrect={false}
-              keyboardType="numeric"
-              value = {codigo}
-              onChangeText={setCodigo}
-            />
-          </View>
+            <View style={styles.buttonSave}>
+              <TouchableOpacity style={styles.save} onPress={Save}>
+                <Text style={styles.textSave}>SALVAR</Text>
+              </TouchableOpacity>
+            </View>
 
-          <View style={styles.buttonSave}>
-            <TouchableOpacity style={styles.save} onPress={Save}>
-              <Text style={styles.textSave}>SALVAR</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.buttonClose}>
-            <TouchableOpacity style={styles.Close} onPress={close}>
-              <AntDesign name="closecircleo" size={40} color="#f00" />
-            </TouchableOpacity>
-          </View>
+            <View style={styles.buttonClose}>
+              <TouchableOpacity style={styles.Close} onPress={close}>
+                <AntDesign name="closecircleo" size={40} color="#f00" />
+              </TouchableOpacity>
+            </View>
           </KeyboardAvoidingView>
         </View>
       </Animated.View>
     </Animated.View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    position: 'absolute'
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    position: "absolute",
   },
-  container_modal:{
+  container_modal: {
     flex: 1,
   },
   modal: {
     bottom: 0,
-    position: 'absolute',
-    height: '35%',
-    backgroundColor: '#fff',
-    width: '100%',
+    position: "absolute",
+    height: "35%",
+    backgroundColor: "#fff",
+    width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
@@ -299,5 +302,4 @@ const styles = StyleSheet.create({
     height: 42,
     width: 42,
   },
-})
-
+});

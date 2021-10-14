@@ -13,10 +13,7 @@ import {
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
-import {
-  useNavigation,
-  useFocusEffect,
-} from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
@@ -36,7 +33,7 @@ export default function Modules() {
   //Constantes que armazenam os dados dos produto
   const [qtd, setQtd] = useState(1);
   const [codigo, setCodigo] = useState();
-  
+
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);
 
@@ -77,7 +74,7 @@ export default function Modules() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
     const last = storage.reverse();
-    const array = last.splice(0, 3)
+    const array = last.splice(0, 3);
     setProduto(array);
   }
 
@@ -96,7 +93,7 @@ export default function Modules() {
     }, 1000);
   }
 
-  //Parametros que são armazenados dos produtos 
+  //Parametros que são armazenados dos produtos
   async function Save() {
     const newProd = {
       id: uuid.v4(),
@@ -163,14 +160,16 @@ export default function Modules() {
     ]);
   }
 
-  {/*
+  {
+    /*
   function Edit(item) {
     navigation.navigate("Produto", {
       screen: "Produto",
       produto: item,
     });
   }
-  */}
+  */
+  }
 
   return (
     <View style={styles.container}>
@@ -185,7 +184,7 @@ export default function Modules() {
             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
             style={{ height: 500, width: 500 }}
           />
-          
+
           {/*Botão de captura de código*/}
           <View style={styles.btn}>
             <TouchableOpacity
@@ -268,7 +267,7 @@ export default function Modules() {
                       }}
                     >
                       {/*Botão para remover o item
-                      */}
+                       */}
                       <Entypo name="trash" size={30} color="#f00" />
                     </TouchableOpacity>
                   </View>
@@ -398,9 +397,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   buttonText: {
+    fontSize: 18,
     fontFamily: "Rajdhani_600SemiBold",
     color: "#fff",
-    fontWeight: "bold",
   },
   //CSS dos Inputs
   labelQtd: {
