@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -15,7 +15,8 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
-import Modal from "../components/Modal";
+import Modal from "../components/ModalItem";
+import Card from "../components/Card"
 
 export default function Historic() {
   //Constante de navegação
@@ -90,6 +91,30 @@ export default function Historic() {
     search == codigo ? setSearch("") : setSearch(codigo);
   }
 
+  const [text, setText] = useState('')//Controla value do input
+  const [list, setList] = useState('')//Lista a ser renderizada
+  const [items, setItems] = useState('')//Receberá lista filtrada
+  
+  useEffect(()=>{
+      setList(Produto)
+      setItems(Produto)    
+  },[])  
+
+  function SearchFilterFunction(text) {
+          
+    const filterList = items.filter((item) => {
+            
+      //aplicando filtro com base no valor inserido no input
+      const itemFilter = item.produto ? item.produto.toUpperCase() : ''.toUpperCase();
+      const newText = text.toUpperCase();
+      return itemFilter.indexOf(newText) > -1;
+    });
+          
+    //configurando nova lista com base na filtragem
+    setList(filterList)
+    setText(text)
+  }
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -105,7 +130,7 @@ export default function Historic() {
               <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={setCodigo}
+                onChangeText={(t)=>SearchFilterFunction(t)} value={text}
                 value={codigo}
                 placeholder="Pesquisa"
                 keyboardType="numeric"
@@ -121,7 +146,7 @@ export default function Historic() {
         {/*Lista de produtos*/}
         <View style={styles.listItems}>
           <FlatList
-            data={Produto}
+            data={list}
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
               <View style={styles.card}>
@@ -135,7 +160,7 @@ export default function Historic() {
                     {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
                     <Text style={styles.textCod}>{item.produto}</Text>
                     <View style={styles.details}>
-                      <Text>{item.data}</Text>
+                      <Text>{item.date}</Text>
                       <Text> {item.hora}</Text>
                       <Text> - </Text>
                       <Text>{item.qtd} </Text>

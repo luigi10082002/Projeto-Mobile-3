@@ -10,8 +10,11 @@ import {
 } from "react-native";
 
 import { Header } from "../components/Header";
+import Login from "../components/ModalLogin";
 
 export default function Settings() {
+  const [modal, setModal] = useState(false);
+
   //Constantes do Switch
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -28,7 +31,8 @@ export default function Settings() {
       },
       {
         text: "Confirmar",
-        onPress: async () => {},
+        onPress: async () => {
+        },
       },
     ]);
   }

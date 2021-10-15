@@ -17,7 +17,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
-import Modal from "../components/Modal";
+import Modal from "../components/ModalItem";
 
 export default function Modules() {
   //Constante de navegação
@@ -210,6 +210,8 @@ export default function Modules() {
             value={qtd}
             keyboardType="numeric"
             placeholder="1"
+            maxLength={4}
+            textAlign='right'
           />
 
           <TextInput
@@ -219,6 +221,8 @@ export default function Modules() {
             value={codigo}
             keyboardType="numeric"
             placeholder="Código"
+            maxLength={13}
+            textAlign='right'
           />
         </View>
 
@@ -317,7 +321,7 @@ const styles = StyleSheet.create({
   input: {
     flexDirection: "row",
     alignSelf: "center",
-    width: 320,
+    width: '90%',
     height: 45,
   },
   buttonSave: {
@@ -360,13 +364,11 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "90%",
   },
-
   delete: {
     width: "13%",
     height: "auto",
     marginTop: "5%",
   },
-
   //CSS dos Textos
   textQtd: {
     fontFamily: "Rajdhani_600SemiBold",
@@ -376,7 +378,7 @@ const styles = StyleSheet.create({
   },
   textCod: {
     fontFamily: "Rajdhani_600SemiBold",
-    marginLeft: "5%",
+    marginLeft: "7%",
     height: "auto",
     width: "auto",
     fontSize: 20,
@@ -406,14 +408,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",
-    width: "32%",
+    width: 100,
   },
   labelCod: {
     backgroundColor: "#D3D3D3",
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",
-    width: "63%",
+    width: 210,
     marginLeft: "5%",
   },
   //CSS do Botão SALVAR
