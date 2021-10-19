@@ -40,18 +40,18 @@ export default function Historic() {
 
   const[vHora, setHora] =  useState('');
 
-  const [list, setList] = useState('')//Lista a ser renderizada
+  const [list, setList] = useState([])//Lista a ser renderizada
   const [items, setItems] = useState('')//Receberá lista filtrada
 
   useEffect(() => {
-  }, [vDate, vHora]);
+  }, [vDate, vHora, list]);
 
   //Callback do AsyncStorage dos produtos
   useFocusEffect(
     useCallback(() => {
       loadSpots();
       setDataHora();
-    }, [Produto, list])
+    }, [Produto ])
   );
 
   const setDataHora = () => {
@@ -81,16 +81,16 @@ export default function Historic() {
     setList(storage);
     setItems(storage);
 
-    //if (search) {
-      //setProduto(storage.filter((element) => element.produto == codigo));
-    //} else {
-      //setProduto(storage);
-    //}
+   /* if (codigo) {
+      setList(storage.filter((element) => element.produto == codigo));
+    } else {
+      setList(storage);
+    }*/
   }
 
   //Lógica para remover o produto
   async function handleRemove(item) {
-    const id = Produto.findIndex((element) => element.id == item.id);
+    const id = list.findIndex((element) => element.id == item.id);
     Alert.alert("Remover", `Deseja remover este produto?`, [
       {
         text: "Não",
@@ -99,8 +99,8 @@ export default function Historic() {
       {
         text: "Sim",
         onPress: async () => {
-          Produto.splice(id, 1);
-          await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
+          list.splice(id, 1);
+          await AsyncStorage.setItem("@Produtos", JSON.stringify(list));
         },
       },
     ]);
@@ -119,24 +119,30 @@ export default function Historic() {
   }
 
   //Separa os produtos que têm o código igual ao código pesquisado
-  //function Search() {
-    //search == codigo ? setSearch("") : setSearch(codigo);
-  //}
+  /*function Search(t) {
+    console.log(t);
+    search == t ? setSearch("") : setSearch(t);
+  }*/
 
-  
-
-  function SearchFilterFunction(codigo) {
-            
-    const filterList = items.filter((item) => {
+  function SearchFilterFunction(scodigo) {
+   
+    if(scodigo){
+    const filterList = list.filter((item) => {
             
       //aplicando filtro com base no valor inserido no input
-      const itemFilter = item.produto ? item.produto.toUpperCase() : ''.toUpperCase();
+      const itemFilter = item.produto == scodigo ? item.produto.toUpperCase() : ''.toUpperCase;
+      console.log(itemFilter);
       const newText = codigo.toUpperCase();
       return itemFilter.indexOf(newText) > -1;
+   
     });
 
     setList(filterList)
-    setCodigo(codigo)
+    setCodigo(scodigo)
+  }else{
+    setList(items)
+    setCodigo(scodigo)
+  }
   }
 
   return (

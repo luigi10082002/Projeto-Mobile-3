@@ -83,9 +83,9 @@ export default function Modules() {
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
-    const last = storage.reverse();
-    const array = last.splice(0, 3);
-    setProduto(array);
+   // const last = storage.reverse();
+   // const array = last.splice(0, 3);
+    setProduto(storage);
   }
 
   //Lógica do scanner
@@ -155,7 +155,9 @@ export default function Modules() {
 
   //Lógica para remover o produto
   async function handleRemove(item) {
-    const id = Produto.findIndex((element) => element.id == item.id);
+   // console.log(item);
+    const id = Produto.findIndex(element => element.id == item.id);
+   
     Alert.alert("Remover", `Deseja remover este produto?`, [
       {
         text: "Não",
@@ -164,6 +166,7 @@ export default function Modules() {
       {
         text: "Sim",
         onPress: async () => {
+          //Produto.splice(id, 1);
           Produto.splice(id, 1);
           await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
         },
@@ -212,7 +215,6 @@ export default function Modules() {
           <Text style={styles.textQtd}>Quantidade</Text>
           <Text style={styles.textCod}>Código</Text>
         </View>
-
         <View style={styles.inputQtd}>
           <TextInput
             style={styles.labelQtd}
@@ -225,8 +227,6 @@ export default function Modules() {
             textAlign="right"
           />
         </View>
-
-
         <View style={styles.inputCod}>
           <TextInput
             style={styles.labelCod}
@@ -239,7 +239,6 @@ export default function Modules() {
             textAlign="right"
           />
         </View>
-
        
 */}
 
