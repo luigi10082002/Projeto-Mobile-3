@@ -16,7 +16,6 @@ import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../components/Header";
 import Modal from "../components/ModalItem";
-import Card from "../components/Card"
 
 export default function Historic() {
   //Constante de navegação
@@ -49,11 +48,14 @@ export default function Historic() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
 
-    if (search) {
-      setProduto(storage.filter((element) => element.produto == codigo));
-    } else {
-      setProduto(storage);
-    }
+    setList(storage);
+    setItems(storage);
+
+    //if (search) {
+      //setProduto(storage.filter((element) => element.produto == codigo));
+    //} else {
+      //setProduto(storage);
+    //}
   }
 
   //Lógica para remover o produto
@@ -87,32 +89,25 @@ export default function Historic() {
   }
 
   //Separa os produtos que têm o código igual ao código pesquisado
-  function Search() {
-    search == codigo ? setSearch("") : setSearch(codigo);
-  }
+  //function Search() {
+    //search == codigo ? setSearch("") : setSearch(codigo);
+  //}
 
-  const [text, setText] = useState('')//Controla value do input
   const [list, setList] = useState('')//Lista a ser renderizada
   const [items, setItems] = useState('')//Receberá lista filtrada
-  
-  useEffect(()=>{
-      setList(Produto)
-      setItems(Produto)    
-  },[])  
 
-  function SearchFilterFunction(text) {
-          
+  function SearchFilterFunction(codigo) {
+            
     const filterList = items.filter((item) => {
-            
+            
       //aplicando filtro com base no valor inserido no input
       const itemFilter = item.produto ? item.produto.toUpperCase() : ''.toUpperCase();
-      const newText = text.toUpperCase();
+      const newText = codigo.toUpperCase();
       return itemFilter.indexOf(newText) > -1;
     });
-          
-    //configurando nova lista com base na filtragem
+
     setList(filterList)
-    setText(text)
+    setCodigo(codigo)
   }
 
   return (
@@ -130,13 +125,15 @@ export default function Historic() {
               <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={(t)=>SearchFilterFunction(t)} value={text}
+                onChangeText={(t)=>SearchFilterFunction(t)}
                 value={codigo}
                 placeholder="Pesquisa"
                 keyboardType="numeric"
               />
               {/*Botão de pesquisar*/}
-              <TouchableOpacity style={styles.btn} onPress={Search}>
+              <TouchableOpacity style={styles.btn}
+              
+              >
                 <FontAwesome name="search" size={30} color="#000" />
               </TouchableOpacity>
             </View>
@@ -257,7 +254,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D3D3D3",
     height: 60,
     width: "88%",
-    paddingHorizontal: "3%",
+    paddingHorizontal: "5%",
     borderBottomLeftRadius: 8,
     borderTopLeftRadius: 8,
   },

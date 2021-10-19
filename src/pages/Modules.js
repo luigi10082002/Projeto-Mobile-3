@@ -161,19 +161,21 @@ export default function Modules() {
     ]);
   }
 
-  {/*
+  {
+    /*
     function Edit(item) {
       navigation.navigate("Produto", {
         screen: "Produto",
         produto: item,
       });
     }
-  */}
+  */
+  }
 
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
-        ebehavior={Platform.OS === "ios" ? "padding" : "height"}
+        ebehavior={Platform.OS === "ios" ? "padding" : null}
       >
         <Header title="Contagem de Invenatario" />
 
@@ -181,7 +183,7 @@ export default function Modules() {
         <View style={styles.scanner}>
           <BarCodeScanner
             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-            style={{ height: 500, width: 500 }}
+            style={{ height: 600, width: 600 }}
           />
 
           {/*Botão de captura de código*/}
@@ -211,7 +213,7 @@ export default function Modules() {
             keyboardType="numeric"
             placeholder="1"
             maxLength={4}
-            textAlign='right'
+            textAlign="right"
           />
 
           <TextInput
@@ -222,7 +224,7 @@ export default function Modules() {
             keyboardType="numeric"
             placeholder="Código"
             maxLength={13}
-            textAlign='right'
+            textAlign="right"
           />
         </View>
 
@@ -297,7 +299,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     height: 200,
-    width: "75%",
+    width: "90%",
     overflow: "hidden",
     borderRadius: 10,
     marginTop: "5%",
@@ -305,7 +307,7 @@ const styles = StyleSheet.create({
   btn: {
     width: "100%",
     height: "100%",
-    marginTop: "25%",
+    marginTop: "20%",
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
@@ -321,7 +323,7 @@ const styles = StyleSheet.create({
   input: {
     flexDirection: "row",
     alignSelf: "center",
-    width: '90%',
+    width: "90%",
     height: 45,
   },
   buttonSave: {

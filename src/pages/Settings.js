@@ -10,7 +10,6 @@ import {
 } from "react-native";
 
 import { Header } from "../components/Header";
-import Login from "../components/ModalLogin";
 
 export default function Settings() {
   const [modal, setModal] = useState(false);
