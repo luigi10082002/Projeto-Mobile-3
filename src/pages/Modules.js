@@ -20,6 +20,8 @@ import { Header } from "../components/Header";
 import Modal from "../components/ModalItem";
 
 export default function Modules() {
+
+  
   //Constante de navegação
   const navigation = useNavigation();
 
@@ -37,19 +39,12 @@ export default function Modules() {
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);
 
-  const date =
-    new Date().getDate() +
-    "/" +
-    (new Date().getMonth() + 1) +
-    "/" +
-    new Date().getFullYear();
+  const[vDate, setDate] =  useState('');
 
-  const hora =
-    new Date().getHours() +
-    ":" +
-    new Date().getMinutes() +
-    ":" +
-    new Date().getSeconds();
+  const[vHora, setHora] =  useState('');
+  
+
+  
 
   //Constante que armazena o produto no array
   const [Produto, setProduto] = useState([]);
@@ -60,14 +55,34 @@ export default function Modules() {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === "granted");
     })();
-  }, [codigo, scanned, qtd]);
+  }, [codigo, scanned, qtd, vDate, vHora]);
 
   //Callback do AsyncStorage dos produtos
   useFocusEffect(
     useCallback(() => {
       loadSpots();
+      setDataHora();
     }, [Produto])
   );
+
+  const setDataHora = () => {
+    const date =
+    new Date().getDate() +
+    "/" +
+    (new Date().getMonth() + 1) +
+    "/" +
+    new Date().getFullYear();
+
+    const  hora =
+    new Date().getHours() +
+    ":" +
+    new Date().getMinutes() +
+    ":" +
+    new Date().getSeconds();
+
+    setDate(date);
+    setHora(hora);
+  }
 
   //Separação dos ultimos produtos para a lista de "ultimos produtos adicionados"
   async function loadSpots() {
@@ -99,8 +114,8 @@ export default function Modules() {
       id: uuid.v4(),
       produto: codigo,
       qtd: qtd,
-      date: date,
-      hora: hora,
+      date: vDate,
+      hora: vHora,
     };
 
     //Verificação se algum campo do produto está vazio
@@ -257,8 +272,11 @@ export default function Modules() {
                     >
                       <Text style={styles.codigo}>{item.produto}</Text>
                       <View style={styles.details}>
-                        <Text>{item.date}</Text>
-                        <Text> {item.hora}</Text>
+                        {!item.dtalteracao ? 
+                          <><Text>{item.date}</Text><Text> {item.hora}</Text></>
+                          :
+                          <Text>{item.dtalteracao}</Text>
+                        }
                         <Text> - </Text>
                         <Text>{item.qtd} </Text>
                         <Text>unidade(s)</Text>
@@ -284,7 +302,7 @@ export default function Modules() {
         </View>
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
-      <Modal show={modal} produtos={prodItem} close={() => setModal(false)} />
+      <Modal show={modal} produtos={prodItem} close={() => setModal(false)} date={vDate} hora={vHora}/>
     </View>
   );
 }

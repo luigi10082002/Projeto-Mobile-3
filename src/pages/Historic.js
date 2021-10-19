@@ -36,12 +36,42 @@ export default function Historic() {
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);
 
+  const[vDate, setDate] =  useState('');
+
+  const[vHora, setHora] =  useState('');
+
+  const [list, setList] = useState('')//Lista a ser renderizada
+  const [items, setItems] = useState('')//Receberá lista filtrada
+
+  useEffect(() => {
+  }, [vDate, vHora]);
+
   //Callback do AsyncStorage dos produtos
   useFocusEffect(
     useCallback(() => {
       loadSpots();
-    }, [Produto])
+      setDataHora();
+    }, [Produto, list])
   );
+
+  const setDataHora = () => {
+    const date =
+    new Date().getDate() +
+    "/" +
+    (new Date().getMonth() + 1) +
+    "/" +
+    new Date().getFullYear();
+
+    const  hora =
+    new Date().getHours() +
+    ":" +
+    new Date().getMinutes() +
+    ":" +
+    new Date().getSeconds();
+
+    setDate(date);
+    setHora(hora);
+  }
 
   //Lógica que compara o código pesquisado com os códigos que foram adicionados
   async function loadSpots() {
@@ -93,8 +123,7 @@ export default function Historic() {
     //search == codigo ? setSearch("") : setSearch(codigo);
   //}
 
-  const [list, setList] = useState('')//Lista a ser renderizada
-  const [items, setItems] = useState('')//Receberá lista filtrada
+  
 
   function SearchFilterFunction(codigo) {
             
@@ -157,8 +186,11 @@ export default function Historic() {
                     {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
                     <Text style={styles.textCod}>{item.produto}</Text>
                     <View style={styles.details}>
-                      <Text>{item.date}</Text>
-                      <Text> {item.hora}</Text>
+                    {!item.dtalteracao ? 
+                          <><Text>{item.date}</Text><Text> {item.hora}</Text></>
+                          :
+                          <Text>{item.dtalteracao}</Text>
+                        }
                       <Text> - </Text>
                       <Text>{item.qtd} </Text>
                       <Text>unidade(s)</Text>
@@ -182,7 +214,7 @@ export default function Historic() {
         </View>
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
-      <Modal show={modal} produtos={prodItem} close={() => setModal(false)} />
+      <Modal show={modal} produtos={prodItem} close={() => setModal(false)} date={vDate} hora={vHora}/>
     </View>
   );
 }

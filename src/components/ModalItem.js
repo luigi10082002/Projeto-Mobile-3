@@ -17,25 +17,10 @@ import { useRoute, useFocusEffect } from "@react-navigation/native";
 
 const { height } = Dimensions.get("window");
 
-export default function Modal({ show, close, produtos }) {
+export default function Modal({ show, close, produtos, date, hora }) {
   const [qtd, setQtd] = useState(1);
   const [codigo, setCodigo] = useState();
   const [modal, setModal] = useState(show);
-
-  const date =
-    new Date().getDate() +
-    "/" +
-    (new Date().getMonth() + 1) +
-    "/" +
-    new Date().getFullYear();
-
-  const hora =
-    new Date().getHours() +
-    ":" +
-    new Date().getMinutes() +
-    ":" +
-    new Date().getSeconds();
-
   const [Produto, setProduto] = useState([]);
 
   const [state, setState] = useState({
@@ -100,7 +85,7 @@ export default function Modal({ show, close, produtos }) {
       if (index >= 0) {
         Produto[index].qtd = parseInt(qtd);
         Produto[index].produto = codigo;
-        Produto[index].dtalteracao = `${date} - ${hora}`;
+        Produto[index].dtalteracao = `${date} - ${hora}`; 
         await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
       }
     }
