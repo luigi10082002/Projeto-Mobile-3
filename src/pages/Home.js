@@ -28,6 +28,10 @@ function Home() {
     navigation.navigate("Historic");
   }
 
+  function H() {
+    navigation.navigate("ListItems");
+  }
+
   //Callback do AsyncStorage dos produtos
   useFocusEffect(
     useCallback(() => {
@@ -42,6 +46,10 @@ function Home() {
     setProduto(storage);
   }
 
+  function Qtd() {
+
+  }
+
   return (
     <View style={styles.container}>
       {/*<KeyboardAvoidingView
@@ -52,11 +60,6 @@ function Home() {
         <Text style={styles.TextBold}>Usuário</Text>
       </View>
 
-      <View style={styles.boxProdutos}>
-        <Text style={styles.TextProdutos}>Total de produtos</Text>
-        <Text style={styles.TextNumber}>{Produto.length}</Text>
-      </View>
-
       <View style={styles.boxButton}>
         {/*Bootão para adicionar produto */}
         <TouchableOpacity style={styles.ButtonAdd} onPress={NewProduto}>
@@ -65,6 +68,21 @@ function Home() {
         </TouchableOpacity>
       </View>
 
+      <View style={styles.infos}>
+      <View style={styles.boxProdutos}>
+        <Text style={styles.TextProdutos}>Total de produtos</Text>
+        <Text style={styles.TextNumber}>{Produto.length}</Text>
+      </View>
+
+{/*
+      <View style={styles.boxTotal}>
+        <Text style={styles.TextProdutos}>Total de produtos</Text>
+        <Text style={styles.TextNumber}>{Produto.length}</Text>
+      </View>
+      
+*/}
+      </View>
+      
       <View style={styles.boxButton}>
         {/*Botão que leva ao histórico*/}
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>
@@ -72,6 +90,7 @@ function Home() {
           <Text style={styles.TextPlus}>LISTAR PRODUTOS</Text>
         </TouchableOpacity>
       </View>
+
       {/*</KeyboardAvoidingView>*/}
     </View>
   );
@@ -88,19 +107,35 @@ const styles = StyleSheet.create({
     marginTop: "30%",
   },
   boxProdutos: {
-    flexDirection: "row",
     backgroundColor: "#DCDCDC",
-    width: "85%",
-    height: "15%",
+    alignItems: "center",
     alignSelf: "center",
-    marginTop: "5%",
+    justifyContent: "center",
+    marginLeft: "3%",
+    width: "45%",
+    height: "75%",
+    borderRadius: 8,
+  },
+  boxTotal: {
+    backgroundColor: "#DCDCDC",
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
+    marginLeft: "4%",
+    width: "45%",
+    height: "75%",
     borderRadius: 8,
   },
   boxButton: {
     width: "85%",
     height: "15%",
     alignSelf: "center",
-    marginTop: "4%",
+  },
+  infos: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    height: "20%",
+    width: "90%",
   },
   //CSS Texts
   Text: {
@@ -113,15 +148,14 @@ const styles = StyleSheet.create({
   },
   TextNumber: {
     alignSelf: "center",
-    marginLeft: "18%",
     fontWeight: "bold",
     fontSize: 30,
     fontFamily: "Rajdhani_600SemiBold",
   },
   TextProdutos: {
     alignSelf: "center",
-    marginLeft: "8%",
-    fontSize: 20,
+    marginTop: "5%",
+    fontSize: 18,
     fontFamily: "Rajdhani_600SemiBold",
   },
   TextPlus: {

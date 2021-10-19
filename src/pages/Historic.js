@@ -157,7 +157,7 @@ export default function Historic() {
                 onChangeText={(t)=>SearchFilterFunction(t)}
                 value={codigo}
                 placeholder="Pesquisa"
-                keyboardType="numeric"
+                //keyboardType="numeric"
               />
               {/*Botão de pesquisar*/}
               <TouchableOpacity style={styles.btn}

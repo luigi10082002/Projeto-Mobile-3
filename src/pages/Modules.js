@@ -20,8 +20,6 @@ import { Header } from "../components/Header";
 import Modal from "../components/ModalItem";
 
 export default function Modules() {
-
-  
   //Constante de navegação
   const navigation = useNavigation();
 
@@ -42,15 +40,12 @@ export default function Modules() {
   const[vDate, setDate] =  useState('');
 
   const[vHora, setHora] =  useState('');
-  
-
-  
 
   //Constante que armazena o produto no array
   const [Produto, setProduto] = useState([]);
 
-  //Verificação da leitura do scanner
   useEffect(() => {
+    //Verificação da leitura do scanner
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === "granted");
@@ -212,14 +207,13 @@ export default function Modules() {
           </View>
         </View>
 
-        {/*Legenda dos inputs de Código e Quantidade*/}
+{/*
         <View style={styles.info}>
           <Text style={styles.textQtd}>Quantidade</Text>
           <Text style={styles.textCod}>Código</Text>
         </View>
 
-        {/*Inputs de Quantidade e Código*/}
-        <View style={styles.input}>
+        <View style={styles.inputQtd}>
           <TextInput
             style={styles.labelQtd}
             autoCorrect={false}
@@ -230,7 +224,10 @@ export default function Modules() {
             maxLength={4}
             textAlign="right"
           />
+        </View>
 
+
+        <View style={styles.inputCod}>
           <TextInput
             style={styles.labelCod}
             autoCorrect={false}
@@ -241,6 +238,39 @@ export default function Modules() {
             maxLength={13}
             textAlign="right"
           />
+        </View>
+
+       
+*/}
+
+        <View style={styles.Infos}>
+        <View style={styles.Qtd}>
+          <Text style={styles.textQtd}>Quantidade</Text>
+            <TextInput
+            style={styles.labelQtd}
+            autoCorrect={false}
+            onChangeText={setQtd}
+            value={qtd}
+            keyboardType="numeric"
+            placeholder="1"
+            maxLength={4}
+            textAlign="right"
+            />
+        </View>
+
+        <View style={styles.Cod}>
+          <Text style={styles.textCod}>Código</Text>
+          <TextInput
+            style={styles.labelCod}
+            autoCorrect={false}
+            onChangeText={setCodigo}
+            value={codigo}
+            keyboardType="numeric"
+            placeholder="Código"
+            maxLength={13}
+            textAlign="right"
+          />
+        </View>
         </View>
 
         {/*Botão de salvar*/}
@@ -331,18 +361,21 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     position: "absolute",
   },
-  info: {
+  Infos: {
     flexDirection: "row",
     alignSelf: "center",
     marginTop: "5%",
-    height: 30,
-    width: 320,
-  },
-  input: {
-    flexDirection: "row",
-    alignSelf: "center",
+    height: 64,
     width: "90%",
-    height: 45,
+  },
+  Qtd: {
+    width: '30%',
+    height: '100%',
+  },
+  Cod: {
+    marginLeft: '5%',
+    width: '65%',
+    height: '100%',
   },
   buttonSave: {
     alignSelf: "center",
@@ -398,7 +431,6 @@ const styles = StyleSheet.create({
   },
   textCod: {
     fontFamily: "Rajdhani_600SemiBold",
-    marginLeft: "7%",
     height: "auto",
     width: "auto",
     fontSize: 20,
@@ -426,17 +458,16 @@ const styles = StyleSheet.create({
   labelQtd: {
     backgroundColor: "#D3D3D3",
     borderRadius: 8,
-    paddingHorizontal: "3%",
-    height: "100%",
-    width: 100,
+    paddingHorizontal: "5%",
+    height: "61%",
+    width: '100%',
   },
   labelCod: {
     backgroundColor: "#D3D3D3",
     borderRadius: 8,
-    paddingHorizontal: "3%",
-    height: "100%",
-    width: 210,
-    marginLeft: "5%",
+    paddingHorizontal: "5%",
+    height: "61%",
+    width: '100%',
   },
   //CSS do Botão SALVAR
   save: {

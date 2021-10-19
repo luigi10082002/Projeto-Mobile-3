@@ -87,6 +87,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
         Produto[index].produto = codigo;
         Produto[index].dtalteracao = `${date} - ${hora}`; 
         await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
+        closeModal()
       }
     }
   }
@@ -148,7 +149,6 @@ export default function Modal({ show, close, produtos, date, hora }) {
               <TextInput
                 style={styles.labelCod}
                 autoCorrect={false}
-                keyboardType="numeric"
                 value={codigo}
                 onChangeText={setCodigo}
               />
