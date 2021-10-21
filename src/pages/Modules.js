@@ -15,6 +15,12 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { RectButton } from "react-native-gesture-handler";
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import { Header } from "../components/Header";
 import Modal from "../components/ModalItem";
@@ -83,9 +89,9 @@ export default function Modules() {
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
-   // const last = storage.reverse();
-   // const array = last.splice(0, 3);
-    setProduto(storage);
+    const last = storage.reverse();
+    //const array = last.splice(0, 3);
+    setProduto(last);
   }
 
   //Lógica do scanner
@@ -142,11 +148,11 @@ export default function Modules() {
         );
       }
       //Alerta que o produto foi salvo e limpa os campos
-      Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
+      {/*Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
         {
           text: "OK",
         },
-      ]);
+      ]);*/}
 
       setCodigo("");
       setQtd(1);
@@ -184,6 +190,11 @@ export default function Modules() {
     }
   */
   }
+
+  const scrollY = useSharedValue(0);
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    scrollY.value = event.contentOffset.y;
+  });
 
   return (
     <View style={styles.container}>
@@ -284,51 +295,67 @@ export default function Modules() {
           <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
         </View>
 
-        {/*Lista de últimos itens*/}
+        <Animated.View
+          style={{
+            width: "100%",
+            alignSelf: "center",
+
+          }}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingTop: 1 }}
+          onScroll={scrollHandler}
+          scrollEventThrottle={10} // 1000 / 60 = 16. (1 segundo / 60 que é a quantidade de frames por segundo para ter uma animação de 60 frames)
+        >
+
+        {/*Lista de produtos*/}
         <View style={styles.listItems}>
-          <ScrollView>
-            <FlatList
-              data={Produto}
-              keyExtractor={(item) => String(item.id)}
-              renderItem={({ item }) => (
-                <View style={styles.card}>
-                  <View style={styles.detailsProd}>
-                    <TouchableOpacity
-                      onPress={(e) => {
-                        setModal(true);
-                        setprodItem(item);
-                      }}
-                    >
-                      <Text style={styles.codigo}>{item.produto}</Text>
-                      <View style={styles.details}>
-                        {!item.dtalteracao ? 
-                          <><Text>{item.date}</Text><Text> {item.hora}</Text></>
-                          :
-                          <Text>{item.dtalteracao}</Text>
-                        }
-                        <Text> - </Text>
-                        <Text>{item.qtd} </Text>
-                        <Text>unidade(s)</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={styles.delete}>
-                    <TouchableOpacity
+          <FlatList
+            data={Produto}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => (
+              <Swipeable
+                  overshootRight={false}
+                  renderRightActions={() => (
+                    <View style={styles.delete}>
+                    <RectButton
                       style={styles.buttonDelete}
                       onPress={(e) => {
                         handleRemove(item);
                       }}
                     >
-                      {/*Botão para remover o item*/}
-                      <FontAwesome5 name="trash" size={30} color="#f00" />
-                    </TouchableOpacity>
+                      <FontAwesome5 name="trash" size={30} color="#fff"/>
+                    </RectButton>
                   </View>
+              )}>
+              <View style={styles.card}>
+                <View style={styles.details}>
+                  <RectButton
+                    onPress={(e) => {
+                      setModal(true);
+                      setprodItem(item);
+                    }}
+                  >
+                    {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
+                    <Text style={styles.codigo}>{item.produto}</Text>
+                    <View style={styles.details}>
+                    {!item.dtalteracao ? 
+                          <><Text>{item.date}</Text><Text> {item.hora}</Text></>
+                          :
+                          <Text>{item.dtalteracao}</Text>
+                        }
+                      <Text> - </Text>
+                      <Text>{item.qtd} </Text>
+                      <Text>unidade(s)</Text>
+                    </View>
+                  </RectButton>
                 </View>
-              )}
-              showsVerticalScrollIndicator={false}
-            />
-          </ScrollView>
+              </View>
+              </Swipeable>
+            )}
+            showsVerticalScrollIndicator={false}
+          />
         </View>
+        </Animated.View>
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
       <Modal show={modal} produtos={prodItem} close={() => setModal(false)} date={vDate} hora={vHora}/>
@@ -417,9 +444,13 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   delete: {
-    width: "13%",
-    height: "auto",
-    marginTop: "5%",
+    width: '20%',
+    height: '75%',
+    backgroundColor: "#f00",
+    marginRight: '5%',
+    marginTop: '3%',
+    borderRadius: 8,
+    position: "relative",
   },
   //CSS dos Textos
   textQtd: {
@@ -444,7 +475,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   codigo: {
-    fontFamily: "Rajdhani_600SemiBold",
     fontSize: 15,
     fontWeight: "bold",
   },
@@ -486,6 +516,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonDelete: {
-    marginLeft: "10%",
+    alignSelf: "center",
+    marginTop: "25%",
   },
 });

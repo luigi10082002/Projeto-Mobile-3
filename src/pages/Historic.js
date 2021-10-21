@@ -11,6 +11,12 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
+import { RectButton } from "react-native-gesture-handler";
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 
@@ -28,7 +34,7 @@ export default function Historic() {
   const [Produto, setProduto] = useState([]);
 
   //Constante do código do produto
-  const [codigo, setCodigo] = useState();
+  const [codigo, setCodigo] = useState("");
 
   //Constante que armazena o código pesquisado
   const [search, setSearch] = useState("");
@@ -106,6 +112,22 @@ export default function Historic() {
     ]);
   }
 
+  useEffect(() => {
+    if(codigo === '') {
+      setList(Produto);
+    } else {
+      setList(
+        Produto.filter(item => {
+          if(item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
+    }
+  }, [codigo])
+
   {
     /*
     function Edit(item) {
@@ -115,14 +137,11 @@ export default function Historic() {
       produto: item,
     });
     }
-  */
-  }
 
   //Separa os produtos que têm o código igual ao código pesquisado
   /*function Search(t) {
     console.log(t);
     search == t ? setSearch("") : setSearch(t);
-  }*/
 
   function SearchFilterFunction(scodigo) {
    
@@ -144,6 +163,12 @@ export default function Historic() {
     setCodigo(scodigo)
   }
   }
+*/}
+
+  const scrollY = useSharedValue(0);
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    scrollY.value = event.contentOffset.y;
+  });
 
   return (
     <View style={styles.container}>
@@ -160,67 +185,93 @@ export default function Historic() {
               <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={(t)=>SearchFilterFunction(t)}
+                onChangeText={(t)=> setCodigo(t)}
                 value={codigo}
                 placeholder="Pesquisa"
                 //keyboardType="numeric"
               />
               {/*Botão de pesquisar*/}
-              <TouchableOpacity style={styles.btn}
-              
-              >
+              <TouchableOpacity style={styles.btn}>
                 <FontAwesome name="search" size={30} color="#000" />
               </TouchableOpacity>
             </View>
           </ScrollView>
         </View>
 
-        {/*Lista de produtos*/}
-        <View style={styles.listItems}>
-          <FlatList
-            data={list}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => (
-              <View style={styles.card}>
-                <View style={styles.details}>
-                  <TouchableOpacity
-                    onPress={(e) => {
-                      setModal(true);
-                      setprodItem(item);
-                    }}
-                  >
-                    {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
-                    <Text style={styles.textCod}>{item.produto}</Text>
-                    <View style={styles.details}>
-                    {!item.dtalteracao ? 
-                          <><Text>{item.date}</Text><Text> {item.hora}</Text></>
-                          :
-                          <Text>{item.dtalteracao}</Text>
-                        }
-                      <Text> - </Text>
-                      <Text>{item.qtd} </Text>
-                      <Text>unidade(s)</Text>
+        <Animated.View
+          style={{
+            alignSelf: "center",
+            marginTop: "5%",
+            height: "81%",
+            width: "100%",
+          }}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingTop: 1 }}
+          onScroll={scrollHandler}
+          scrollEventThrottle={10} // 1000 / 60 = 16. (1 segundo / 60 que é a quantidade de frames por segundo para ter uma animação de 60 frames)
+        >
+          {/*Lista de produtos*/}
+          <View style={styles.listItems}>
+            <FlatList
+              data={list}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item }) => (
+                <Swipeable
+                  overshootRight={false}
+                  renderRightActions={() => (
+                    <View style={styles.delete}>
+                      <RectButton
+                        style={styles.buttonDelete}
+                        onPress={(e) => {
+                          handleRemove(item);
+                        }}
+                      >
+                        <FontAwesome5 name="trash" size={30} color="#fff" />
+                      </RectButton>
                     </View>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.delete}>
-                  <TouchableOpacity
-                    style={styles.buttonDelete}
-                    onPress={(e) => {
-                      handleRemove(item);
-                    }}
-                  >
-                    <FontAwesome5 name="trash" size={30} color="#f00" />
-                  </TouchableOpacity>
-                </View>
-              </View>
-            )}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
+                  )}
+                >
+                  <View style={styles.card}>
+                    <View style={styles.details}>
+                      <RectButton
+                        onPress={(e) => {
+                          setModal(true);
+                          setprodItem(item);
+                        }}
+                      >
+                        {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
+                        <Text style={styles.textCod}>{item.produto}</Text>
+                        <View style={styles.details}>
+                          {!item.dtalteracao ? (
+                            <>
+                              <Text>{item.date}</Text>
+                              <Text> {item.hora}</Text>
+                            </>
+                          ) : (
+                            <Text>{item.dtalteracao}</Text>
+                          )}
+                          <Text> - </Text>
+                          <Text>{item.qtd} </Text>
+                          <Text>unidade(s)</Text>
+                        </View>
+                      </RectButton>
+                    </View>
+                  </View>
+                </Swipeable>
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        </Animated.View>
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
-      <Modal show={modal} produtos={prodItem} close={() => setModal(false)} date={vDate} hora={vHora}/>
+      <Modal
+        show={modal}
+        produtos={prodItem}
+        close={() => setModal(false)}
+        date={vDate}
+        hora={vHora}
+      />
     </View>
   );
 }
@@ -238,8 +289,8 @@ const styles = StyleSheet.create({
   },
   listItems: {
     alignSelf: "center",
-    marginTop: "2%",
-    height: "75%",
+    //marginTop: "2%",
+    height: "90%",
     width: "100%",
   },
   card: {
@@ -260,13 +311,16 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   delete: {
-    width: "13%",
-    height: "auto",
-    marginTop: "5%",
+    width: "20%",
+    height: "70%",
+    backgroundColor: "#f00",
+    marginRight: "5%",
+    marginTop: "4%",
+    borderRadius: 8,
+    position: "relative",
   },
   //CSS Texts
   textCod: {
-    fontFamily: "Rajdhani_600SemiBold",
     fontSize: 15,
     fontWeight: "bold",
   },
@@ -276,7 +330,8 @@ const styles = StyleSheet.create({
   },
   //CSS Buttons
   buttonDelete: {
-    marginLeft: "10%",
+    alignSelf: "center",
+    marginTop: "25%",
   },
   btn: {
     backgroundColor: "#D3D3D3",

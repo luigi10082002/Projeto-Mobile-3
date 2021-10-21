@@ -18,19 +18,7 @@ function Home() {
   //Constante do array dos produtos
   const [Produto, setProduto] = useState([]);
 
-  //Navegação para a tela de adicionar produto
-  function NewProduto() {
-    navigation.navigate("Modules");
-  }
-
-  //Navegação para a tela de histórico
-  function Historic() {
-    navigation.navigate("Historic");
-  }
-
-  function H() {
-    navigation.navigate("ListItems");
-  }
+  const [qtd, setQtd] = useState(1);
 
   //Callback do AsyncStorage dos produtos
   useFocusEffect(
@@ -46,8 +34,19 @@ function Home() {
     setProduto(storage);
   }
 
-  function Qtd() {
+  //Navegação para a tela de adicionar produto
+  function NewProduto() {
+    navigation.navigate("Modules");
+  }
 
+  //Navegação para a tela de histórico
+  function Historic() {
+    navigation.navigate("Historic");
+  }
+
+  async function QuantidadeTotal() {
+    const Total = Produto.length
+    const contagem = 0
   }
 
   return (
@@ -74,13 +73,13 @@ function Home() {
         <Text style={styles.TextNumber}>{Produto.length}</Text>
       </View>
 
-{/*
+
       <View style={styles.boxTotal}>
-        <Text style={styles.TextProdutos}>Total de produtos</Text>
-        <Text style={styles.TextNumber}>{Produto.length}</Text>
+        <Text style={styles.TextProdutos}>Total de Itens</Text>
+        <Text style={styles.TextNumber}>{Produto.qtd}</Text>
       </View>
       
-*/}
+
       </View>
       
       <View style={styles.boxButton}>
