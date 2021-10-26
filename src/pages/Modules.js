@@ -10,6 +10,7 @@ import {
   Alert,
   FlatList,
   KeyboardAvoidingView,
+  Vibration,
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
@@ -74,7 +75,7 @@ export default function Modules() {
     "/" +
     new Date().getFullYear();
 
-    const  hora =
+    const hora =
     new Date().getHours() +
     ":" +
     new Date().getMinutes() +
@@ -89,10 +90,19 @@ export default function Modules() {
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
-    const last = storage.reverse();
-    //const array = last.splice(0, 3);
-    setProduto(last);
+    const array = storage.reverse();
+    //const last = array.splice(0,3);
+    setProduto(array);
   }
+
+{/*
+  function Lista() {
+    setList(Produto)
+    const last = list.splice(0, 3);
+    const array = last.reverse();
+    setLista(array)
+  }
+*/}
 
   //Lógica do scanner
   async function handleBarCodeScanned({ data }) {
@@ -148,14 +158,15 @@ export default function Modules() {
         );
       }
       //Alerta que o produto foi salvo e limpa os campos
-      {/*Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
+      /*Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
         {
           text: "OK",
         },
-      ]);*/}
+      ]);*/
 
       setCodigo("");
       setQtd(1);
+      Vibration.vibrate();
     }
   }
 
@@ -173,7 +184,6 @@ export default function Modules() {
         text: "Sim",
         onPress: async () => {
           //Produto.splice(id, 1);
-          Produto.splice(id, 1);
           await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
         },
       },
@@ -193,7 +203,7 @@ export default function Modules() {
 
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
-    scrollY.value = event.contentOffset.y;
+  scrollY.value = event.contentOffset.y;
   });
 
   return (
@@ -220,38 +230,6 @@ export default function Modules() {
             </TouchableOpacity>
           </View>
         </View>
-
-{/*
-        <View style={styles.info}>
-          <Text style={styles.textQtd}>Quantidade</Text>
-          <Text style={styles.textCod}>Código</Text>
-        </View>
-        <View style={styles.inputQtd}>
-          <TextInput
-            style={styles.labelQtd}
-            autoCorrect={false}
-            onChangeText={setQtd}
-            value={qtd}
-            keyboardType="numeric"
-            placeholder="1"
-            maxLength={4}
-            textAlign="right"
-          />
-        </View>
-        <View style={styles.inputCod}>
-          <TextInput
-            style={styles.labelCod}
-            autoCorrect={false}
-            onChangeText={setCodigo}
-            value={codigo}
-            keyboardType="numeric"
-            placeholder="Código"
-            maxLength={13}
-            textAlign="right"
-          />
-        </View>
-       
-*/}
 
         <View style={styles.Infos}>
         <View style={styles.Qtd}>
@@ -299,7 +277,6 @@ export default function Modules() {
           style={{
             width: "100%",
             alignSelf: "center",
-
           }}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingTop: 1 }}
@@ -339,7 +316,7 @@ export default function Modules() {
                     <Text style={styles.codigo}>{item.produto}</Text>
                     <View style={styles.details}>
                     {!item.dtalteracao ? 
-                          <><Text>{item.date}</Text><Text> {item.hora}</Text></>
+                          <><Text>{item.date}</Text><Text>{item.hora}</Text></>
                           :
                           <Text>{item.dtalteracao}</Text>
                         }
@@ -367,7 +344,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
   //CSS das Views
   scanner: {
     alignSelf: "center",
@@ -419,8 +395,8 @@ const styles = StyleSheet.create({
   },
   listItems: {
     alignSelf: "center",
-    height: 261,
-    width: "95%",
+    height: 260.5,
+    width: "90%",
   },
   card: {
     flex: 1,
@@ -430,7 +406,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: "2%",
     height: 80,
-    width: "90%",
+    width: 324,
     padding: 20,
   },
   detailsProd: {
@@ -445,12 +421,11 @@ const styles = StyleSheet.create({
   },
   delete: {
     width: '20%',
-    height: '75%',
+    height: 60,
+    marginRight: "5%",
     backgroundColor: "#f00",
-    marginRight: '5%',
     marginTop: '3%',
     borderRadius: 8,
-    position: "relative",
   },
   //CSS dos Textos
   textQtd: {

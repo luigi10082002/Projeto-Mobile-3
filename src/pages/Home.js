@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, {useEffect, useState, useCallback } from "react";
 import {
   Text,
   View,
@@ -18,7 +18,7 @@ function Home() {
   //Constante do array dos produtos
   const [Produto, setProduto] = useState([]);
 
-  const [qtd, setQtd] = useState(1);
+  const [items, setItems] = useState(0);
 
   //Callback do AsyncStorage dos produtos
   useFocusEffect(
@@ -27,15 +27,20 @@ function Home() {
     }, [Produto])
   );
 
+  useEffect(()=>{
+    QuantidadeTotal();
+  }, [items]);
+
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
-
+    
     setProduto(storage);
   }
 
   //Navegação para a tela de adicionar produto
   function NewProduto() {
+    console.log(items)
     navigation.navigate("Modules");
   }
 
@@ -44,9 +49,18 @@ function Home() {
     navigation.navigate("Historic");
   }
 
-  async function QuantidadeTotal() {
-    const Total = Produto.length
-    const contagem = 0
+  function QuantidadeTotal() {
+   
+    const soma = Produto.map(function(item) {
+        return item.qtd+1
+    });
+    
+
+    //const add = Produto.reduce(function(itens, elem) {
+    //  return itens + elem.qtd
+    //});
+
+    setItems(1);
   }
 
   return (
@@ -76,7 +90,7 @@ function Home() {
 
       <View style={styles.boxTotal}>
         <Text style={styles.TextProdutos}>Total de Itens</Text>
-        <Text style={styles.TextNumber}>{Produto.qtd}</Text>
+        <Text style={styles.TextNumber}>{items}</Text>
       </View>
       
 

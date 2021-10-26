@@ -34,7 +34,7 @@ export default function Historic() {
   const [Produto, setProduto] = useState([]);
 
   //Constante do código do produto
-  const [codigo, setCodigo] = useState("");
+  const [codigo, setCodigo] = useState('');
 
   //Constante que armazena o código pesquisado
   const [search, setSearch] = useState("");
@@ -46,7 +46,8 @@ export default function Historic() {
 
   const[vHora, setHora] =  useState('');
 
-  const [list, setList] = useState([])//Lista a ser renderizada
+  const [list, setList] = useState()//Lista a ser renderizada
+
   const [items, setItems] = useState('')//Receberá lista filtrada
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function Historic() {
     useCallback(() => {
       loadSpots();
       setDataHora();
-    }, [Produto ])
+    }, [Produto])
   );
 
   const setDataHora = () => {
@@ -84,8 +85,9 @@ export default function Historic() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
 
-    setList(storage);
-    setItems(storage);
+    setProduto(storage);
+    setList(Produto);
+    //setItems(storage);
 
    /* if (codigo) {
       setList(storage.filter((element) => element.produto == codigo));
@@ -113,23 +115,17 @@ export default function Historic() {
   }
 
   useEffect(() => {
-    if(codigo === '') {
-      setList(Produto);
+    //console.log("mudou")
+    if(codigo === "") {
+      setList(list);
     } else {
       setList(
-        Produto.filter(item => {
-          if(item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1) {
-            return true;
-          } else {
-            return false;
-          }
-        })
+        Produto.filter(item => {item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1})
       );
     }
   }, [codigo])
 
-  {
-    /*
+{/*
     function Edit(item) {
       navigation.navigate("Produto",
       {
@@ -185,7 +181,7 @@ export default function Historic() {
               <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={(t)=> setCodigo(t)}
+                onChangeText={setCodigo}
                 value={codigo}
                 placeholder="Pesquisa"
                 //keyboardType="numeric"
@@ -289,9 +285,8 @@ const styles = StyleSheet.create({
   },
   listItems: {
     alignSelf: "center",
-    //marginTop: "2%",
-    height: "90%",
-    width: "100%",
+    height: '85%',
+    width: "90%",
   },
   card: {
     flex: 1,
@@ -299,10 +294,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     borderRadius: 8,
-    marginTop: "2%",
     marginBottom: "2%",
-    height: "85%",
-    width: "90%",
+    height: 80,
+    width: 324,
     padding: 20,
   },
   details: {
@@ -311,13 +305,12 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   delete: {
-    width: "20%",
-    height: "70%",
-    backgroundColor: "#f00",
+    width: '20%',
+    height: 60,
     marginRight: "5%",
-    marginTop: "4%",
+    backgroundColor: "#f00",
+    marginTop: '3%',
     borderRadius: 8,
-    position: "relative",
   },
   //CSS Texts
   textCod: {
