@@ -4,6 +4,8 @@ import { Feather } from "@expo/vector-icons";
 import { Text, View, StyleSheet } from "react-native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
+import { COLORS } from "../components/Colors";
+
 export function Header({ title, action, modelo }) {
   const navigation = useNavigation();
 
@@ -23,7 +25,7 @@ export function Header({ title, action, modelo }) {
         onPress={handleGoBack}
         name="arrow-left"
         size={24}
-        color={"#fff"}
+        color={COLORS.White}
         style={{ marginTop: "15%" }}
       />
 
@@ -43,14 +45,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#4B7DFE",
+    backgroundColor: COLORS.Blue,
   },
   title: {
     fontFamily: "Rajdhani_600SemiBold",
     flex: 1,
     textAlign: "center",
     fontSize: 20,
-    color: "#fff",
+    color: COLORS.White,
     marginTop: "15%",
   },
 });

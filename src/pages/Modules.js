@@ -25,6 +25,8 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import { Header } from "../components/Header";
 import Modal from "../components/ModalItem";
+import { COLORS } from "../components/Colors";
+import ListItem from "../components/ListItems";
 
 export default function Modules() {
   //Constante de navegação
@@ -273,66 +275,8 @@ export default function Modules() {
           <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
         </View>
 
-        <Animated.View
-          style={{
-            width: "100%",
-            alignSelf: "center",
-          }}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingTop: 1 }}
-          onScroll={scrollHandler}
-          scrollEventThrottle={10} // 1000 / 60 = 16. (1 segundo / 60 que é a quantidade de frames por segundo para ter uma animação de 60 frames)
-        >
-
-        {/*Lista de produtos*/}
-        <View style={styles.listItems}>
-          <FlatList
-            data={Produto}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => (
-              <Swipeable
-                  overshootRight={false}
-                  renderRightActions={() => (
-                    <View style={styles.delete}>
-                    <RectButton
-                      style={styles.buttonDelete}
-                      onPress={(e) => {
-                        handleRemove(item);
-                      }}
-                    >
-                      <FontAwesome5 name="trash" size={30} color="#fff"/>
-                    </RectButton>
-                  </View>
-              )}>
-              <View style={styles.card}>
-                <View style={styles.details}>
-                  <RectButton
-                    onPress={(e) => {
-                      setModal(true);
-                      setprodItem(item);
-                    }}
-                  >
-                    {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
-                    <Text style={styles.codigo}>{item.produto}</Text>
-                    <View style={styles.details}>
-                    {!item.dtalteracao ? 
-                          <><Text>{item.date}</Text><Text>{item.hora}</Text></>
-                          :
-                          <Text>{item.dtalteracao}</Text>
-                        }
-                      <Text> - </Text>
-                      <Text>{item.qtd} </Text>
-                      <Text>unidade(s)</Text>
-                    </View>
-                  </RectButton>
-                </View>
-              </View>
-              </Swipeable>
-            )}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
-        </Animated.View>
+        <ListItem/>
+        
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
       <Modal show={modal} produtos={prodItem} close={() => setModal(false)} date={vDate} hora={vHora}/>
@@ -395,12 +339,12 @@ const styles = StyleSheet.create({
   },
   listItems: {
     alignSelf: "center",
-    height: 260.5,
+    height: 259,
     width: "90%",
   },
   card: {
     flex: 1,
-    backgroundColor: "#DCDCDC",
+    backgroundColor: COLORS.Gray_Primary,
     flexDirection: "row",
     alignSelf: "center",
     borderRadius: 8,
@@ -423,7 +367,7 @@ const styles = StyleSheet.create({
     width: '20%',
     height: 60,
     marginRight: "5%",
-    backgroundColor: "#f00",
+    backgroundColor: COLORS.Red,
     marginTop: '3%',
     borderRadius: 8,
   },
@@ -442,7 +386,7 @@ const styles = StyleSheet.create({
   },
   textSave: {
     fontFamily: "Rajdhani_600SemiBold",
-    color: "#FFF",
+    color: COLORS.White,
     fontSize: 20,
   },
   textList: {
@@ -456,18 +400,18 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontFamily: "Rajdhani_600SemiBold",
-    color: "#fff",
+    color: COLORS.White,
   },
   //CSS dos Inputs
   labelQtd: {
-    backgroundColor: "#D3D3D3",
+    backgroundColor: COLORS.Gray_Primary,
     borderRadius: 8,
     paddingHorizontal: "5%",
     height: "61%",
     width: '100%',
   },
   labelCod: {
-    backgroundColor: "#D3D3D3",
+    backgroundColor: COLORS.Gray_Primary,
     borderRadius: 8,
     paddingHorizontal: "5%",
     height: "61%",
@@ -475,7 +419,7 @@ const styles = StyleSheet.create({
   },
   //CSS do Botão SALVAR
   save: {
-    backgroundColor: "#4B7DFE",
+    backgroundColor: COLORS.Blue,
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
@@ -483,7 +427,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   button: {
-    backgroundColor: "#4B7DFE",
+    backgroundColor: COLORS.Blue,
     width: "45%",
     height: "20%",
     justifyContent: "center",
