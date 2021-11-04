@@ -13,6 +13,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { COLORS } from "../components/Colors";
 import Infos from "../components/Infos";
+//import splash from "../../assets/splash";
 
 function Home() {
   //Constante de navegação
@@ -20,8 +21,6 @@ function Home() {
 
   //Constante do array dos produtos
   const [Produto, setProduto] = useState([]);
-
-  const [items, setItems] = useState(1);
 
   //Callback do AsyncStorage dos produtos
   useFocusEffect(

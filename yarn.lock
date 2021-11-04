@@ -1152,11 +1152,6 @@
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/rajdhani/-/rajdhani-0.2.0.tgz#9b31e454e0f0fe46dfd5d44bdf602811b120898e"
   integrity sha512-vMGoNuJdOMyrvw+GwD4xlvKKBumXmK7IebN5RbDyyP+luZw6v5tAJAZhRSDc3ed55Oukaa0NCW144lw2hc+4eg==
 
-"@expo-google-fonts/roboto-mono@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@expo-google-fonts/roboto-mono/-/roboto-mono-0.2.0.tgz#c545f2a97aae5d180b4e39e88e95954fac3df497"
-  integrity sha512-pc86Am8mBiF9SB2qOlxNUPg3NvCkAvHn4Td1qB+Jimd3IUZWuwFhcIiGjXivRACrrvNuPpkOua78VIP/3TuXXQ==
-
 "@expo/config-plugins@2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-2.0.4.tgz#955fd70a2aeefbe99ec71cecb1d7ea7b626dc79e"

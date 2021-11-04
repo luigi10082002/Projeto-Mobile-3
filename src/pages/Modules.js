@@ -93,18 +93,9 @@ export default function Modules() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
     const array = storage.reverse();
-    //const last = array.splice(0,3);
-    setProduto(array);
+    const last = array.splice(0, 3);
+    setProduto(last);
   }
-
-{/*
-  function Lista() {
-    setList(Produto)
-    const last = list.splice(0, 3);
-    const array = last.reverse();
-    setLista(array)
-  }
-*/}
 
   //Lógica do scanner
   async function handleBarCodeScanned({ data }) {
@@ -172,6 +163,7 @@ export default function Modules() {
     }
   }
 
+  /*
   //Lógica para remover o produto
   async function handleRemove(item) {
    // console.log(item);
@@ -191,22 +183,13 @@ export default function Modules() {
       },
     ]);
   }
-
-  {
-    /*
-    function Edit(item) {
-      navigation.navigate("Produto", {
-        screen: "Produto",
-        produto: item,
-      });
-    }
-  */
-  }
-
+  
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
   scrollY.value = event.contentOffset.y;
   });
+*/
+
 
   return (
     <View style={styles.container}>
@@ -275,7 +258,81 @@ export default function Modules() {
           <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
         </View>
 
-        <ListItem/>
+        {/*<ListItem/>*/}
+
+        <Animated.View
+          style={{
+            alignSelf: "center",
+            marginTop: "5%",
+            height: "81%",
+            width: "100%",
+          }}
+          /*showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingTop: 1 }}
+          onScroll={scrollHandler}
+          scrollEventThrottle={10} // 1000 / 60 = 16. (1 segundo / 60 que é a quantidade de frames por segundo para ter uma animação de 60 frames)
+          */
+        >
+          {/*Lista de produtos*/}
+          <View style={styles.listItems}>
+            <FlatList
+              data={Produto}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item }) => (
+                /*<Swipeable
+                  overshootRight={false}
+                  renderRightActions={() => (
+                    <View style={styles.delete}>
+                      <RectButton
+                        style={styles.buttonDelete}
+                        onPress={(e) => {
+                          handleRemove(item);
+                        }}
+                      >
+                        <FontAwesome5 name="trash" size={30} color="#fff" />
+                      </RectButton>
+                    </View>
+                  )}
+                >*/
+                  <View style={styles.card}>
+                    <View style={styles.details}>
+                      <RectButton
+                        onPress={(e) => {
+                          setModal(true);
+                          setprodItem(item);
+                        }}
+                      >
+                        {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
+                        <Text style={styles.infoCodigo}>{item.produto}</Text>
+                        <View style={styles.details}>
+                          {!item.dtalteracao ? (
+                            <>
+                              <Text>{item.date}</Text>
+                              <Text> {item.hora}</Text>
+                            </>
+                          ) : (
+                            <Text>{item.dtalteracao}</Text>
+                          )}
+                          <Text> - </Text>
+                          <Text>{item.qtd} </Text>
+                          <Text>unidade(s)</Text>
+                        </View>
+                      </RectButton>
+                    </View>
+                  </View>
+                /*</Swipeable>*/
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+          <Modal
+            show={modal}
+            produtos={prodItem}
+            close={() => setModal(false)}
+            date={vDate}
+            hora={vHora}
+          />
+        </Animated.View>
         
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
@@ -401,6 +458,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Rajdhani_600SemiBold",
     color: COLORS.White,
+  },
+  infoCodigo: {
+    fontSize: 15,
+    fontWeight: "bold",
   },
   //CSS dos Inputs
   labelQtd: {

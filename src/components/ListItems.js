@@ -19,19 +19,6 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { COLORS } from "../components/Colors";
 import Modal from "../components/ModalItem";
 
-const SIZE = {
-  SMALL: {
-    alignSelf: "center",
-    height: 259,
-    width: "90%",
-  },
-  NORMAL: {
-    alignSelf: "center",
-    height: '85%',
-    width: "90%",
-  }
-}
-
 export default function ListItems() {
   const [modal, setModal] = useState(false);
 
@@ -39,21 +26,18 @@ export default function ListItems() {
   const [Produto, setProduto] = useState([]);
 
   //Constante do código do produto
-  const [codigo, setCodigo] = useState('');
+  const [codigo, setCodigo] = useState("");
 
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);
 
-  const[vDate, setDate] =  useState('');
+  const [vDate, setDate] = useState("");
 
-  const[vHora, setHora] =  useState('');
+  const [vHora, setHora] = useState("");
 
-  const [list, setList] = useState()//Lista a ser renderizada
+  const [list, setList] = useState(); //Lista a ser renderizada
 
-  const [items, setItems] = useState('')//Receberá lista filtrada
-
-  useEffect(() => {
-  }, [vDate, vHora, list]);
+  useEffect(() => {}, [vDate, vHora, list, codigo]);
 
   //Callback do AsyncStorage dos produtos
   useFocusEffect(
@@ -65,22 +49,22 @@ export default function ListItems() {
 
   const setDataHora = () => {
     const date =
-    new Date().getDate() +
-    "/" +
-    (new Date().getMonth() + 1) +
-    "/" +
-    new Date().getFullYear();
+      new Date().getDate() +
+      "/" +
+      (new Date().getMonth() + 1) +
+      "/" +
+      new Date().getFullYear();
 
-    const  hora =
-    new Date().getHours() +
-    ":" +
-    new Date().getMinutes() +
-    ":" +
-    new Date().getSeconds();
+    const hora =
+      new Date().getHours() +
+      ":" +
+      new Date().getMinutes() +
+      ":" +
+      new Date().getSeconds();
 
     setDate(date);
     setHora(hora);
-  }
+  };
 
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
@@ -88,7 +72,7 @@ export default function ListItems() {
 
     setProduto(storage);
     setList(Produto);
-  } 
+  }
 
   async function handleRemove(item) {
     const id = list.findIndex((element) => element.id == item.id);
@@ -113,81 +97,91 @@ export default function ListItems() {
   });
 
   return (
-    <>
-    <Animated.View
-      style={{
-        alignSelf: "center",
-        marginTop: "5%",
-        height: "81%",
-        width: "100%",
-      }}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ paddingTop: 1 }}
-      onScroll={scrollHandler}
-      scrollEventThrottle={10} // 1000 / 60 = 16. (1 segundo / 60 que é a quantidade de frames por segundo para ter uma animação de 60 frames)
-    >
-      {/*Lista de produtos*/}
-      <View style={styles.listItems}>
-        <FlatList
-          data={list}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => (
-            <Swipeable
-              overshootRight={false}
-              renderRightActions={() => (
-                <View style={styles.delete}>
-                  <RectButton
-                    style={styles.buttonDelete}
-                    onPress={(e) => {
-                      handleRemove(item);
-                    }}
-                  >
-                    <FontAwesome5 name="trash" size={30} color="#fff" />
-                  </RectButton>
+    <View style={styles.container}>
+      <Animated.View
+        style={{
+          alignSelf: "center",
+          marginTop: "5%",
+          height: "81%",
+          width: "100%",
+        }}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingTop: 1 }}
+        onScroll={scrollHandler}
+        scrollEventThrottle={10} // 1000 / 60 = 16. (1 segundo / 60 que é a quantidade de frames por segundo para ter uma animação de 60 frames)
+      >
+        {/*Lista de produtos*/}
+        <View style={styles.listItems}>
+          <FlatList
+            data={list}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => (
+              <Swipeable
+                overshootRight={false}
+                renderRightActions={() => (
+                  <View style={styles.delete}>
+                    <RectButton
+                      style={styles.buttonDelete}
+                      onPress={(e) => {
+                        handleRemove(item);
+                      }}
+                    >
+                      <FontAwesome5 name="trash" size={30} color="#fff" />
+                    </RectButton>
+                  </View>
+                )}
+              >
+                <View style={styles.card}>
+                  <View style={styles.details}>
+                    <RectButton
+                      onPress={(e) => {
+                        setModal(true);
+                        setprodItem(item);
+                      }}
+                    >
+                      {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
+                      <Text style={styles.textCod}>{item.produto}</Text>
+                      <View style={styles.details}>
+                        {!item.dtalteracao ? (
+                          <>
+                            <Text>{item.date}</Text>
+                            <Text> {item.hora}</Text>
+                          </>
+                        ) : (
+                          <Text>{item.dtalteracao}</Text>
+                        )}
+                        <Text> - </Text>
+                        <Text>{item.qtd} </Text>
+                        <Text>unidade(s)</Text>
+                      </View>
+                    </RectButton>
+                  </View>
                 </View>
-              )}
-            >
-              <View style={styles.card}>
-                <View style={styles.details}>
-                  <RectButton
-                    onPress={(e) => {
-                      setModal(true);
-                      setprodItem(item);
-                    }}
-                  >
-                    {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
-                    <Text style={styles.textCod}>{item.produto}</Text>
-                    <View style={styles.details}>
-                      {!item.dtalteracao ? (
-                        <>
-                          <Text>{item.date}</Text>
-                          <Text> {item.hora}</Text>
-                        </>
-                      ) : (
-                        <Text>{item.dtalteracao}</Text>
-                      )}
-                      <Text> - </Text>
-                      <Text>{item.qtd} </Text>
-                      <Text>unidade(s)</Text>
-                    </View>
-                  </RectButton>
-                </View>
-              </View>
-            </Swipeable>
-          )}
-          showsVerticalScrollIndicator={false}
+              </Swipeable>
+            )}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+        <Modal
+          show={modal}
+          produtos={prodItem}
+          close={() => setModal(false)}
+          date={vDate}
+          hora={vHora}
         />
-      </View>
-      <Modal show={modal} produtos={prodItem} close={() => setModal(false)} date={vDate} hora={vHora}/>
-    </Animated.View>
-    </>
+      </Animated.View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: "100%",
+  },
   listItems: {
     alignSelf: "center",
-    height: "85%",
+    height: "73%",
     width: "90%",
   },
   card: {

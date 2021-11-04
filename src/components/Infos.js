@@ -17,32 +17,28 @@ export default function Infos() {
   );
 
   useEffect(()=>{  
-     function QuantidadeTotal() {
-      const sum = Produto.reduce( function( prevVal, elem ) {
-        return prevVal + parseInt(elem.qtd);
+     async function QuantidadeTotal() {
+      if(Produto.length !== 0) {
+      const Total = Produto.reduce( function( itens, element ) {
+        return itens + parseInt(element.qtd);
       }, 0 );
-      parseInt(sum)
-      setItems(sum)
-      parseInt(items)
 
+      parseInt(Total)
+      setItems(Total)
+      parseInt(items)
+    } else {
+      setItems(0)
+    }
     }
     
     QuantidadeTotal();
-  },[items]);
+  },[Produto.length]);
 
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
     
     setProduto(storage);
-  }
-
-  function QuantidadeTotal() {
-    const sum = Produto.reduce( function( prevVal, elem ) {
-      return prevVal + elem.qtd;
-  }, 0 );
-
-  setItems(sum)
   }
 
   return (
