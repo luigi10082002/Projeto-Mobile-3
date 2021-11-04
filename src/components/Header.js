@@ -17,7 +17,8 @@ export function Header({ title, action, modelo }) {
       id: screen,
       screen: "Modules",
       backScreen: "Home",
-    });  }
+    });
+  }
 
   return (
     <View style={styles.container}>

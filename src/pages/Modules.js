@@ -46,9 +46,9 @@ export default function Modules() {
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);
 
-  const[vDate, setDate] =  useState('');
+  const [vDate, setDate] = useState("");
 
-  const[vHora, setHora] =  useState('');
+  const [vHora, setHora] = useState("");
 
   //Constante que armazena o produto no array
   const [Produto, setProduto] = useState([]);
@@ -71,22 +71,22 @@ export default function Modules() {
 
   const setDataHora = () => {
     const date =
-    new Date().getDate() +
-    "/" +
-    (new Date().getMonth() + 1) +
-    "/" +
-    new Date().getFullYear();
+      new Date().getDate() +
+      "/" +
+      (new Date().getMonth() + 1) +
+      "/" +
+      new Date().getFullYear();
 
     const hora =
-    new Date().getHours() +
-    ":" +
-    new Date().getMinutes() +
-    ":" +
-    new Date().getSeconds();
+      new Date().getHours() +
+      ":" +
+      new Date().getMinutes() +
+      ":" +
+      new Date().getSeconds();
 
     setDate(date);
     setHora(hora);
-  }
+  };
 
   //Separação dos ultimos produtos para a lista de "ultimos produtos adicionados"
   async function loadSpots() {
@@ -150,8 +150,8 @@ export default function Modules() {
           JSON.stringify([...Produto, newProd])
         );
       }
-      //Alerta que o produto foi salvo e limpa os campos
-      /*Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
+      /*Alerta que o produto foi salvo e limpa os campos
+      Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
         {
           text: "OK",
         },
@@ -190,7 +190,6 @@ export default function Modules() {
   });
 */
 
-
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -217,33 +216,33 @@ export default function Modules() {
         </View>
 
         <View style={styles.Infos}>
-        <View style={styles.Qtd}>
-          <Text style={styles.textQtd}>Quantidade</Text>
+          <View style={styles.Qtd}>
+            <Text style={styles.textQtd}>Quantidade</Text>
             <TextInput
-            style={styles.labelQtd}
-            autoCorrect={false}
-            onChangeText={setQtd}
-            value={qtd}
-            keyboardType="numeric"
-            placeholder="1"
-            maxLength={4}
-            textAlign="right"
+              style={styles.labelQtd}
+              autoCorrect={false}
+              onChangeText={setQtd}
+              value={qtd}
+              keyboardType="numeric"
+              placeholder="1"
+              maxLength={4}
+              textAlign="right"
             />
-        </View>
+          </View>
 
-        <View style={styles.Cod}>
-          <Text style={styles.textCod}>Código</Text>
-          <TextInput
-            style={styles.labelCod}
-            autoCorrect={false}
-            onChangeText={setCodigo}
-            value={codigo}
-            keyboardType="numeric"
-            placeholder="Código"
-            maxLength={13}
-            textAlign="right"
-          />
-        </View>
+          <View style={styles.Cod}>
+            <Text style={styles.textCod}>Código</Text>
+            <TextInput
+              style={styles.labelCod}
+              autoCorrect={false}
+              onChangeText={setCodigo}
+              value={codigo}
+              keyboardType="numeric"
+              placeholder="Código"
+              maxLength={13}
+              textAlign="right"
+            />
+          </View>
         </View>
 
         {/*Botão de salvar*/}
@@ -294,32 +293,32 @@ export default function Modules() {
                     </View>
                   )}
                 >*/
-                  <View style={styles.card}>
-                    <View style={styles.details}>
-                      <RectButton
-                        onPress={(e) => {
-                          setModal(true);
-                          setprodItem(item);
-                        }}
-                      >
-                        {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
-                        <Text style={styles.infoCodigo}>{item.produto}</Text>
-                        <View style={styles.details}>
-                          {!item.dtalteracao ? (
-                            <>
-                              <Text>{item.date}</Text>
-                              <Text> {item.hora}</Text>
-                            </>
-                          ) : (
-                            <Text>{item.dtalteracao}</Text>
-                          )}
-                          <Text> - </Text>
-                          <Text>{item.qtd} </Text>
-                          <Text>unidade(s)</Text>
-                        </View>
-                      </RectButton>
-                    </View>
+                <View style={styles.card}>
+                  <View style={styles.details}>
+                    <RectButton
+                      onPress={(e) => {
+                        setModal(true);
+                        setprodItem(item);
+                      }}
+                    >
+                      {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
+                      <Text style={styles.infoCodigo}>{item.produto}</Text>
+                      <View style={styles.details}>
+                        {!item.dtalteracao ? (
+                          <>
+                            <Text>{item.date}</Text>
+                            <Text> {item.hora}</Text>
+                          </>
+                        ) : (
+                          <Text>{item.dtalteracao}</Text>
+                        )}
+                        <Text> - </Text>
+                        <Text>{item.qtd} </Text>
+                        <Text>unidade(s)</Text>
+                      </View>
+                    </RectButton>
                   </View>
+                </View>
                 /*</Swipeable>*/
               )}
               showsVerticalScrollIndicator={false}
@@ -328,7 +327,13 @@ export default function Modules() {
         </Animated.View>
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
-      <Modal show={modal} produtos={prodItem} close={() => setModal(false)} date={vDate} hora={vHora}/>
+      <Modal
+        show={modal}
+        produtos={prodItem}
+        close={() => setModal(false)}
+        date={vDate}
+        hora={vHora}
+      />
     </View>
   );
 }
@@ -364,13 +369,13 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   Qtd: {
-    width: '30%',
-    height: '100%',
+    width: "30%",
+    height: "100%",
   },
   Cod: {
-    marginLeft: '5%',
-    width: '65%',
-    height: '100%',
+    marginLeft: "5%",
+    width: "65%",
+    height: "100%",
   },
   buttonSave: {
     alignSelf: "center",
@@ -413,11 +418,11 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   delete: {
-    width: '20%',
+    width: "20%",
     height: 60,
     marginRight: "5%",
     backgroundColor: COLORS.Red,
-    marginTop: '3%',
+    marginTop: "3%",
     borderRadius: 8,
   },
   //CSS dos Textos
@@ -461,14 +466,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: "5%",
     height: "61%",
-    width: '100%',
+    width: "100%",
   },
   labelCod: {
     backgroundColor: COLORS.Gray_Primary,
     borderRadius: 8,
     paddingHorizontal: "5%",
     height: "61%",
-    width: '100%',
+    width: "100%",
   },
   //CSS do Botão SALVAR
   save: {

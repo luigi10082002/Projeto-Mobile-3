@@ -2,12 +2,11 @@ import React, { useEffect, useState, useCallback } from "react";
 import { View, Text, StyleSheet, AsyncStorage } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
-
 import { COLORS } from "../components/Colors";
 
 export default function Infos() {
   const [Produto, setProduto] = useState([]);
-  
+
   const [items, setItems] = useState(0);
 
   useFocusEffect(
@@ -16,28 +15,28 @@ export default function Infos() {
     }, [Produto])
   );
 
-  useEffect(()=>{  
-     async function QuantidadeTotal() {
-      if(Produto.length !== 0) {
-      const Total = Produto.reduce( function( itens, element ) {
-        return itens + parseInt(element.qtd);
-      }, 0 );
+  useEffect(() => {
+    async function QuantidadeTotal() {
+      if (Produto.length !== 0) {
+        const Total = Produto.reduce(function (itens, element) {
+          return itens + parseInt(element.qtd);
+        }, 0);
 
-      parseInt(Total)
-      setItems(Total)
-      parseInt(items)
-    } else {
-      setItems(0)
+        parseInt(Total);
+        setItems(Total);
+        parseInt(items);
+      } else {
+        setItems(0);
+      }
     }
-    }
-    
+
     QuantidadeTotal();
-  },[Produto.length || items || Produto.qtd]);
+  }, [Produto || Produto.length]);
 
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
-    
+
     setProduto(storage);
   }
 
@@ -53,13 +52,13 @@ export default function Infos() {
         <Text style={styles.TextNumber}>{items}</Text>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   infos: {
-    flexDirection: 'row',
-    alignSelf: 'center',
+    flexDirection: "row",
+    alignSelf: "center",
     height: "20%",
     width: "90%",
   },
@@ -95,4 +94,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Rajdhani_600SemiBold",
   },
-})
+});

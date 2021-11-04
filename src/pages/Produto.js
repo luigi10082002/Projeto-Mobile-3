@@ -15,9 +15,9 @@ import { useRoute, useFocusEffect } from "@react-navigation/native";
 import uuid from "react-native-uuid";
 
 import { Header } from "../components/Header";
+import { COLORS } from "../components/Colors";
 
 export default function Modules() {
-
   const route = useRoute();
   const paramMod = route.params.produto;
 
@@ -40,14 +40,12 @@ export default function Modules() {
 
   const [Produto, setProduto] = useState([]);
 
-
   useFocusEffect(
     useCallback(() => {
       setCodigo(paramMod.produto);
       setQtd(paramMod.qtd.toString());
     }, [paramMod])
   );
-
 
   async function Capture({ data }) {
     setScanned(true);
@@ -83,46 +81,43 @@ export default function Modules() {
   }
 
   async function Save() {
-    
     ///verificar se qtd > 0
 
-    // verificar se codigo diferente branco 
+    // verificar se codigo diferente branco
 
-    if (qtd <= 0  || codigo == "") {
+    if (qtd <= 0 || codigo == "") {
       Alert.alert("Erro", "O produto não contem as informações necessárias", [
         {
           text: "OK",
-        }
+        },
       ]);
     } else {
+      //Verifica se tem alguma coisa na storage
+      const storage = await AsyncStorage.getItem("@Produtos");
+      const Produto = storage ? JSON.parse(storage) : [];
 
-    //Verifica se tem alguma coisa na storage
-    const storage = await AsyncStorage.getItem("@Produtos");
-    const Produto = storage ? JSON.parse(storage) : [];
+      const index = Produto.findIndex((element) => element.id == paramMod.id);
 
-    const index = Produto.findIndex((element) => element.id == paramMod.id);
-
-    if (index >= 0) {
-      Produto[index].qtd =  parseInt(qtd);
-      Produto[index].produto =  codigo;
-      Produto[index].dtalteracao =  '18:30';
-      await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
-    } 
-    Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
-      {
-        text: "Ok",
-      },
-    ]);
+      if (index >= 0) {
+        Produto[index].qtd = parseInt(qtd);
+        Produto[index].produto = codigo;
+        Produto[index].dtalteracao = "18:30";
+        await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
+      }
+      Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
+        {
+          text: "Ok",
+        },
+      ]);
+    }
   }
-}
   return (
-        <View style={styles.container}>
-          <KeyboardAvoidingView
+    <View style={styles.container}>
+      <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-          <Header title="Edição de Produto"/>
-          <ScrollView>
-
+        <Header title="Edição de Produto" />
+        <ScrollView>
           <View style={styles.info}>
             <Text style={styles.textQtd}>Quantidade</Text>
             <Text style={styles.textCod}>Código</Text>
@@ -152,10 +147,9 @@ export default function Modules() {
               <Text style={styles.textSave}>SALVAR</Text>
             </TouchableOpacity>
           </View>
-          </ScrollView>
-          </KeyboardAvoidingView>
-
-        </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </View>
   );
 }
 
@@ -204,7 +198,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   textSave: {
-    color: "#FFF",
+    color: COLORS.White,
     fontWeight: "bold",
     fontSize: 15,
   },
@@ -213,14 +207,14 @@ const styles = StyleSheet.create({
   },
   //CSS dos Inputs
   labelQtd: {
-    backgroundColor: "#D3D3D3",
+    backgroundColor: COLORS.Gray_Tertiary,
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",
     width: "29%",
   },
   labelCod: {
-    backgroundColor: "#D3D3D3",
+    backgroundColor: COLORS.Gray_Tertiary,
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",
@@ -229,7 +223,7 @@ const styles = StyleSheet.create({
   },
   //CSS do Botão SALVAR
   save: {
-    backgroundColor: "#4B7DFE",
+    backgroundColor: COLORS.Blue,
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
@@ -248,7 +242,7 @@ const styles = StyleSheet.create({
     marginTop: "5%",
   },
   button: {
-    backgroundColor: "#4B7DFE",
+    backgroundColor: COLORS.Blue,
     width: "45%",
     height: "20%",
     justifyContent: "center",
@@ -265,7 +259,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   buttonText: {
-    color: "#fff",
+    color: COLORS.White,
     fontWeight: "bold",
   },
 });

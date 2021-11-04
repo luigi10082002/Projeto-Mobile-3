@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   Text,
   View,
@@ -32,7 +32,7 @@ function Home() {
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
-    
+
     setProduto(storage);
   }
 
@@ -63,8 +63,8 @@ function Home() {
         </TouchableOpacity>
       </View>
 
-      <Infos/>
-      
+      <Infos />
+
       <View style={styles.boxButton}>
         {/*Botão que leva ao histórico*/}
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>

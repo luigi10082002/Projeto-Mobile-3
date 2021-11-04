@@ -12,8 +12,9 @@ import {
   AsyncStorage,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import uuid from "react-native-uuid";
-import { useRoute, useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
+
+import { COLORS } from "../components/Colors";
 
 const { height } = Dimensions.get("window");
 
@@ -85,9 +86,9 @@ export default function Modal({ show, close, produtos, date, hora }) {
       if (index >= 0) {
         Produto[index].qtd = parseInt(qtd);
         Produto[index].produto = codigo;
-        Produto[index].dtalteracao = `${date} - ${hora}`; 
+        Produto[index].dtalteracao = `${date} - ${hora}`;
         await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
-        closeModal()
+        closeModal();
       }
     }
   }
@@ -95,16 +96,18 @@ export default function Modal({ show, close, produtos, date, hora }) {
   async function Save() {
     //verificar se qtd > 0
     //verificar se codigo diferente de branco
-      Alert.alert("Aviso", `Você alterou o produto salvar assim mesmo?`, [
-        {
-          text: "CANCELAR",
+    Alert.alert("Aviso", `Você alterou o produto salvar assim mesmo?`, [
+      {
+        text: "CANCELAR",
+      },
+      {
+        text: "CONFIRMAR",
+        onPress: async () => {
+          Add();
         },
-        {
-          text: "CONFIRMAR",
-          onPress: async () => {Add()}
-        }
-      ]);
-    }
+      },
+    ]);
+  }
 
   return (
     <Animated.View
@@ -144,6 +147,8 @@ export default function Modal({ show, close, produtos, date, hora }) {
                 keyboardType="numeric"
                 onChangeText={setQtd}
                 value={qtd}
+                maxLength={4}
+                textAlign="right"
               />
 
               <TextInput
@@ -151,6 +156,8 @@ export default function Modal({ show, close, produtos, date, hora }) {
                 autoCorrect={false}
                 value={codigo}
                 onChangeText={setCodigo}
+                maxLength={13}
+                textAlign="right"
               />
             </View>
 
@@ -177,7 +184,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: COLORS.Black,
     position: "absolute",
   },
   container_modal: {
@@ -186,8 +193,8 @@ const styles = StyleSheet.create({
   modal: {
     bottom: 0,
     position: "absolute",
-    height: '35%',
-    backgroundColor: "#fff",
+    height: "35%",
+    backgroundColor: COLORS.White,
     width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -215,7 +222,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   header: {
-    backgroundColor: "#4B7DFE",
+    backgroundColor: COLORS.Blue,
     alignItems: "center",
     justifyContent: "center",
     height: "20%",
@@ -239,7 +246,7 @@ const styles = StyleSheet.create({
   },
   textSave: {
     fontFamily: "Rajdhani_600SemiBold",
-    color: "#FFF",
+    color: COLORS.White,
     fontSize: 20,
   },
   textList: {
@@ -250,18 +257,18 @@ const styles = StyleSheet.create({
     fontFamily: "Rajdhani_600SemiBold",
     textAlign: "center",
     fontSize: 20,
-    color: "#fff",
+    color: COLORS.White,
   },
   //CSS dos Inputs
   labelQtd: {
-    backgroundColor: "#D3D3D3",
+    backgroundColor: COLORS.Gray_Tertiary,
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",
     width: "29%",
   },
   labelCod: {
-    backgroundColor: "#D3D3D3",
+    backgroundColor: COLORS.Gray_Tertiary,
     borderRadius: 8,
     paddingHorizontal: "3%",
     height: "100%",
@@ -270,7 +277,7 @@ const styles = StyleSheet.create({
   },
   //CSS do Botão SALVAR
   save: {
-    backgroundColor: "#4B7DFE",
+    backgroundColor: COLORS.Blue,
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
@@ -278,7 +285,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonText: {
-    color: "#fff",
+    color: COLORS.White,
     fontWeight: "bold",
   },
   buttonClose: {

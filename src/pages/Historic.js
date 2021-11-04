@@ -76,10 +76,17 @@ export default function Historic() {
     }, [Produto.length])
   );
 
+  /*
+  useFocusEffect(
+    useCallback(() => {
+      LoadProduto();
+    }, [Produto.length])
+  );
+*/
   useEffect(() => {
-    if(codigo === "") {
-      setList(Produto)
-    } else{
+    if (codigo === "") {
+      setList(Produto);
+    } else {
       Pesquisa();
     }
   }, [codigo]);
@@ -90,7 +97,11 @@ export default function Historic() {
     const storage = response ? JSON.parse(response) : [];
 
     setProduto(storage);
-    setList(Produto)
+    setList(Produto);
+  }
+
+  function LoadProduto() {
+    setList(Produto);
   }
 
   async function handleRemove(item) {
@@ -116,67 +127,12 @@ export default function Historic() {
   });
 
   function Pesquisa() {
-    const itemPesquisado = list.filter((item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1)
-    console.log(itemPesquisado);
+    const itemPesquisado = list.filter(
+      (item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1
+    );
 
     setList(itemPesquisado);
   }
-/*
-  function search() {
-    do{
-      const itemPesquisado = Produto.filter((item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1)
-      setList(itemPesquisado);
-    } while (codigo != "")
-  }
-  */
-  /*
-function Pesquisa() {
-    console.log(codigo)
-    const itemPesquisado = Produto.filter((item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1)
-    console.log(itemPesquisado);
-    setList(itemPesquisado);
-  }
-
-  useEffect(() => {
-    //console.log("mudou")
-    if (codigo === "") {
-      setList(list);
-    } else {
-      setList(
-        Produto.filter((item) => {
-          item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1;
-        })
-      );
-    }
-  }, [codigo]);
-  
-  //Separa os produtos que têm o código igual ao código pesquisado
- function Search(t) {
-    console.log(t);
-    search == t ? setSearch("") : setSearch(t);
- }
- 
-  function SearchFilterFunction(scodigo) {
-   
-    if(scodigo){
-    const filterList = list.filter((item) => {
-            
-      //aplicando filtro com base no valor inserido no input
-      const itemFilter = item.produto == scodigo ? item.produto.toUpperCase() : ''.toUpperCase;
-      console.log(itemFilter);
-      const newText = codigo.toUpperCase();
-      return itemFilter.indexOf(newText) > -1;
-   
-    });
-
-    setList(filterList)
-    setCodigo(scodigo)
-  }else{
-    setList(items)
-    setCodigo(scodigo)
-  }
-  }
-  */
 
   return (
     <View style={styles.container}>
@@ -186,6 +142,7 @@ function Pesquisa() {
         <Header title="Histórico" />
 
         {/*Input de pesquisa*/}
+
         <View style={styles.searchBox}>
           <Text style={styles.txtSearch}></Text>
           <ScrollView>
@@ -193,12 +150,9 @@ function Pesquisa() {
               <TextInput
                 style={styles.input}
                 autoCorrect={false}
-                onChangeText={(t) => {
-                  setCodigo(t);
-                }}
+                onChangeText={setCodigo}
                 value={codigo}
                 placeholder="Pesquisa"
-                //onSubmitEditing={Pesquisa}
                 //keyboardType="numeric"
               />
               {/*Botão de pesquisar*/}
@@ -280,12 +234,12 @@ function Pesquisa() {
         </Animated.View>
       </KeyboardAvoidingView>
       <Modal
-            show={modal}
-            produtos={prodItem}
-            close={() => setModal(false)}
-            date={vDate}
-            hora={vHora}
-          />
+        show={modal}
+        produtos={prodItem}
+        close={() => setModal(false)}
+        date={vDate}
+        hora={vHora}
+      />
     </View>
   );
 }
@@ -326,7 +280,7 @@ const styles = StyleSheet.create({
   },
   delete: {
     width: "20%",
-    height: '70%',
+    height: "70%",
     backgroundColor: COLORS.Red,
     marginTop: "3%",
     borderRadius: 8,
