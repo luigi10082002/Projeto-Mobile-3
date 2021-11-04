@@ -73,24 +73,20 @@ export default function Historic() {
     useCallback(() => {
       loadSpots();
       setDataHora();
-      NewArray();
     }, [Produto])
   );
-/*
+
   useEffect(() => {
-    search();
+    Pesquisa();
   }, [codigo]);
-*/
+
   //Lógica que compara o código pesquisado com os códigos que foram adicionados
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
 
     setProduto(storage);
-  }
-
-  function NewArray() {
-    setList(Produto)
+    setList(Produto);
   }
 
   async function handleRemove(item) {
@@ -198,7 +194,7 @@ function Pesquisa() {
                 }}
                 value={codigo}
                 placeholder="Pesquisa"
-                onSubmitEditing={Pesquisa}
+                //onSubmitEditing={Pesquisa}
                 //keyboardType="numeric"
               />
               {/*Botão de pesquisar*/}
@@ -277,15 +273,15 @@ function Pesquisa() {
               showsVerticalScrollIndicator={false}
             />
           </View>
-          <Modal
+        </Animated.View>
+      </KeyboardAvoidingView>
+      <Modal
             show={modal}
             produtos={prodItem}
             close={() => setModal(false)}
             date={vDate}
             hora={vHora}
           />
-        </Animated.View>
-      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -326,8 +322,7 @@ const styles = StyleSheet.create({
   },
   delete: {
     width: "20%",
-    height: 60,
-    marginRight: "5%",
+    height: '70%',
     backgroundColor: COLORS.Red,
     marginTop: "3%",
     borderRadius: 8,

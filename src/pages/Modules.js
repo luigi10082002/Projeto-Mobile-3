@@ -325,15 +325,7 @@ export default function Modules() {
               showsVerticalScrollIndicator={false}
             />
           </View>
-          <Modal
-            show={modal}
-            produtos={prodItem}
-            close={() => setModal(false)}
-            date={vDate}
-            hora={vHora}
-          />
         </Animated.View>
-        
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
       <Modal show={modal} produtos={prodItem} close={() => setModal(false)} date={vDate} hora={vHora}/>

@@ -32,7 +32,7 @@ export default function Infos() {
     }
     
     QuantidadeTotal();
-  },[Produto.length]);
+  },[Produto.length || items || Produto.qtd]);
 
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
