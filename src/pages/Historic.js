@@ -73,7 +73,7 @@ export default function Historic() {
     useCallback(() => {
       loadSpots();
       setDataHora();
-    }, [Produto])
+    }, [Produto.length])
   );
 
   useEffect(() => {
@@ -90,6 +90,7 @@ export default function Historic() {
     const storage = response ? JSON.parse(response) : [];
 
     setProduto(storage);
+    setList(Produto)
   }
 
   async function handleRemove(item) {
