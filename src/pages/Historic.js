@@ -77,7 +77,11 @@ export default function Historic() {
   );
 
   useEffect(() => {
-    Pesquisa();
+    if(codigo === "") {
+      setList(Produto)
+    } else{
+      Pesquisa();
+    }
   }, [codigo]);
 
   //Lógica que compara o código pesquisado com os códigos que foram adicionados
@@ -86,7 +90,6 @@ export default function Historic() {
     const storage = response ? JSON.parse(response) : [];
 
     setProduto(storage);
-    setList(Produto);
   }
 
   async function handleRemove(item) {
@@ -112,7 +115,7 @@ export default function Historic() {
   });
 
   function Pesquisa() {
-    const itemPesquisado = Produto.filter((item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1)
+    const itemPesquisado = list.filter((item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1)
     console.log(itemPesquisado);
 
     setList(itemPesquisado);
