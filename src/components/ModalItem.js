@@ -88,7 +88,6 @@ export default function Modal({ show, close, produtos, date, hora }) {
         Produto[index].produto = codigo;
         Produto[index].dtalteracao = `${date} - ${hora}`;
         await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
-        closeModal();
       }
     }
   }
@@ -194,7 +193,7 @@ const styles = StyleSheet.create({
   modal: {
     bottom: 0,
     position: "absolute",
-    height: "35%",
+    height: "45%",
     backgroundColor: COLORS.White,
     width: "100%",
     borderTopLeftRadius: 20,

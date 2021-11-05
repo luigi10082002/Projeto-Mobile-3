@@ -47,6 +47,8 @@ export default function Historic() {
 
   const [list, setList] = useState(); //Lista a ser renderizada
 
+  const[comparar, setComparar] = useState();
+
   const setDataHora = () => {
     const date =
       new Date().getDate() +
@@ -89,7 +91,8 @@ export default function Historic() {
       const itemPesquisado = list.filter(
         (item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1);
   
-      setList(itemPesquisado);    }
+      setList(itemPesquisado);
+    }
   }, [codigo]);
 
   //Lógica que compara o código pesquisado com os códigos que foram adicionados
@@ -98,12 +101,14 @@ export default function Historic() {
     const storage = response ? JSON.parse(response) : [];
 
     setProduto(storage);
-    setModal(false)
-
   }
 
   function LoadProduto() {
-    setList(Produto);
+    setList(Produto)
+
+    const result = Produto.every( e => e === list)
+    setComparar(result);
+    console.log(comparar);
   }
 
   async function handleRemove(item) {
