@@ -73,22 +73,23 @@ export default function Historic() {
     useCallback(() => {
       loadSpots();
       setDataHora();
-    }, [Produto.length])
+    }, [Produto])
   );
 
-  /*
   useFocusEffect(
     useCallback(() => {
       LoadProduto();
     }, [Produto.length])
   );
-*/
+
   useEffect(() => {
     if (codigo === "") {
       setList(Produto);
     } else {
-      Pesquisa();
-    }
+      const itemPesquisado = list.filter(
+        (item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1);
+  
+      setList(itemPesquisado);    }
   }, [codigo]);
 
   //Lógica que compara o código pesquisado com os códigos que foram adicionados
@@ -97,7 +98,8 @@ export default function Historic() {
     const storage = response ? JSON.parse(response) : [];
 
     setProduto(storage);
-    setList(Produto);
+    setModal(false)
+
   }
 
   function LoadProduto() {
@@ -125,14 +127,6 @@ export default function Historic() {
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
   });
-
-  function Pesquisa() {
-    const itemPesquisado = list.filter(
-      (item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1
-    );
-
-    setList(itemPesquisado);
-  }
 
   return (
     <View style={styles.container}>
@@ -203,6 +197,7 @@ export default function Historic() {
                   <View style={styles.card}>
                     <View style={styles.details}>
                       <RectButton
+                      style={styles.buttonInfo}
                         onPress={(e) => {
                           setModal(true);
                           setprodItem(item);
@@ -269,14 +264,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 8,
     marginBottom: "2%",
-    height: 80,
-    width: 324,
+    height: "100%",
+    width: "100%",
     padding: 20,
   },
   details: {
     flexDirection: "row",
     height: "100%",
-    width: "90%",
+    width: "100%",
   },
   delete: {
     width: "20%",
@@ -312,6 +307,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     marginTop: "60%",
+    width: "100%",
+    height: "100%",
+  },
+  buttonInfo: {
     width: "100%",
     height: "100%",
   },

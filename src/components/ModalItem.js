@@ -104,6 +104,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
         text: "CONFIRMAR",
         onPress: async () => {
           Add();
+          //closeModal();
         },
       },
     ]);
