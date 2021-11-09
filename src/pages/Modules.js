@@ -15,8 +15,8 @@ import {
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { RectButton } from "react-native-gesture-handler";
+import { FontAwesome5 } from "@expo/vector-icons";
 import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
@@ -163,7 +163,7 @@ export default function Modules() {
     }
   }
 
-  /*
+/*
   //Lógica para remover o produto
   async function handleRemove(item) {
    // console.log(item);
@@ -266,7 +266,9 @@ export default function Modules() {
             height: "81%",
             width: "100%",
           }}
-          /*showsVerticalScrollIndicator={false}
+
+          /*
+          showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingTop: 1 }}
           onScroll={scrollHandler}
           scrollEventThrottle={10} // 1000 / 60 = 16. (1 segundo / 60 que é a quantidade de frames por segundo para ter uma animação de 60 frames)
@@ -296,12 +298,12 @@ export default function Modules() {
                 <View style={styles.card}>
                   <View style={styles.details}>
                     <RectButton
+                      style={styles.buttonInfo}
                       onPress={(e) => {
                         setModal(true);
                         setprodItem(item);
                       }}
                     >
-                      {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
                       <Text style={styles.infoCodigo}>{item.produto}</Text>
                       <View style={styles.details}>
                         {!item.dtalteracao ? (
@@ -415,7 +417,7 @@ const styles = StyleSheet.create({
   details: {
     flexDirection: "row",
     height: "100%",
-    width: "90%",
+    width: "100%",
   },
   delete: {
     width: "20%",
@@ -495,5 +497,9 @@ const styles = StyleSheet.create({
   buttonDelete: {
     alignSelf: "center",
     marginTop: "25%",
+  },
+  buttonInfo: {
+    width: "100%",
+    height: "100%",
   },
 });

@@ -19,8 +19,8 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { COLORS } from "../components/Colors";
 import Modal from "../components/ModalItem";
 
-export default function ListItems() {
-  const [modal, setModal] = useState(false);
+export default function ListItems({ show }) {
+  const [modal, setModal] = useState(show);
 
   //Constante do array
   const [Produto, setProduto] = useState([]);
@@ -97,7 +97,7 @@ export default function ListItems() {
   });
 
   return (
-    <View style={styles.container}>
+    <>
       <Animated.View
         style={{
           alignSelf: "center",
@@ -162,15 +162,16 @@ export default function ListItems() {
             showsVerticalScrollIndicator={false}
           />
         </View>
-        <Modal
-          show={modal}
-          produtos={prodItem}
-          close={() => setModal(false)}
-          date={vDate}
-          hora={vHora}
-        />
+        
       </Animated.View>
-    </View>
+      <Modal
+        show={modal}
+        produtos={prodItem}
+        close={() => setModal(false)}
+        date={vDate}
+        hora={vHora}
+      />
+    </>
   );
 }
 

@@ -191,13 +191,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   modal: {
-    bottom: 0,
-    position: "absolute",
-    height: "45%",
     backgroundColor: COLORS.White,
+    position: "absolute",
+    height: "35%",
     width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    bottom: 0,
   },
   //CSS das Views
   info: {

@@ -51,9 +51,7 @@ function Home() {
       {/*<KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >*/}
-      <View style={styles.boxUser}>
-        <Text style={styles.Text}>Olá</Text>
-      </View>
+      
 
       <View style={styles.boxButton}>
         {/*Bootão para adicionar produto */}
@@ -65,7 +63,7 @@ function Home() {
 
       <Infos />
 
-      <View style={styles.boxButton}>
+      <View style={styles.Button}>
         {/*Botão que leva ao histórico*/}
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>
           <AntDesign name="clockcircleo" size={20} color="#FFF" />
@@ -82,13 +80,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   //CSS Views
-  boxUser: {
-    width: "35%",
-    height: "17%",
-    marginLeft: "4%",
-    marginTop: "30%",
+  Button: {
+    width: "85%",
+    height: "15%",
+    alignSelf: "center",
   },
   boxButton: {
+    marginTop: "55%",
     width: "85%",
     height: "15%",
     alignSelf: "center",
