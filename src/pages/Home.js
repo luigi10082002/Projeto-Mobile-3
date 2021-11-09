@@ -13,7 +13,6 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { COLORS } from "../components/Colors";
 import Infos from "../components/Infos";
-//import splash from "../../assets/splash";
 
 function Home() {
   //Constante de navegação
@@ -51,7 +50,6 @@ function Home() {
       {/*<KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >*/}
-      
 
       <View style={styles.boxButton}>
         {/*Bootão para adicionar produto */}

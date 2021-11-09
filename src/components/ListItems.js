@@ -162,7 +162,6 @@ export default function ListItems({ show }) {
             showsVerticalScrollIndicator={false}
           />
         </View>
-        
       </Animated.View>
       <Modal
         show={modal}

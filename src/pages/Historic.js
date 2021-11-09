@@ -77,11 +77,17 @@ export default function Historic() {
     }, [Produto])
   );
 
+  /*
   useFocusEffect(
     useCallback(() => {
       EditarItem();
     }, [modal])
   );
+  */
+
+  useEffect(() => {
+    EditarItem();
+  }, [modal]);
 
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");

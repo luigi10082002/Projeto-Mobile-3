@@ -264,8 +264,8 @@ export default function Modules() {
         <Animated.View
           style={{
             alignSelf: "center",
-            marginTop: "5%",
-            height: "81%",
+            marginTop: "2%",
+            height: "80%",
             width: "100%",
           }}
 
@@ -357,9 +357,9 @@ const styles = StyleSheet.create({
     marginTop: "5%",
   },
   btn: {
-    width: "100%",
-    height: "100%",
-    marginTop: "20%",
+    width: "90%",
+    height: "80%",
+    marginTop: "27%",
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
