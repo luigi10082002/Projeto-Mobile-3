@@ -40,7 +40,7 @@ export function Header({ title, action, modelo }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 110,
+    height: 106,
     //paddingTop: getStatusBarHeight(),
     paddingHorizontal: 24,
     flexDirection: "row",

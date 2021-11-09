@@ -53,7 +53,7 @@ export default function Settings() {
 
   return (
     <View style={styles.container}>
-      <Header title="Histórico" />
+      <Header title="Configurações" />
 
       <View style={styles.boxServer}>
         <Text style={styles.text}>Sincronizar inventário</Text>

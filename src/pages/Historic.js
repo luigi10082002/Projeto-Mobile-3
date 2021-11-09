@@ -47,8 +47,6 @@ export default function Historic() {
 
   const [list, setList] = useState(); //Lista a ser renderizada
 
-  const [comparar, setComparar] = useState();
-
   const setDataHora = () => {
     const date =
       new Date().getDate() +
@@ -81,11 +79,10 @@ export default function Historic() {
 
   useFocusEffect(
     useCallback(() => {
-      EditarItem()
+      EditarItem();
     }, [modal])
   );
 
-  //Lógica que compara o código pesquisado com os códigos que foram adicionados
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
@@ -93,6 +90,7 @@ export default function Historic() {
     setProduto(storage);
   }
 
+  //Lógica que compara o código pesquisado com os códigos que foram adicionados
   function LoadProduto() {
     if (codigo === "") {
       setList(Produto);
@@ -106,7 +104,7 @@ export default function Historic() {
   }
 
   function EditarItem() {
-    setList(Produto)
+    setList(Produto);
   }
 
   async function handleRemove(item) {

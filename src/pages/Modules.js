@@ -150,12 +150,14 @@ export default function Modules() {
           JSON.stringify([...Produto, newProd])
         );
       }
-      /*Alerta que o produto foi salvo e limpa os campos
+      /*
+      Alerta que o produto foi salvo e limpa os campos
       Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
         {
           text: "OK",
         },
-      ]);*/
+      ]);
+      */
 
       setCodigo("");
       setQtd(1);
@@ -163,7 +165,7 @@ export default function Modules() {
     }
   }
 
-/*
+  /*
   //Lógica para remover o produto
   async function handleRemove(item) {
    // console.log(item);
