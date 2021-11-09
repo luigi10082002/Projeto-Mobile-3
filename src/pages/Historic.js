@@ -47,7 +47,7 @@ export default function Historic() {
 
   const [list, setList] = useState(); //Lista a ser renderizada
 
-  const[comparar, setComparar] = useState();
+  const [comparar, setComparar] = useState();
 
   const setDataHora = () => {
     const date =
@@ -75,25 +75,15 @@ export default function Historic() {
     useCallback(() => {
       loadSpots();
       setDataHora();
+      LoadProduto();
     }, [Produto])
   );
 
   useFocusEffect(
     useCallback(() => {
-      LoadProduto();
-    }, [Produto.length])
+      EditarItem()
+    }, [modal])
   );
-
-  useEffect(() => {
-    if (codigo === "") {
-      setList(Produto);
-    } else {
-      const itemPesquisado = list.filter(
-        (item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1);
-  
-      setList(itemPesquisado);
-    }
-  }, [codigo]);
 
   //Lógica que compara o código pesquisado com os códigos que foram adicionados
   async function loadSpots() {
@@ -104,11 +94,19 @@ export default function Historic() {
   }
 
   function LoadProduto() {
-    setList(Produto)
+    if (codigo === "") {
+      setList(Produto);
+    } else {
+      const itemPesquisado = list.filter(
+        (item) => item.produto.toLowerCase().indexOf(codigo.toLowerCase()) > -1
+      );
 
-    const result = Produto.every( e => e === list)
-    setComparar(result);
-    console.log(comparar);
+      setList(itemPesquisado);
+    }
+  }
+
+  function EditarItem() {
+    setList(Produto)
   }
 
   async function handleRemove(item) {
@@ -202,7 +200,7 @@ export default function Historic() {
                   <View style={styles.card}>
                     <View style={styles.details}>
                       <RectButton
-                      style={styles.buttonInfo}
+                        style={styles.buttonInfo}
                         onPress={(e) => {
                           setModal(true);
                           setprodItem(item);

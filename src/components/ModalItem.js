@@ -23,6 +23,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
   const [codigo, setCodigo] = useState();
   const [modal, setModal] = useState(show);
   const [Produto, setProduto] = useState([]);
+  const [list, setList] = useState(); //Lista a ser renderizada
 
   const [state, setState] = useState({
     opacity: new Animated.Value(0),
@@ -103,7 +104,6 @@ export default function Modal({ show, close, produtos, date, hora }) {
         text: "CONFIRMAR",
         onPress: async () => {
           Add();
-          //closeModal();
         },
       },
     ]);
