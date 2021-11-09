@@ -197,7 +197,7 @@ export default function Modules() {
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : null}
       >
-        <Header title="Contagem de Invenatario" />
+        <Header title="Contagem de Inventario" />
 
         {/*Scanner*/}
         <View style={styles.scanner}>
