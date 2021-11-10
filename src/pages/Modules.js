@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   TextInput,
   TouchableOpacity,
   AsyncStorage,
@@ -14,24 +13,14 @@ import {
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 import { RectButton } from "react-native-gesture-handler";
-import { FontAwesome5 } from "@expo/vector-icons";
-import Animated, {
-  useAnimatedScrollHandler,
-  useSharedValue,
-} from "react-native-reanimated";
-import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import { Header } from "../components/Header";
 import Modal from "../components/ModalItem";
 import { COLORS } from "../components/Colors";
-import ListItem from "../components/ListItems";
 
 export default function Modules() {
-  //Constante de navegação
-  const navigation = useNavigation();
-
   //Constante do Modal
   const [modal, setModal] = useState(false);
 
@@ -165,33 +154,6 @@ export default function Modules() {
     }
   }
 
-  /*
-  //Lógica para remover o produto
-  async function handleRemove(item) {
-   // console.log(item);
-    const id = Produto.findIndex(element => element.id == item.id);
-   
-    Alert.alert("Remover", `Deseja remover este produto?`, [
-      {
-        text: "Não",
-        style: "Cancel",
-      },
-      {
-        text: "Sim",
-        onPress: async () => {
-          //Produto.splice(id, 1);
-          await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
-        },
-      },
-    ]);
-  }
-  
-  const scrollY = useSharedValue(0);
-  const scrollHandler = useAnimatedScrollHandler((event) => {
-  scrollY.value = event.contentOffset.y;
-  });
-*/
-
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -203,7 +165,7 @@ export default function Modules() {
         <View style={styles.scanner}>
           <BarCodeScanner
             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-            style={{ height: 600, width: 600 }}
+            style={{ height: '500%', width: '500%' }}
           />
 
           {/*Botão de captura de código*/}
@@ -218,6 +180,20 @@ export default function Modules() {
         </View>
 
         <View style={styles.Infos}>
+        <View style={styles.Cod}>
+            <Text style={styles.textCod}>Código</Text>
+            <TextInput
+              style={styles.labelCod}
+              autoCorrect={false}
+              onChangeText={setCodigo}
+              value={codigo}
+              keyboardType="numeric"
+              placeholder="Código"
+              maxLength={13}
+              textAlign="right"
+            />
+          </View>
+
           <View style={styles.Qtd}>
             <Text style={styles.textQtd}>Quantidade</Text>
             <TextInput
@@ -228,20 +204,6 @@ export default function Modules() {
               keyboardType="numeric"
               placeholder="1"
               maxLength={4}
-              textAlign="right"
-            />
-          </View>
-
-          <View style={styles.Cod}>
-            <Text style={styles.textCod}>Código</Text>
-            <TextInput
-              style={styles.labelCod}
-              autoCorrect={false}
-              onChangeText={setCodigo}
-              value={codigo}
-              keyboardType="numeric"
-              placeholder="Código"
-              maxLength={13}
               textAlign="right"
             />
           </View>
@@ -259,76 +221,42 @@ export default function Modules() {
           <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
         </View>
 
-        {/*<ListItem/>*/}
-
-        <Animated.View
-          style={{
-            alignSelf: "center",
-            marginTop: "2%",
-            height: "80%",
-            width: "100%",
-          }}
-
-          /*
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingTop: 1 }}
-          onScroll={scrollHandler}
-          scrollEventThrottle={10} // 1000 / 60 = 16. (1 segundo / 60 que é a quantidade de frames por segundo para ter uma animação de 60 frames)
-          */
-        >
-          {/*Lista de produtos*/}
-          <View style={styles.listItems}>
-            <FlatList
-              data={Produto}
-              keyExtractor={(item) => String(item.id)}
-              renderItem={({ item }) => (
-                /*<Swipeable
-                  overshootRight={false}
-                  renderRightActions={() => (
-                    <View style={styles.delete}>
-                      <RectButton
-                        style={styles.buttonDelete}
-                        onPress={(e) => {
-                          handleRemove(item);
-                        }}
-                      >
-                        <FontAwesome5 name="trash" size={30} color="#fff" />
-                      </RectButton>
+        {/*Lista de produtos*/}
+        <View style={styles.listItems}>
+          <FlatList
+            data={Produto}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => (
+              <View style={styles.card}>
+                <View style={styles.details}>
+                  <RectButton
+                    style={styles.buttonInfo}
+                    onPress={(e) => {
+                      setModal(true);
+                      setprodItem(item);
+                    }}
+                  >
+                    <Text style={styles.infoCodigo}>{item.produto}</Text>
+                    <View style={styles.details}>
+                      {!item.dtalteracao ? (
+                        <>
+                          <Text>{item.date}</Text>
+                          <Text> {item.hora}</Text>
+                        </>
+                      ) : (
+                        <Text>{item.dtalteracao}</Text>
+                      )}
+                      <Text> - </Text>
+                      <Text>{item.qtd} </Text>
+                      <Text>unidade(s)</Text>
                     </View>
-                  )}
-                >*/
-                <View style={styles.card}>
-                  <View style={styles.details}>
-                    <RectButton
-                      style={styles.buttonInfo}
-                      onPress={(e) => {
-                        setModal(true);
-                        setprodItem(item);
-                      }}
-                    >
-                      <Text style={styles.infoCodigo}>{item.produto}</Text>
-                      <View style={styles.details}>
-                        {!item.dtalteracao ? (
-                          <>
-                            <Text>{item.date}</Text>
-                            <Text> {item.hora}</Text>
-                          </>
-                        ) : (
-                          <Text>{item.dtalteracao}</Text>
-                        )}
-                        <Text> - </Text>
-                        <Text>{item.qtd} </Text>
-                        <Text>unidade(s)</Text>
-                      </View>
-                    </RectButton>
-                  </View>
+                  </RectButton>
                 </View>
-                /*</Swipeable>*/
-              )}
-              showsVerticalScrollIndicator={false}
-            />
-          </View>
-        </Animated.View>
+              </View>
+            )}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
       <Modal
@@ -350,7 +278,7 @@ const styles = StyleSheet.create({
   scanner: {
     alignSelf: "center",
     alignItems: "center",
-    height: 200,
+    height: '17%',
     width: "90%",
     overflow: "hidden",
     borderRadius: 10,
@@ -373,11 +301,11 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   Qtd: {
+    marginLeft: "5%",
     width: "30%",
     height: "100%",
   },
   Cod: {
-    marginLeft: "5%",
     width: "65%",
     height: "100%",
   },
@@ -390,14 +318,14 @@ const styles = StyleSheet.create({
     height: 50,
   },
   listProdutos: {
-    marginTop: "5%",
+    marginTop: "7%",
     marginLeft: "5%",
     width: "40%",
     height: 35,
   },
   listItems: {
     alignSelf: "center",
-    height: 259,
+    height: "85%",
     width: "90%",
   },
   card: {
@@ -407,19 +335,18 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 8,
     marginBottom: "2%",
-    height: 80,
-    width: 324,
-    padding: 20,
-  },
-  detailsProd: {
-    flexDirection: "row",
     height: "100%",
-    width: "90%",
+    width: "100%",
+    padding: 20,
   },
   details: {
     flexDirection: "row",
     height: "100%",
     width: "100%",
+  },
+  buttonInfo: {
+    width: "100%",
+    height: "100%",
   },
   delete: {
     width: "20%",

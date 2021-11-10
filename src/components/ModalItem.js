@@ -136,11 +136,20 @@ export default function Modal({ show, close, produtos, date, hora }) {
             </View>
 
             <View style={styles.info}>
-              <Text style={styles.textQtd}>Quantidade</Text>
               <Text style={styles.textCod}>Código</Text>
+              <Text style={styles.textQtd}>Quantidade</Text>
             </View>
 
             <View style={styles.input}>
+              <TextInput
+                style={styles.labelCod}
+                autoCorrect={false}
+                value={codigo}
+                onChangeText={setCodigo}
+                maxLength={13}
+                textAlign="right"
+              />
+
               <TextInput
                 style={styles.labelQtd}
                 autoCorrect={false}
@@ -148,15 +157,6 @@ export default function Modal({ show, close, produtos, date, hora }) {
                 onChangeText={setQtd}
                 value={qtd}
                 maxLength={4}
-                textAlign="right"
-              />
-
-              <TextInput
-                style={styles.labelCod}
-                autoCorrect={false}
-                value={codigo}
-                onChangeText={setCodigo}
-                maxLength={13}
                 textAlign="right"
               />
             </View>
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.Black_Secondary,
     position: "absolute",
   },
   container_modal: {
@@ -235,11 +235,11 @@ const styles = StyleSheet.create({
     fontFamily: "Rajdhani_600SemiBold",
     height: "auto",
     width: "32%",
+    marginLeft: "50%",
     fontSize: 20,
   },
   textCod: {
     fontFamily: "Rajdhani_600SemiBold",
-    marginLeft: "5%",
     height: "auto",
     width: "auto",
     fontSize: 20,
@@ -266,6 +266,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: "3%",
     height: "100%",
     width: "29%",
+    marginLeft: "5%",
   },
   labelCod: {
     backgroundColor: COLORS.Gray_Tertiary,
@@ -273,7 +274,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: "3%",
     height: "100%",
     width: "56%",
-    marginLeft: "5%",
   },
   //CSS do Botão SALVAR
   save: {

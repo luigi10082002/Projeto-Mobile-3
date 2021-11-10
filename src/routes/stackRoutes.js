@@ -7,6 +7,8 @@ import { TabNavi } from './tabRoutes';
 import Modules from '../pages/Modules';
 import Historic from '../pages/Historic';
 import Produto from '../pages/Produto';
+import LoginProxy from '../pages/LoginProxy';
+import LoginEmail from '../pages/LoginEmail'
 
 enableScreens();
 
@@ -40,6 +42,16 @@ const AppRoutes = () => (
         <stackRoutes.Screen 
             name="Produto"
             component={Produto}
+        />
+
+        <stackRoutes.Screen 
+            name="LoginProxy"
+            component={LoginProxy}
+        />
+        
+        <stackRoutes.Screen 
+            name="LoginEmail"
+            component={LoginEmail}
         />
      
     </stackRoutes.Navigator>

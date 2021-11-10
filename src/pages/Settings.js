@@ -7,32 +7,49 @@ import {
   Switch,
   TouchableOpacity,
   AsyncStorage,
+  Modal,
 } from "react-native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { Header } from "../components/Header";
+import { COLORS } from "../components/Colors";
 
 export default function Settings() {
-  const [modal, setModal] = useState(false);
+  //Constante de navegação
+  const navigation = useNavigation();
 
-  //Constantes do Switch
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  function CadastroEmail() {
+    navigation.navigate("LoginEmail")
+  }
+
+  function CadastroProxy() {
+    navigation.navigate("LoginProxy")
+  }
 
   //Lógica de login com o servidor
   function setServer() {
-    Alert.alert("Sincronizar", "Deseja sincronizar o inventário?", [
-      {
-        text: "Cancelar",
-        style: "cancel",
-        onPress: async () => {
-          setIsEnabled(false);
+   
+      Alert.alert("Sincronizar", "Deseja sincronizar o inventário?", [
+        {
+          text: "CANCELAR",
+          style: "cancel",
+          onPress: async () => {
+          },
         },
-      },
-      {
-        text: "Confirmar",
-        onPress: async () => {},
-      },
-    ]);
+        {
+          text: "E-MAIL",
+          onPress: async () => {
+            CadastroEmail();
+          },
+        },
+        {
+          text: "PROXY",
+          onPress: async () => {
+            CadastroProxy();
+          },
+        },
+      ]);
+    
   }
 
   //Lógica de deletar o inventário todo
@@ -55,17 +72,10 @@ export default function Settings() {
     <View style={styles.container}>
       <Header title="Configurações" />
 
-      <View style={styles.boxServer}>
-        <Text style={styles.text}>Sincronizar inventário</Text>
-
-        <Switch
-          trackColor={{ false: "#767577", true: "#4B7DFE" }}
-          thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
-          onChange={setServer}
-        />
+      <View style={styles.boxDelete}>
+        <TouchableOpacity style={styles.DeleteButton} onPress={setServer}>
+          <Text style={styles.textSincronizar}>SINCRIONIZAR INVENTÁRIO</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.separador} />
@@ -79,7 +89,6 @@ export default function Settings() {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -112,12 +121,52 @@ const styles = StyleSheet.create({
   textDelete: {
     fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
-    color: "#f00",
+    color: COLORS.Red,
+  },
+  textSincronizar: {
+    fontFamily: "Rajdhani_600SemiBold",
+    fontSize: 20,
+    color: COLORS.Black,
   },
   //CSS Line
   separador: {
-    backgroundColor: "#000",
+    backgroundColor: COLORS.Black,
     width: "100%",
     height: 1,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
   },
 });

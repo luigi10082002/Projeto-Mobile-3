@@ -48,7 +48,8 @@ export default function Infos() {
       </View>
 
       <View style={styles.boxTotal}>
-        <Text style={styles.TextProdutos}>Total de Itens</Text>
+        <Text style={styles.TextProdutos}>Quantidade de</Text>
+        <Text style={styles.TextItens}>Itens</Text>
         <Text style={styles.TextNumber}>{items}</Text>
       </View>
     </View>
@@ -91,6 +92,11 @@ const styles = StyleSheet.create({
   TextProdutos: {
     alignSelf: "center",
     marginTop: "5%",
+    fontSize: 18,
+    fontFamily: "Rajdhani_600SemiBold",
+  },
+  TextItens: {
+    alignSelf: "center",
     fontSize: 18,
     fontFamily: "Rajdhani_600SemiBold",
   },
