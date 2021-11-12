@@ -25,6 +25,8 @@ import Modal from "../components/ModalItem";
 import { COLORS } from "../components/Colors";
 import ListItem from "../components/ListItems";
 
+//"react-native-reanimated": "2.2.3",
+
 export default function Historic() {
   //Constante de navegação
   //const navigation = useNavigation();
@@ -274,6 +276,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     padding: 20,
+    borderRightColor: COLORS.Gray_Secondary,
   },
   details: {
     flexDirection: "row",

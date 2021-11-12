@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import { useNavigation } from "@react-navigation/native";
 
 export default function LoginProxy() {
+  const navigation = useNavigation();
+
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const [Url, setUrl] = useState();
 
   useEffect(() => {
     (async () => {
@@ -13,17 +17,21 @@ export default function LoginProxy() {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  function handleBarCodeScanned({ data }) {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-  };
+    Alert.alert("Sincronizar", "Entre no sistema ERP e gere o código QR de sincronização de inventário.", [
+      {
+        text: "OK",
+      },
+    ]);
 
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
+    Alert.alert("Sucesso!", "Os dados foram sincroizados.", [
+      {
+        text: "OK",
+      },
+    ]);
+    navigation.navigate("Home");
+  };
 
   return (
     <View style={styles.container}>
@@ -31,9 +39,6 @@ export default function LoginProxy() {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && (
-        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-      )}
     </View>
   );
 }
@@ -43,5 +48,5 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-  },
+  }
 });
