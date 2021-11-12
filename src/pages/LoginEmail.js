@@ -21,6 +21,7 @@ export default function LoginEmail() {
   const [telefone, setTelefone] = useState("");
   const [empresa, setEmpresa] = useState("");
   const [Client, setClient] = useState([]);
+  const [infos, setInfos] = useState([]);
   const [isSelected, setSelection] = useState(false);
 
   async function Login() {
@@ -89,6 +90,14 @@ export default function LoginEmail() {
 
   function Dados(){
     console.log(Client)
+  }
+
+  function CheckBox() {
+    if(isSelected === true) {
+      setInfos(Client)
+    } else {
+      setInfos([]);
+    }
   }
 
   return (
