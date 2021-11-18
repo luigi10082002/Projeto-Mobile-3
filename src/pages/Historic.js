@@ -204,31 +204,29 @@ export default function Historic() {
                   )}
                 >
                   <View style={styles.card}>
-                    <View style={styles.details}>
-                      <RectButton
-                        style={styles.buttonInfo}
-                        onPress={(e) => {
-                          setModal(true);
-                          setprodItem(item);
-                        }}
-                      >
-                        {/*<TouchableOpacity onPress={(e) => {Edit(item)}}>*/}
-                        <Text style={styles.textCod}>{item.produto}</Text>
-                        <View style={styles.details}>
-                          {!item.dtalteracao ? (
-                            <>
-                              <Text>{item.date}</Text>
-                              <Text> {item.hora}</Text>
-                            </>
-                          ) : (
-                            <Text>{item.dtalteracao}</Text>
-                          )}
-                          <Text> - </Text>
-                          <Text>{item.qtd} </Text>
-                          <Text>unidade(s)</Text>
-                        </View>
-                      </RectButton>
-                    </View>
+                    <RectButton
+                      style={styles.details}
+                      onPress={(e) => {
+                        setModal(true);
+                        setprodItem(item);
+                      }}
+                    >
+                      <Text style={styles.textCod}>{item.produto}</Text>
+                      <View style={styles.infos}>
+                        {!item.dtalteracao ? (
+                          <>
+                            <Text>{item.date}</Text>
+                            <Text> {item.hora}</Text>
+                          </>
+                        ) : (
+                          <Text>{item.dtalteracao}</Text>
+                        )}
+                        <Text> - </Text>
+                        <Text>{item.qtd} </Text>
+                        <Text>unidade(s)</Text>
+                      </View>
+                      
+                    </RectButton>
                   </View>
                 </Swipeable>
               )}
@@ -266,23 +264,6 @@ const styles = StyleSheet.create({
     height: "85%",
     width: "90%",
   },
-  card: {
-    flex: 1,
-    backgroundColor: COLORS.Gray_Primary,
-    flexDirection: "row",
-    alignSelf: "center",
-    borderRadius: 8,
-    marginBottom: "2%",
-    height: "100%",
-    width: "100%",
-    padding: 20,
-    borderRightColor: COLORS.Gray_Secondary,
-  },
-  details: {
-    flexDirection: "row",
-    height: "100%",
-    width: "100%",
-  },
   delete: {
     width: "20%",
     height: "70%",
@@ -299,10 +280,24 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 8,
     borderTopRightRadius: 8,
   },
+  card: {
+    flex: 1,
+    flexDirection: "row",
+    alignSelf: "center",
+    marginBottom: "2%",
+    height: 75,
+    width: "100%",
+  },
+  infos: {
+    flexDirection: 'row',
+    marginLeft: "5%",
+  },
   //CSS Texts
   textCod: {
     fontSize: 15,
     fontWeight: "bold",
+    marginLeft: "5%",
+    marginTop: "5%",
   },
   txtSearch: {
     fontSize: 20,
@@ -320,7 +315,9 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  buttonInfo: {
+  details: {
+    backgroundColor: COLORS.Gray_Primary,
+    borderRadius: 8,
     width: "100%",
     height: "100%",
   },

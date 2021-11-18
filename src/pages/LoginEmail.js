@@ -21,19 +21,15 @@ export default function LoginEmail() {
   const [telefone, setTelefone] = useState("");
   const [empresa, setEmpresa] = useState("");
   const [Client, setClient] = useState([]);
-  const [infos, setInfos] = useState([]);
   const [isSelected, setSelection] = useState(false);
 
-  async function Login() {
-    const newClient = {
-      nome: name,
+  async function Dados() {
+    setClient ({
+      name: name,
       email: email,
       telefone: telefone,
       empresa: empresa,
-    };
-
-    const storage = await AsyncStorage.getItem("@Cliente");
-    const clin = storage ? JSON.parse(storage) : [];
+    });
 
     if (name === "") {
       Alert.alert(
@@ -82,22 +78,12 @@ export default function LoginEmail() {
           text: "OK",
         },
       ]);
+      await AsyncStorage.setItem("@Login", Client);
     }
-    setClient(newClient)
-
-    //const index = Client.every((element) => element.newClient == Client);
   }
 
-  function Dados(){
+  async function Login() {
     console.log(Client)
-  }
-
-  function CheckBox() {
-    if(isSelected === true) {
-      setInfos(Client)
-    } else {
-      setInfos([]);
-    }
   }
 
   return (
@@ -166,16 +152,17 @@ export default function LoginEmail() {
         </View>
 
         <View style={styles.button}>
-          <TouchableOpacity style={styles.buttonSave} onPress={Login}>
+          <TouchableOpacity style={styles.buttonSave} onPress={Dados}>
             <Text style={styles.textSave}>Enviar</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.button}>
-          <TouchableOpacity style={styles.buttonSave} onPress={Dados}>
+          <TouchableOpacity style={styles.buttonSave} onPress={Login}>
             <Text style={styles.textSave}>Enviar</Text>
           </TouchableOpacity>
         </View>
+
       </KeyboardAvoidingView>
     </View>
   );
@@ -279,6 +266,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "45%",
     height: "auto",
-    marginTop: "3%",
+    marginTop: "4%",
   },
 });

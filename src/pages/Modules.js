@@ -10,6 +10,7 @@ import {
   FlatList,
   KeyboardAvoidingView,
   Vibration,
+  ScrollView,
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
@@ -165,7 +166,7 @@ export default function Modules() {
         <View style={styles.scanner}>
           <BarCodeScanner
             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-            style={{ height: '500%', width: '500%' }}
+            style={{ height: 600, width: 600 }}
           />
 
           {/*Botão de captura de código*/}
@@ -228,31 +229,29 @@ export default function Modules() {
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
               <View style={styles.card}>
-                <View style={styles.details}>
-                  <RectButton
-                    style={styles.buttonInfo}
-                    onPress={(e) => {
-                      setModal(true);
-                      setprodItem(item);
-                    }}
-                  >
-                    <Text style={styles.infoCodigo}>{item.produto}</Text>
-                    <View style={styles.details}>
-                      {!item.dtalteracao ? (
-                        <>
-                          <Text>{item.date}</Text>
-                          <Text> {item.hora}</Text>
-                        </>
-                      ) : (
-                        <Text>{item.dtalteracao}</Text>
-                      )}
-                      <Text> - </Text>
-                      <Text>{item.qtd} </Text>
-                      <Text>unidade(s)</Text>
-                    </View>
-                  </RectButton>
-                </View>
-              </View>
+                    <RectButton
+                      style={styles.details}
+                      onPress={(e) => {
+                        setModal(true);
+                        setprodItem(item);
+                      }}
+                    >
+                      <Text style={styles.CodProd}>{item.produto}</Text>
+                      <View style={styles.infosProd}>
+                        {!item.dtalteracao ? (
+                          <>
+                            <Text>{item.date}</Text>
+                            <Text> {item.hora}</Text>
+                          </>
+                        ) : (
+                          <Text>{item.dtalteracao}</Text>
+                        )}
+                        <Text> - </Text>
+                        <Text>{item.qtd} </Text>
+                        <Text>unidade(s)</Text>
+                      </View>
+                    </RectButton>
+                  </View>
             )}
             showsVerticalScrollIndicator={false}
           />
@@ -278,7 +277,7 @@ const styles = StyleSheet.create({
   scanner: {
     alignSelf: "center",
     alignItems: "center",
-    height: '17%',
+    height: 200,
     width: "90%",
     overflow: "hidden",
     borderRadius: 10,
@@ -287,7 +286,7 @@ const styles = StyleSheet.create({
   btn: {
     width: "90%",
     height: "80%",
-    marginTop: "27%",
+    marginTop: "25%",
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
@@ -335,18 +334,18 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 8,
     marginBottom: "2%",
-    height: "100%",
+    height: 75,
     width: "100%",
-    padding: 20,
+    borderRightColor: COLORS.Gray_Secondary,
+  },
+  infosProd: {
+    flexDirection: 'row',
+    marginLeft: "5%",
   },
   details: {
-    flexDirection: "row",
-    height: "100%",
-    width: "100%",
-  },
-  buttonInfo: {
     width: "100%",
     height: "100%",
+    borderRadius: 8,
   },
   delete: {
     width: "20%",
@@ -378,9 +377,11 @@ const styles = StyleSheet.create({
     fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
   },
-  codigo: {
+  CodProd: {
     fontSize: 15,
     fontWeight: "bold",
+    marginLeft: "5%",
+    marginTop: "5%",
   },
   buttonText: {
     fontSize: 18,
@@ -390,6 +391,8 @@ const styles = StyleSheet.create({
   infoCodigo: {
     fontSize: 15,
     fontWeight: "bold",
+    marginLeft: "5%",
+    marginTop: "5%",
   },
   //CSS dos Inputs
   labelQtd: {
@@ -426,9 +429,5 @@ const styles = StyleSheet.create({
   buttonDelete: {
     alignSelf: "center",
     marginTop: "25%",
-  },
-  buttonInfo: {
-    width: "100%",
-    height: "100%",
   },
 });

@@ -6,7 +6,7 @@ import AppLoading from "expo-app-loading";
 import { Rajdhani_600SemiBold } from "@expo-google-fonts/rajdhani";
 import { useFonts } from "expo-font";
 
-AsyncStorage.clear();
+//AsyncStorage.clear();
 YellowBox.ignoreWarnings([""]);
 
 export default function App() {
