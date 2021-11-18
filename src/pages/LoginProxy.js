@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, Linking } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
 
@@ -18,6 +18,7 @@ export default function LoginProxy() {
   }, []);
 
   function handleBarCodeScanned({ data }) {
+    setUrl(data)
     setScanned(true);
     Alert.alert("Sincronizar", "Entre no sistema ERP e gere o código QR de sincronização de inventário.", [
       {
@@ -30,7 +31,7 @@ export default function LoginProxy() {
         text: "OK",
       },
     ]);
-    navigation.navigate("Home");
+    Linking.openURL(data)
   };
 
   return (

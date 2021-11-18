@@ -21,10 +21,9 @@ export default function LoginEmail() {
   const [telefone, setTelefone] = useState("");
   const [empresa, setEmpresa] = useState("");
   const [Client, setClient] = useState([]);
-  const [isSelected, setSelection] = useState(false);
 
   async function Dados() {
-    setClient ({
+    setClient({
       name: name,
       email: email,
       telefone: telefone,
@@ -32,19 +31,13 @@ export default function LoginEmail() {
     });
 
     if (name === "") {
-      Alert.alert(
-        "Preencha todos os campos", 
-        `Por favor preencha seu nome`, 
-      [
+      Alert.alert("Preencha todos os campos", `Por favor preencha seu nome`, [
         {
           text: "OK",
         },
       ]);
     } else if (email === "") {
-      Alert.alert(
-        "Preencha todos os campos", 
-        `Por favor preencha seu email`, 
-        [
+      Alert.alert("Preencha todos os campos", `Por favor preencha seu email`, [
         {
           text: "OK",
         },
@@ -70,20 +63,13 @@ export default function LoginEmail() {
         ]
       );
     } else {
-      Alert.alert(
-        "Sucesso", 
-        `Os dados foram enviados para o email ${email}`, 
-        [
+      Alert.alert("Sucesso", `Os dados foram enviados para o email ${email}`, [
         {
           text: "OK",
         },
       ]);
       await AsyncStorage.setItem("@Login", Client);
     }
-  }
-
-  async function Login() {
-    console.log(Client)
   }
 
   return (
@@ -141,28 +127,11 @@ export default function LoginEmail() {
           </View>
         </View>
 
-        <View style={styles.Check}>
-          <CheckBox
-            value={isSelected}
-            onValueChange={setSelection}
-            style={styles.checkbox}
-            onPress={() => Remeber()}
-          />
-          <Text>Manter informações</Text>
-        </View>
-
         <View style={styles.button}>
           <TouchableOpacity style={styles.buttonSave} onPress={Dados}>
             <Text style={styles.textSave}>Enviar</Text>
           </TouchableOpacity>
         </View>
-
-        <View style={styles.button}>
-          <TouchableOpacity style={styles.buttonSave} onPress={Login}>
-            <Text style={styles.textSave}>Enviar</Text>
-          </TouchableOpacity>
-        </View>
-
       </KeyboardAvoidingView>
     </View>
   );
@@ -207,7 +176,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "90%",
     height: "10%",
-    marginTop: "5%",
+    marginTop: "15%",
     borderRadius: 8,
   },
   textName: {

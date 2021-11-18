@@ -23,9 +23,6 @@ import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import { Header } from "../components/Header";
 import Modal from "../components/ModalItem";
 import { COLORS } from "../components/Colors";
-import ListItem from "../components/ListItems";
-
-//"react-native-reanimated": "2.2.3",
 
 export default function Historic() {
   //Constante de navegação
@@ -225,8 +222,8 @@ export default function Historic() {
                         <Text>{item.qtd} </Text>
                         <Text>unidade(s)</Text>
                       </View>
-                      
                     </RectButton>
+                    <View style={styles.indicator} />
                   </View>
                 </Swipeable>
               )}
@@ -329,5 +326,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: "5%",
     borderBottomLeftRadius: 8,
     borderTopLeftRadius: 8,
+  },
+  indicator: {
+    width: 5,
+    height: 60,
+    position: "absolute",
+    backgroundColor: COLORS.Red,
+    borderRadius: 50,
+    alignSelf: 'center',
+    marginLeft: 315,
+    marginTop: 5
   },
 });
