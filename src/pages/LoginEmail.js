@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -8,12 +8,13 @@ import {
   AsyncStorage,
   Alert,
   KeyboardAvoidingView,
-  CheckBox,
+  ScrollView,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
 import { Header } from "../components/Header";
 import { COLORS } from "../components/Colors";
+import api from "../service/api";
 
 export default function LoginEmail() {
   const [name, setName] = useState("");
@@ -21,6 +22,23 @@ export default function LoginEmail() {
   const [telefone, setTelefone] = useState("");
   const [empresa, setEmpresa] = useState("");
   const [Client, setClient] = useState([]);
+  const [Produto, setProduto] = useState([]);
+  const [Url, setUrl] = useState(
+    "http://sistema.homologa.proxy.com.br/batch/testes/post.php"
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      loadSpots();
+    }, [Produto])
+  );
+
+  async function loadSpots() {
+    const response = await AsyncStorage.getItem("@Produtos");
+    const storage = response ? JSON.parse(response) : [];
+
+    setProduto(storage);
+  }
 
   async function Dados() {
     setClient({
@@ -31,13 +49,19 @@ export default function LoginEmail() {
     });
 
     if (name === "") {
-      Alert.alert("Preencha todos os campos", `Por favor preencha seu nome`, [
+      Alert.alert(
+        "Preencha todos os campos", 
+        `Por favor preencha seu nome`, 
+        [
         {
           text: "OK",
         },
       ]);
     } else if (email === "") {
-      Alert.alert("Preencha todos os campos", `Por favor preencha seu email`, [
+      Alert.alert(
+        "Preencha todos os campos", 
+        `Por favor preencha seu email`, 
+        [
         {
           text: "OK",
         },
@@ -63,13 +87,17 @@ export default function LoginEmail() {
         ]
       );
     } else {
-      Alert.alert("Sucesso", `Os dados foram enviados para o email ${email}`, [
+      Alert.alert(
+        "Sucesso", 
+        `Os dados foram enviados para o email ${email}`, 
+        [
         {
           text: "OK",
         },
       ]);
       await AsyncStorage.setItem("@Login", Client);
     }
+    await api.post(Url, Produto, Client);
   }
 
   return (
@@ -79,59 +107,61 @@ export default function LoginEmail() {
       >
         <Header title="Login" />
 
-        <View style={styles.form}>
-          <View style={styles.name}>
-            <Text style={styles.textName}>Nome</Text>
-            <View style={styles.input}>
-              <TextInput
-                styles={styles.inputName}
-                onChangeText={setName}
-                value={name}
-              />
+        <ScrollView>
+          <View style={styles.form}>
+            <View style={styles.name}>
+              <Text style={styles.textName}>Nome</Text>
+              <View style={styles.input}>
+                <TextInput
+                  styles={styles.inputName}
+                  onChangeText={setName}
+                  value={name}
+                />
+              </View>
+            </View>
+
+            <View style={styles.email}>
+              <Text style={styles.textEmail}>E-mail</Text>
+              <View style={styles.input}>
+                <TextInput
+                  styles={styles.inputEmail}
+                  onChangeText={setEmail}
+                  value={email}
+                  keyboardType="email-address"
+                />
+              </View>
+            </View>
+
+            <View style={styles.telefone}>
+              <Text style={styles.textEmail}>Telefone</Text>
+              <View style={styles.input}>
+                <TextInput
+                  styles={styles.inputTelefone}
+                  onChangeText={setTelefone}
+                  value={telefone}
+                  keyboardType="phone-pad"
+                />
+              </View>
+            </View>
+
+            <View style={styles.empresa}>
+              <Text style={styles.textEmpresa}>Empresa</Text>
+              <View style={styles.input}>
+                <TextInput
+                  styles={styles.inputEmpresa}
+                  onChangeText={setEmpresa}
+                  value={empresa}
+                />
+              </View>
+            </View>
+
+            <View style={styles.button}>
+              <TouchableOpacity style={styles.buttonSave} onPress={Dados}>
+                <Text style={styles.textSave}>Enviar</Text>
+              </TouchableOpacity>
             </View>
           </View>
-
-          <View style={styles.email}>
-            <Text style={styles.textEmail}>E-mail</Text>
-            <View style={styles.input}>
-              <TextInput
-                styles={styles.inputEmail}
-                onChangeText={setEmail}
-                value={email}
-                keyboardType="email-address"
-              />
-            </View>
-          </View>
-
-          <View style={styles.telefone}>
-            <Text style={styles.textEmail}>Telefone</Text>
-            <View style={styles.input}>
-              <TextInput
-                styles={styles.inputTelefone}
-                onChangeText={setTelefone}
-                value={telefone}
-                keyboardType="phone-pad"
-              />
-            </View>
-          </View>
-
-          <View style={styles.empresa}>
-            <Text style={styles.textEmpresa}>Empresa</Text>
-            <View style={styles.input}>
-              <TextInput
-                styles={styles.inputEmpresa}
-                onChangeText={setEmpresa}
-                value={empresa}
-              />
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.button}>
-          <TouchableOpacity style={styles.buttonSave} onPress={Dados}>
-            <Text style={styles.textSave}>Enviar</Text>
-          </TouchableOpacity>
-        </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );
@@ -143,7 +173,7 @@ const styles = StyleSheet.create({
   },
   form: {
     width: "100%",
-    height: 420,
+    height: "100%",
   },
   name: {
     alignSelf: "center",
@@ -155,19 +185,19 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "90%",
     height: "13%",
-    marginTop: "13%",
+    marginTop: "7%",
   },
   telefone: {
     alignSelf: "center",
     width: "90%",
     height: "13%",
-    marginTop: "13%",
+    marginTop: "7%",
   },
   empresa: {
     alignSelf: "center",
     width: "90%",
     height: "13%",
-    marginTop: "13%",
+    marginTop: "7%",
   },
   button: {
     backgroundColor: COLORS.Blue,
@@ -175,9 +205,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "90%",
-    height: "10%",
-    marginTop: "15%",
+    height: 70,
     borderRadius: 8,
+    marginTop: "10%",
   },
   textName: {
     fontFamily: "Rajdhani_600SemiBold",

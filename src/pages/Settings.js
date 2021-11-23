@@ -4,10 +4,8 @@ import {
   Text,
   StyleSheet,
   Alert,
-  Switch,
   TouchableOpacity,
   AsyncStorage,
-  Modal,
 } from "react-native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 

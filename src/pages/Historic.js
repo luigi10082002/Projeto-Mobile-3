@@ -6,7 +6,6 @@ import {
   FlatList,
   AsyncStorage,
   TextInput,
-  TouchableOpacity,
   Alert,
   ScrollView,
   KeyboardAvoidingView,
@@ -84,9 +83,11 @@ export default function Historic() {
   );
   */
 
+  /*
   useEffect(() => {
     EditarItem();
   }, [modal]);
+  */
 
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
@@ -108,9 +109,11 @@ export default function Historic() {
     }
   }
 
+  /*
   function EditarItem() {
     setList(Produto);
   }
+  */
 
   async function handleRemove(item) {
     const id = list.findIndex((element) => element.id == item.id);
@@ -328,13 +331,15 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 8,
   },
   indicator: {
-    width: 5,
-    height: 60,
+    width: 7,
+    height: 65,
     position: "absolute",
     backgroundColor: COLORS.Red,
-    borderRadius: 50,
+    borderBottomRightRadius: 8,
+    borderTopRightRadius: 8,
+    //borderRadius: 50,
     alignSelf: 'center',
-    marginLeft: 315,
+    marginLeft: 313,
     marginTop: 5
   },
 });

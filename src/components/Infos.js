@@ -43,7 +43,7 @@ export default function Infos() {
   return (
     <View style={styles.infos}>
       <View style={styles.boxProdutos}>
-        <Text style={styles.TextProdutos}>Total de produtos</Text>
+        <Text style={styles.TextProdutos}>Total de Produtos</Text>
         <Text style={styles.TextNumber}>{Produto.length}</Text>
       </View>
 

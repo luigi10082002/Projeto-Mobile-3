@@ -55,7 +55,7 @@ function Home() {
         {/*Bootão para adicionar produto */}
         <TouchableOpacity style={styles.ButtonAdd} onPress={NewProduto}>
           <Entypo name="plus" size={35} color="#FFF" />
-          <Text style={styles.TextPlus}>NOVO PRODUTO</Text>
+          <Text style={styles.TextPlus}>Adicionar Item</Text>
         </TouchableOpacity>
       </View>
 
@@ -65,7 +65,7 @@ function Home() {
         {/*Botão que leva ao histórico*/}
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>
           <AntDesign name="clockcircleo" size={20} color="#FFF" />
-          <Text style={styles.TextPlus}>LISTAR PRODUTOS</Text>
+          <Text style={styles.TextList}>Itens Listados</Text>
         </TouchableOpacity>
       </View>
 
@@ -99,6 +99,11 @@ const styles = StyleSheet.create({
     fontFamily: "Rajdhani_600SemiBold",
   },
   TextPlus: {
+    color: COLORS.White,
+    fontSize: 20,
+    fontFamily: "Rajdhani_600SemiBold",
+  },
+  TextList: {
     color: COLORS.White,
     fontSize: 20,
     marginLeft: "2%",

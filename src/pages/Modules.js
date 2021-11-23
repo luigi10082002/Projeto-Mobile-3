@@ -326,6 +326,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: "85%",
     width: "90%",
+    marginTop: "5%",
   },
   card: {
     flex: 1,
