@@ -148,9 +148,9 @@ export default function Historic() {
         <Animated.View
           style={{
             alignSelf: "center",
-            marginTop: "5%",
-            height: "81%",
+            height: "82%",
             width: "100%",
+            marginTop: "5%"
           }}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingTop: 1 }}
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   },
   listItems: {
     alignSelf: "center",
-    height: "85%",
+    height: "80%",
     width: "90%",
   },
   delete: {

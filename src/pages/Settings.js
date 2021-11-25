@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   AsyncStorage,
 } from "react-native";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 import { Header } from "../components/Header";
 import { COLORS } from "../components/Colors";
@@ -20,7 +20,7 @@ export default function Settings() {
     navigation.navigate("LoginEmail");
   }
 
-  function CadastroProxy() {
+  function CadastroProxyERP() {
     navigation.navigate("LoginProxy");
   }
 
@@ -33,17 +33,17 @@ export default function Settings() {
         onPress: async () => {},
       },
       {
+        text: "PROXY ERP",
+        onPress: async () => {
+          CadastroProxyERP();
+        },
+      },
+      {
         text: "E-MAIL",
         onPress: async () => {
           CadastroEmail();
         },
-      },
-      {
-        text: "PROXY",
-        onPress: async () => {
-          CadastroProxy();
-        },
-      },
+      }
     ]);
   }
 
@@ -77,7 +77,7 @@ export default function Settings() {
 
       <View style={styles.boxDelete}>
         <TouchableOpacity style={styles.DeleteButton} onPress={setDelete}>
-          <Text style={styles.textDelete}>EXCLUIR TODOS OS PRODUTOS</Text>
+          <Text style={styles.textDelete}>EXCLUIR TODOS OS ITENS</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.separador} />

@@ -6,6 +6,8 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import api from "../service/api";
 
 export default function LoginProxy() {
+  //client/ProxyERP
+
   const navigation = useNavigation();
 
   const [hasPermission, setHasPermission] = useState(null);
@@ -22,7 +24,7 @@ export default function LoginProxy() {
   useEffect(() => {
     Alert.alert(
       "Sincronizar",
-      "Entre no sistema ERP e gere o código QR de sincronização de inventário.",
+      "Entre no sistema Proxy ERP e gere o código QR de sincronização de inventário.",
       [
         {
           text: "OK",

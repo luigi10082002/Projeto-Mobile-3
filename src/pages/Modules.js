@@ -10,7 +10,6 @@ import {
   FlatList,
   KeyboardAvoidingView,
   Vibration,
-  ScrollView,
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";

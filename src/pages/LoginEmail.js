@@ -8,7 +8,6 @@ import {
   AsyncStorage,
   Alert,
   KeyboardAvoidingView,
-  ScrollView,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -17,6 +16,8 @@ import { COLORS } from "../components/Colors";
 import api from "../service/api";
 
 export default function LoginEmail() {
+  //client/Email
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -42,6 +43,7 @@ export default function LoginEmail() {
 
   async function Dados() {
     const login = {
+      opção: "email",
       name: name,
       email: email,
       telefone: telefone,
