@@ -160,7 +160,7 @@ export default function Modules() {
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : null}
       >
-        <Header title="Contagem de Inventario" />
+        <Header title="Contagem de Inventário" />
 
         {/*Scanner*/}
         <View style={styles.scanner}>
@@ -181,7 +181,7 @@ export default function Modules() {
         </View>
 
         <View style={styles.Infos}>
-        <View style={styles.Cod}>
+          <View style={styles.Cod}>
             <Text style={styles.textCod}>Código</Text>
             <TextInput
               style={styles.labelCod}
@@ -229,29 +229,29 @@ export default function Modules() {
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
               <View style={styles.card}>
-                    <RectButton
-                      style={styles.details}
-                      onPress={(e) => {
-                        setModal(true);
-                        setprodItem(item);
-                      }}
-                    >
-                      <Text style={styles.CodProd}>{item.produto}</Text>
-                      <View style={styles.infosProd}>
-                        {!item.dtalteracao ? (
-                          <>
-                            <Text>{item.date}</Text>
-                            <Text> {item.hora}</Text>
-                          </>
-                        ) : (
-                          <Text>{item.dtalteracao}</Text>
-                        )}
-                        <Text> - </Text>
-                        <Text>{item.qtd} </Text>
-                        <Text>unidade(s)</Text>
-                      </View>
-                    </RectButton>
+                <RectButton
+                  style={styles.details}
+                  onPress={(e) => {
+                    setModal(true);
+                    setprodItem(item);
+                  }}
+                >
+                  <Text style={styles.CodProd}>{item.produto}</Text>
+                  <View style={styles.infosProd}>
+                    {!item.dtalteracao ? (
+                      <>
+                        <Text>{item.date}</Text>
+                        <Text> {item.hora}</Text>
+                      </>
+                    ) : (
+                      <Text>{item.dtalteracao}</Text>
+                    )}
+                    <Text> - </Text>
+                    <Text>{item.qtd} </Text>
+                    <Text>unidade(s)</Text>
                   </View>
+                </RectButton>
+              </View>
             )}
             showsVerticalScrollIndicator={false}
           />
@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   listProdutos: {
-    marginTop: "7%",
+    marginTop: "5%",
     marginLeft: "5%",
     width: "40%",
     height: 35,
@@ -326,7 +326,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: "85%",
     width: "90%",
-    marginTop: "5%",
   },
   card: {
     flex: 1,
@@ -340,7 +339,7 @@ const styles = StyleSheet.create({
     borderRightColor: COLORS.Gray_Secondary,
   },
   infosProd: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginLeft: "5%",
   },
   details: {

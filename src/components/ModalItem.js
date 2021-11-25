@@ -180,6 +180,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
 }
 
 const styles = StyleSheet.create({
+  //CSS Views
   container: {
     flex: 1,
     width: "100%",
@@ -199,7 +200,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     bottom: 0,
   },
-  //CSS das Views
   info: {
     flexDirection: "row",
     alignSelf: "center",
@@ -230,6 +230,14 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
+  buttonClose: {
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: "5%",
+    height: 42,
+    width: 42,
+  },
   //CSS dos Textos
   textQtd: {
     fontFamily: "Rajdhani_600SemiBold",
@@ -247,10 +255,6 @@ const styles = StyleSheet.create({
   textSave: {
     fontFamily: "Rajdhani_600SemiBold",
     color: COLORS.White,
-    fontSize: 20,
-  },
-  textList: {
-    fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
   },
   textHeader: {
@@ -283,17 +287,5 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 8,
-  },
-  buttonText: {
-    color: COLORS.White,
-    fontWeight: "bold",
-  },
-  buttonClose: {
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: "5%",
-    height: 42,
-    width: 42,
   },
 });

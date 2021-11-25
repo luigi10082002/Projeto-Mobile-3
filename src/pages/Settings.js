@@ -17,37 +17,34 @@ export default function Settings() {
   const navigation = useNavigation();
 
   function CadastroEmail() {
-    navigation.navigate("LoginEmail")
+    navigation.navigate("LoginEmail");
   }
 
   function CadastroProxy() {
-    navigation.navigate("LoginProxy")
+    navigation.navigate("LoginProxy");
   }
 
   //Lógica de login com o servidor
   function setServer() {
-   
-      Alert.alert("Sincronizar", "Deseja sincronizar o inventário?", [
-        {
-          text: "CANCELAR",
-          style: "cancel",
-          onPress: async () => {
-          },
+    Alert.alert("Sincronizar", "Deseja sincronizar o inventário?", [
+      {
+        text: "CANCELAR",
+        style: "cancel",
+        onPress: async () => {},
+      },
+      {
+        text: "E-MAIL",
+        onPress: async () => {
+          CadastroEmail();
         },
-        {
-          text: "E-MAIL",
-          onPress: async () => {
-            CadastroEmail();
-          },
+      },
+      {
+        text: "PROXY",
+        onPress: async () => {
+          CadastroProxy();
         },
-        {
-          text: "PROXY",
-          onPress: async () => {
-            CadastroProxy();
-          },
-        },
-      ]);
-    
+      },
+    ]);
   }
 
   //Lógica de deletar o inventário todo
@@ -151,12 +148,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
   },
   textStyle: {
     color: "white",

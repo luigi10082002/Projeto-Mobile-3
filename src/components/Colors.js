@@ -5,12 +5,11 @@ export const COLORS = {
   White: "#fff",
   White_Secondary: '#f4f3f4',
 
+  Gray: '#767577',
   Gray_Primary: "#DCDCDC",
   Gray_Secondary: "#696969",
   Gray_Tertiary: "#D3D3D3",
-  Gray: '#767577',
 
-  Black_Secondary: "rgba(0, 0, 0, 0.5)",
   Black: "#000",
-
+  Black_Secondary: "rgba(0, 0, 0, 0.5)",
 };

@@ -45,8 +45,7 @@ export default function LoginProxy() {
     })();
   }, []);
 
-   async function handleBarCodeScanned({ data }) {
-
+  async function handleBarCodeScanned({ data }) {
     setUrl(data);
     setScanned(true);
 
@@ -56,7 +55,6 @@ export default function LoginProxy() {
         onPress: async () => {
           GoHome();
         },
-        
       },
     ]);
 
@@ -78,6 +76,7 @@ export default function LoginProxy() {
 }
 
 const styles = StyleSheet.create({
+  //CSS Views
   container: {
     flex: 1,
     flexDirection: "column",

@@ -24,9 +24,6 @@ import Modal from "../components/ModalItem";
 import { COLORS } from "../components/Colors";
 
 export default function Historic() {
-  //Constante de navegação
-  //const navigation = useNavigation();
-
   //Constante do Modal
   const [modal, setModal] = useState(false);
 
@@ -75,20 +72,6 @@ export default function Historic() {
     }, [Produto])
   );
 
-  /*
-  useFocusEffect(
-    useCallback(() => {
-      EditarItem();
-    }, [modal])
-  );
-  */
-
-  /*
-  useEffect(() => {
-    EditarItem();
-  }, [modal]);
-  */
-
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
@@ -108,12 +91,6 @@ export default function Historic() {
       setList(itemPesquisado);
     }
   }
-
-  /*
-  function EditarItem() {
-    setList(Produto);
-  }
-  */
 
   async function handleRemove(item) {
     const id = list.findIndex((element) => element.id == item.id);
@@ -167,8 +144,6 @@ export default function Historic() {
             </View>
           </ScrollView>
         </View>
-
-        {/*<ListItem/>*/}
 
         <Animated.View
           style={{
@@ -226,7 +201,7 @@ export default function Historic() {
                         <Text>unidade(s)</Text>
                       </View>
                     </RectButton>
-                    <View style={styles.indicator} />
+                    <View style={styles.indicator}/>
                   </View>
                 </Swipeable>
               )}
@@ -265,7 +240,7 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   delete: {
-    width: "20%",
+    width: "18%",
     height: "70%",
     backgroundColor: COLORS.Red,
     marginTop: "3%",
@@ -289,8 +264,18 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   infos: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginLeft: "5%",
+  },
+  indicator: {
+    width: '1%',
+    height: '100%',
+    position: "absolute",
+    backgroundColor: COLORS.Red,
+    borderBottomRightRadius: 8,
+    borderTopRightRadius: 8,
+    alignSelf: "center",
+    marginLeft: '98%',
   },
   //CSS Texts
   textCod: {
@@ -329,17 +314,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: "5%",
     borderBottomLeftRadius: 8,
     borderTopLeftRadius: 8,
-  },
-  indicator: {
-    width: 7,
-    height: 65,
-    position: "absolute",
-    backgroundColor: COLORS.Red,
-    borderBottomRightRadius: 8,
-    borderTopRightRadius: 8,
-    //borderRadius: 50,
-    alignSelf: 'center',
-    marginLeft: 313,
-    marginTop: 5
   },
 });

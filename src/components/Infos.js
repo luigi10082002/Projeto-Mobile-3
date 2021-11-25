@@ -57,6 +57,7 @@ export default function Infos() {
 }
 
 const styles = StyleSheet.create({
+  //CSS Views
   infos: {
     flexDirection: "row",
     alignSelf: "center",
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
     height: "75%",
     borderRadius: 8,
   },
+  //CSS Texts
   TextNumber: {
     alignSelf: "center",
     fontWeight: "bold",

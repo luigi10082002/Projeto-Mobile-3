@@ -41,27 +41,21 @@ export default function LoginEmail() {
   }
 
   async function Dados() {
-    setClient({
+    const login = {
       name: name,
       email: email,
       telefone: telefone,
       empresa: empresa,
-    });
+    };
 
     if (name === "") {
-      Alert.alert(
-        "Preencha todos os campos", 
-        `Por favor preencha seu nome`, 
-        [
+      Alert.alert("Preencha todos os campos", `Por favor preencha seu nome`, [
         {
           text: "OK",
         },
       ]);
     } else if (email === "") {
-      Alert.alert(
-        "Preencha todos os campos", 
-        `Por favor preencha seu email`, 
-        [
+      Alert.alert("Preencha todos os campos", `Por favor preencha seu email`, [
         {
           text: "OK",
         },
@@ -87,16 +81,13 @@ export default function LoginEmail() {
         ]
       );
     } else {
-      Alert.alert(
-        "Sucesso", 
-        `Os dados foram enviados para o email ${email}`, 
-        [
+      Alert.alert("Sucesso", `Os dados foram enviados para o email ${email}`, [
         {
           text: "OK",
         },
       ]);
-      await AsyncStorage.setItem("@Login", Client);
     }
+    setClient(login)
     await api.post(Url, Produto, Client);
   }
 
@@ -107,7 +98,6 @@ export default function LoginEmail() {
       >
         <Header title="Login" />
 
-        <ScrollView>
           <View style={styles.form}>
             <View style={styles.name}>
               <Text style={styles.textName}>Nome</Text>
@@ -161,13 +151,13 @@ export default function LoginEmail() {
               </TouchableOpacity>
             </View>
           </View>
-        </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  //CSS Views
   container: {
     flex: 1,
   },
@@ -178,27 +168,28 @@ const styles = StyleSheet.create({
   name: {
     alignSelf: "center",
     width: "90%",
-    height: "13%",
+    height: 70,
     marginTop: "10%",
   },
   email: {
     alignSelf: "center",
     width: "90%",
-    height: "13%",
-    marginTop: "7%",
+    height: 70,
+    marginTop: "5%",
   },
   telefone: {
     alignSelf: "center",
     width: "90%",
-    height: "13%",
-    marginTop: "7%",
+    height: 70,
+    marginTop: "5%",
   },
   empresa: {
     alignSelf: "center",
     width: "90%",
-    height: "13%",
-    marginTop: "7%",
+    height: 70,
+    marginTop: "5%",
   },
+  //CSS Button
   button: {
     backgroundColor: COLORS.Blue,
     alignSelf: "center",
@@ -209,6 +200,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: "10%",
   },
+  //CSS Texts
   textName: {
     fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
@@ -230,6 +222,7 @@ const styles = StyleSheet.create({
     fontFamily: "Rajdhani_600SemiBold",
     fontSize: 20,
   },
+  //CSS Inputs
   input: {
     backgroundColor: COLORS.Gray_Primary,
     width: "100%",
@@ -258,13 +251,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     height: "100%",
-  },
-  Check: {
-    flexDirection: "row",
-    alignItems: "center",
-    alignSelf: "center",
-    width: "45%",
-    height: "auto",
-    marginTop: "4%",
   },
 });
