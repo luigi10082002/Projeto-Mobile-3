@@ -4,6 +4,8 @@ export const COLORS = {
 
   White: "#fff",
   White_Secondary: '#f4f3f4',
+  White_Tertiary: '#f0f0f0',
+  White_Quaternary: '#eeee',
 
   Gray: '#767577',
   Gray_Primary: "#DCDCDC",

@@ -43,7 +43,7 @@ export default function Infos() {
   return (
     <View style={styles.infos}>
       <View style={styles.boxProdutos}>
-        <Text style={styles.TextProdutos}>Total de Produtos</Text>
+        <Text style={styles.TextProd}>Total de Produtos</Text>
         <Text style={styles.TextNumber}>{Produto.length}</Text>
       </View>
 
@@ -94,6 +94,12 @@ const styles = StyleSheet.create({
   TextProdutos: {
     alignSelf: "center",
     marginTop: "5%",
+    fontSize: 18,
+    fontFamily: "Rajdhani_600SemiBold",
+  },
+  TextProd: {
+    alignSelf: "center",
+    marginTop: "6%",
     fontSize: 18,
     fontFamily: "Rajdhani_600SemiBold",
   },

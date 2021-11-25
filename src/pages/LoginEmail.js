@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -96,7 +96,7 @@ export default function LoginEmail() {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
-        ebehavior={Platform.OS === "ios" ? "padding" : null}
+        ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <Header title="Login" />
 
@@ -125,7 +125,7 @@ export default function LoginEmail() {
             </View>
 
             <View style={styles.telefone}>
-              <Text style={styles.textEmail}>Telefone</Text>
+              <Text style={styles.textTelefone}>Telefone</Text>
               <View style={styles.input}>
                 <TextInput
                   styles={styles.inputTelefone}
@@ -177,19 +177,19 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "90%",
     height: 70,
-    marginTop: "5%",
+    marginTop: "6%",
   },
   telefone: {
     alignSelf: "center",
     width: "90%",
     height: 70,
-    marginTop: "5%",
+    marginTop: "6%",
   },
   empresa: {
     alignSelf: "center",
     width: "90%",
     height: 70,
-    marginTop: "5%",
+    marginTop: "6%",
   },
   //CSS Button
   button: {

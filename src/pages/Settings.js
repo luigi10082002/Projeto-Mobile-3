@@ -67,7 +67,7 @@ export default function Settings() {
     <View style={styles.container}>
       <Header title="Configurações" />
 
-      <View style={styles.boxDelete}>
+      <View style={styles.boxServer}>
         <TouchableOpacity style={styles.DeleteButton} onPress={setServer}>
           <Text style={styles.textSincronizar}>SINCRIONIZAR INVENTÁRIO</Text>
         </TouchableOpacity>
@@ -80,7 +80,7 @@ export default function Settings() {
           <Text style={styles.textDelete}>EXCLUIR TODOS OS ITENS</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.separador} />
+      <View style={styles.separador}/>
     </View>
   );
 }
@@ -92,8 +92,6 @@ const styles = StyleSheet.create({
   boxServer: {
     width: "100%",
     height: "13%",
-    justifyContent: "space-between",
-    flexDirection: "row",
   },
   boxDelete: {
     width: "100%",
@@ -128,34 +126,5 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.Black,
     width: "100%",
     height: 1,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
   },
 });

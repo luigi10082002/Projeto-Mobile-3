@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { Text, View, StyleSheet } from "react-native";
-import { getStatusBarHeight } from "react-native-iphone-x-helper";
+//import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
 import { COLORS } from "../components/Colors";
 

@@ -139,6 +139,7 @@ export default function Modules() {
           JSON.stringify([...Produto, newProd])
         );
       }
+      
       /*
       Alerta que o produto foi salvo e limpa os campos
       Alert.alert("Produto Salvo", `Seu produto foi salvo`, [
@@ -157,7 +158,7 @@ export default function Modules() {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
-        ebehavior={Platform.OS === "ios" ? "padding" : null}
+        ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <Header title="Contagem de Inventário" />
 
@@ -325,17 +326,17 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: "85%",
     width: "90%",
+    marginTop: "2%",
   },
   card: {
     flex: 1,
-    backgroundColor: COLORS.Gray_Primary,
+    backgroundColor: COLORS.Gray_Tertiary,
     flexDirection: "row",
     alignSelf: "center",
     borderRadius: 8,
     marginBottom: "2%",
     height: 75,
     width: "100%",
-    borderRightColor: COLORS.Gray_Secondary,
   },
   infosProd: {
     flexDirection: "row",
@@ -344,14 +345,6 @@ const styles = StyleSheet.create({
   details: {
     width: "100%",
     height: "100%",
-    borderRadius: 8,
-  },
-  delete: {
-    width: "20%",
-    height: 60,
-    marginRight: "5%",
-    backgroundColor: COLORS.Red,
-    marginTop: "3%",
     borderRadius: 8,
   },
   //CSS dos Textos
@@ -387,25 +380,19 @@ const styles = StyleSheet.create({
     fontFamily: "Rajdhani_600SemiBold",
     color: COLORS.White,
   },
-  infoCodigo: {
-    fontSize: 15,
-    fontWeight: "bold",
-    marginLeft: "5%",
-    marginTop: "5%",
-  },
   //CSS dos Inputs
   labelQtd: {
     backgroundColor: COLORS.Gray_Primary,
-    borderRadius: 8,
+    borderRadius: 5,
     paddingHorizontal: "5%",
-    height: "61%",
+    height: "65%",
     width: "100%",
   },
   labelCod: {
     backgroundColor: COLORS.Gray_Primary,
-    borderRadius: 8,
+    borderRadius: 5,
     paddingHorizontal: "5%",
-    height: "61%",
+    height: "65%",
     width: "100%",
   },
   //CSS do Botão SALVAR
@@ -423,10 +410,6 @@ const styles = StyleSheet.create({
     height: "20%",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 8,
-  },
-  buttonDelete: {
-    alignSelf: "center",
-    marginTop: "25%",
+    borderRadius: 5,
   },
 });

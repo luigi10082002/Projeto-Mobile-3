@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
   Text,
   View,
@@ -55,7 +55,7 @@ function Home() {
         {/*Bootão para adicionar produto */}
         <TouchableOpacity style={styles.ButtonAdd} onPress={NewProduto}>
           <Entypo name="plus" size={35} color="#FFF" />
-          <Text style={styles.TextPlus}>Adicionar Item</Text>
+          <Text style={styles.TextADD}>ADICIONAR ITENS</Text>
         </TouchableOpacity>
       </View>
 
@@ -65,7 +65,7 @@ function Home() {
         {/*Botão que leva ao histórico*/}
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>
           <AntDesign name="clockcircleo" size={20} color="#FFF" />
-          <Text style={styles.TextList}>Itens Listados</Text>
+          <Text style={styles.TextList}>ITENS LISTADOS</Text>
         </TouchableOpacity>
       </View>
 
@@ -84,21 +84,17 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   boxButton: {
-    marginTop: "55%",
+    marginTop: "60%",
     width: "85%",
     height: "15%",
     alignSelf: "center",
   },
   //CSS Texts
-  Text: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 33,
-  },
   TextBold: {
     fontSize: 33,
     fontFamily: "Rajdhani_600SemiBold",
   },
-  TextPlus: {
+  TextADD: {
     color: COLORS.White,
     fontSize: 20,
     fontFamily: "Rajdhani_600SemiBold",

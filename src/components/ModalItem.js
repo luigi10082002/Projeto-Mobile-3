@@ -129,7 +129,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
       >
         <View style={styles.container_modal}>
           <KeyboardAvoidingView
-            ebehavior={Platform.OS === "ios" ? "padding" : null}
+            ebehavior={Platform.OS === "ios" ? "padding" : "height"}
           >
             <View style={styles.header}>
               <Text style={styles.textHeader}>Edição de Produto</Text>
@@ -169,7 +169,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
 
             <View style={styles.buttonClose}>
               <TouchableOpacity style={styles.Close} onPress={close}>
-                <AntDesign name="closecircleo" size={40} color="#f00" />
+                <AntDesign name="closecircleo" size={40} color='#f00' />
               </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    bottom: 0,
+    bottom: 0
   },
   info: {
     flexDirection: "row",

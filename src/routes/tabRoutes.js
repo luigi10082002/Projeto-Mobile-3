@@ -5,7 +5,6 @@ import Icon from "react-native-vector-icons/Feather";
 
 import Home from "../pages/Home";
 import Settings from "../pages/Settings";
-import Historic from "../pages/Historic";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,10 +18,6 @@ export const TabNavi = () => {
           switch (route.name) {
             case "Home":
               iconName = "home";
-              break;
-
-            case "Historic":
-              iconName = "clock";
               break;
 
             case "Settings":
