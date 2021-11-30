@@ -3,7 +3,7 @@ import { View, StyleSheet, Alert, AsyncStorage } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
-import api from "../service/api";
+import api from "../../service/api";
 
 export default function LoginProxy() {
   //client/ProxyERP
@@ -12,7 +12,6 @@ export default function LoginProxy() {
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [Url, setUrl] = useState();
   const [Produto, setProduto] = useState([]);
 
   useFocusEffect(
@@ -51,16 +50,18 @@ export default function LoginProxy() {
     setUrl(data);
     setScanned(true);
 
+    const dados = {
+      "produtos": Produto
+    }
     Alert.alert("Sucesso!", "Os dados foram sincroizados.", [
       {
         text: "OK",
         onPress: async () => {
+          await api.post(data, dados);
           GoHome();
         },
       },
     ]);
-
-    await api.post(Url, Produto);
   }
 
   function GoHome() {

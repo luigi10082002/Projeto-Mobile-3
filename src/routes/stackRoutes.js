@@ -1,13 +1,12 @@
 import React from "react";
-
 import { enableScreens } from "react-native-screens";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 
 import { TabNavi } from "./tabRoutes";
-import Modules from "../pages/Modules";
-import Historic from "../pages/Historic";
-import LoginProxy from "../pages/LoginProxy";
-import LoginEmail from "../pages/LoginEmail";
+import Modules from "../pages/Modulos/Modules";
+import Historic from "../pages/Historico/Historic";
+import LoginProxy from "../pages/LoginProxy/LoginProxy";
+import LoginEmail from "../pages/LoginEmail/LoginEmail";
 
 enableScreens();
 

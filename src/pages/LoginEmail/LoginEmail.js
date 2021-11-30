@@ -11,9 +11,10 @@ import {
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
-import { Header } from "../components/Header";
-import { COLORS } from "../components/Colors";
-import api from "../service/api";
+import { Header } from "../../components/Header";
+import { COLORS } from "../../components/Colors";
+import { styles } from "./styles"
+import api from "../../service/api";
 
 export default function LoginEmail() {
   //client/Email
@@ -25,7 +26,7 @@ export default function LoginEmail() {
   const [Client, setClient] = useState([]);
   const [Produto, setProduto] = useState([]);
   const [Url, setUrl] = useState(
-    "http://sistema.homologa.proxy.com.br/batch/testes/post.php"
+    "https://sistema.homologa.proxy.com.br/batch/testes/post.php"
   );
 
   useFocusEffect(
@@ -43,11 +44,11 @@ export default function LoginEmail() {
 
   async function Dados() {
     const login = {
-      opção: "email",
+      key: "email",
       name: name,
       email: email,
       telefone: telefone,
-      empresa: empresa,
+      empresa: empresa
     };
 
     if (name === "") {
@@ -90,7 +91,13 @@ export default function LoginEmail() {
       ]);
     }
     setClient(login)
-    await api.post(Url, Produto, Client);
+    
+    const dados = {
+      "cliente": Client, 
+      "produtos": Produto
+    }
+
+    await api.post(Url, dados);
   }
 
   return (
@@ -158,100 +165,3 @@ export default function LoginEmail() {
   );
 }
 
-const styles = StyleSheet.create({
-  //CSS Views
-  container: {
-    flex: 1,
-  },
-  form: {
-    width: "100%",
-    height: "100%",
-  },
-  name: {
-    alignSelf: "center",
-    width: "90%",
-    height: 70,
-    marginTop: "10%",
-  },
-  email: {
-    alignSelf: "center",
-    width: "90%",
-    height: 70,
-    marginTop: "6%",
-  },
-  telefone: {
-    alignSelf: "center",
-    width: "90%",
-    height: 70,
-    marginTop: "6%",
-  },
-  empresa: {
-    alignSelf: "center",
-    width: "90%",
-    height: 70,
-    marginTop: "6%",
-  },
-  //CSS Button
-  button: {
-    backgroundColor: COLORS.Blue,
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "90%",
-    height: 70,
-    borderRadius: 8,
-    marginTop: "10%",
-  },
-  //CSS Texts
-  textName: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-  },
-  textEmail: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-  },
-  textTelefone: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-  },
-  textEmpresa: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-  },
-  textSave: {
-    color: COLORS.White,
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-  },
-  //CSS Inputs
-  input: {
-    backgroundColor: COLORS.Gray_Primary,
-    width: "100%",
-    height: 50,
-    borderRadius: 8,
-    padding: 10,
-  },
-  inputName: {
-    width: "100%",
-    height: "100%",
-  },
-  inputEmail: {
-    width: "100%",
-    height: "100%",
-  },
-  inputTelefone: {
-    width: "100%",
-    height: "100%",
-  },
-  inputEmpresa: {
-    width: "100%",
-    height: "100%",
-  },
-  buttonSave: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    height: "100%",
-  },
-});

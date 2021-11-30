@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { Header } from "../components/Header";
-import { COLORS } from "../components/Colors";
+import { Header } from "../../components/Header";
+import { COLORS } from "../../components/Colors";
+import { styles } from "./styles"
 
 export default function Settings() {
   //Constante de navegação
@@ -84,47 +85,3 @@ export default function Settings() {
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  //CSS Views
-  boxServer: {
-    width: "100%",
-    height: "13%",
-  },
-  boxDelete: {
-    width: "100%",
-    height: "13%",
-  },
-  //CSS Buttons
-  DeleteButton: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  //CSS Texts
-  text: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-    marginLeft: "5%",
-    alignSelf: "center",
-  },
-  textDelete: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-    color: COLORS.Red,
-  },
-  textSincronizar: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-    color: COLORS.Black,
-  },
-  //CSS Line
-  separador: {
-    backgroundColor: COLORS.Black,
-    width: "100%",
-    height: 1,
-  },
-});
