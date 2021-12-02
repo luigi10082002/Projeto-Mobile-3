@@ -44,8 +44,15 @@ export default function LoginEmail() {
 
   function ValidarEmail() {
     const user = email.split("@")[0];
-    const domimnio = email.split("@")[1];
+    const dominio = email.split("@")[1];
     
+    if(user === "" || dominio === "") {
+      Alert.alert("Email inválido", `Preencha com um email válido`, [
+        {
+          text: "OK",
+        },
+      ]);
+    }
   }
 
   async function Dados() {
