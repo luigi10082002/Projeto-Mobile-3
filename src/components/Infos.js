@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { View, Text, StyleSheet, AsyncStorage } from "react-native";
+import { View, Text, StyleSheet, AsyncStorage, SafeAreaView } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
 import { COLORS } from "../components/Colors";
@@ -41,7 +41,7 @@ export default function Infos() {
   }
 
   return (
-    <View style={styles.infos}>
+    <SafeAreaView style={styles.infos}>
       <View style={styles.boxProdutos}>
         <Text style={styles.TextProd}>Total de Produtos</Text>
         <Text style={styles.TextNumber}>{Produto.length}</Text>
@@ -52,7 +52,7 @@ export default function Infos() {
         <Text style={styles.TextItens}>Itens</Text>
         <Text style={styles.TextNumber}>{items}</Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   infos: {
     flexDirection: "row",
     alignSelf: "center",
-    height: "20%",
+    height: 150,
     width: "90%",
   },
   boxProdutos: {

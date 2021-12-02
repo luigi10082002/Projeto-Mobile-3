@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
   },
   listItems: {
     alignSelf: "center",
-    height: "85%",
+    height: 325,
     width: "90%",
     marginTop: "2%",
   },

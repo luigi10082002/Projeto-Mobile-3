@@ -10,6 +10,7 @@ import {
   FlatList,
   KeyboardAvoidingView,
   Vibration,
+  ScrollView
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
@@ -163,6 +164,7 @@ export default function Modules() {
       >
         <Header title="Contagem de Inventário" />
 
+        <ScrollView>
         {/*Scanner*/}
         <View style={styles.scanner}>
           <BarCodeScanner
@@ -257,6 +259,7 @@ export default function Modules() {
             showsVerticalScrollIndicator={false}
           />
         </View>
+        </ScrollView>
       </KeyboardAvoidingView>
       {/*Modal para a edição de item*/}
       <Modal
@@ -269,4 +272,3 @@ export default function Modules() {
     </View>
   );
 }
-

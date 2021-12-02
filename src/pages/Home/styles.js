@@ -5,6 +5,7 @@ import { COLORS } from "../../components/Colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
   },
   //CSS Views
   Button: {
@@ -13,7 +14,6 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
   },
   boxButton: {
-    marginTop: "60%",
     width: "85%",
     height: "15%",
     alignSelf: "center",

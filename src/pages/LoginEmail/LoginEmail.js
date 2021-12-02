@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   Alert,
   KeyboardAvoidingView,
+  ScrollView
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -123,6 +124,7 @@ export default function LoginEmail() {
       >
         <Header title="Login" />
 
+        <ScrollView>
           <View style={styles.form}>
             <View style={styles.name}>
               <Text style={styles.textName}>Nome</Text>
@@ -177,6 +179,7 @@ export default function LoginEmail() {
               </TouchableOpacity>
             </View>
           </View>
+          </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );
