@@ -45,16 +45,7 @@ export default function LoginEmail() {
   function ValidarEmail() {
     const user = email.split("@")[0];
     const domimnio = email.split("@")[1];
-    const complemento = email.split(".");
-    const complement = complemento.last()
     
-    console.log(complemento)
-  }
-
-  function validateEmail() {
-    const test = "."
-
-    console.log(test.length)
   }
 
   async function Dados() {
@@ -115,7 +106,7 @@ export default function LoginEmail() {
       "produtos": Produto
     }
 
-    //await api.post(Url, dados);
+    await api.post(Url, dados);
   }
 
   return (
