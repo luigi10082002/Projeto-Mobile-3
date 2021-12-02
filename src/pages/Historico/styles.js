@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
   btn: {
     justifyContent: "center",
     alignSelf: "center",
-    marginTop: "60%",
+    marginTop: "70%",
     width: "100%",
     height: "100%",
   },

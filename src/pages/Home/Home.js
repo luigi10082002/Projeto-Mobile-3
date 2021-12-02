@@ -54,11 +54,11 @@ function Home() {
         {/*Bootão para adicionar produto */}
         <TouchableOpacity style={styles.ButtonAdd} onPress={NewProduto}>
           <Entypo name="plus" size={35} color="#FFF" />
-          <Text style={styles.TextADD}>ADICIONAR ITENS</Text>
+          <Text style={styles.TextADD}>ADICIONAR ITEM</Text>
         </TouchableOpacity>
       </View>
 
-      <Infos />
+      <Infos/>
 
       <View style={styles.Button}>
         {/*Botão que leva ao histórico*/}

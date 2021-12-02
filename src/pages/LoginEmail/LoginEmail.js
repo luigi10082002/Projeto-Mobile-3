@@ -42,6 +42,21 @@ export default function LoginEmail() {
     setProduto(storage);
   }
 
+  function ValidarEmail() {
+    const user = email.split("@")[0];
+    const domimnio = email.split("@")[1];
+    const complemento = email.split(".");
+    const complement = complemento.last()
+    
+    console.log(complemento)
+  }
+
+  function validateEmail() {
+    const test = "."
+
+    console.log(test.length)
+  }
+
   async function Dados() {
     const login = {
       key: "email",
@@ -63,7 +78,10 @@ export default function LoginEmail() {
           text: "OK",
         },
       ]);
-    } else if (telefone === "") {
+    } else if (email !== "") {
+      ValidarEmail()
+    }
+    else if (telefone === "") {
       Alert.alert(
         "Preencha todos os campos",
         `Por favor preencha seu telefone`,
@@ -97,7 +115,7 @@ export default function LoginEmail() {
       "produtos": Produto
     }
 
-    await api.post(Url, dados);
+    //await api.post(Url, dados);
   }
 
   return (
@@ -139,6 +157,7 @@ export default function LoginEmail() {
                   onChangeText={setTelefone}
                   value={telefone}
                   keyboardType="phone-pad"
+                  maxLength={9}
                 />
               </View>
             </View>
