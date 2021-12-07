@@ -11,7 +11,7 @@ import { AntDesign, Entypo } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import Infos from "../../components/Infos";
-import { styles } from "./styles"
+import { styles } from "./styles";
 
 function Home() {
   //Constante de navegação
@@ -19,6 +19,8 @@ function Home() {
 
   //Constante do array dos produtos
   const [Produto, setProduto] = useState([]);
+
+  const [hasPermission, setHasPermission] = useState(null);
 
   //Callback do AsyncStorage dos produtos
   useFocusEffect(

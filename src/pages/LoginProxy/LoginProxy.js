@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { View, StyleSheet, Alert, AsyncStorage, Text } from "react-native";
+import { View, StyleSheet, Alert, AsyncStorage, Text, TouchableOpacity } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
@@ -14,7 +14,7 @@ export default function LoginProxy() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [Produto, setProduto] = useState([]);
-  const [tamanho, setLength] = useState(Produto.length);
+  const [Url, setUrl] = useState()
 
   useFocusEffect(
     useCallback(() => {
@@ -27,6 +27,10 @@ export default function LoginProxy() {
     const storage = response ? JSON.parse(response) : [];
 
     setProduto(storage);
+  }
+
+  function GoHome() {
+    navigation.navigate("Home");
   }
 
   useEffect(() => {
@@ -44,9 +48,16 @@ export default function LoginProxy() {
       produtos: Produto,
     };
 
-    Alert.alert("Sucesso!", "Os dados foram sincroizados.", [
+    Alert.alert("Sucesso!", `Os ${Produto.length} produtos foram sincroizados.`, [
       {
-        text: "OK",
+        text: "Cancelar",
+        style: "Cancel",
+        onPress: async () => {
+          GoHome();
+        }
+      },
+      {
+        text: "Confirmar",
         onPress: async () => {
           await api.post(data, dados);
           GoHome();
@@ -66,9 +77,12 @@ export default function LoginProxy() {
       ]
     );
   }, []);
-
-  function GoHome() {
-    navigation.navigate("Home");
+  
+  if (hasPermission === null) {
+    return <Text>Requesting for camera permission</Text>;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
   }
 
   return (
@@ -77,10 +91,6 @@ export default function LoginProxy() {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-
-      <View style={styles.Itens}>
-        <Text style={styles.text}>Existem {Produto.length} produtos inventariados.</Text>
-      </View>
     </View>
   );
 }

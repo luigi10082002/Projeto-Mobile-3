@@ -43,19 +43,6 @@ export default function LoginEmail() {
     setProduto(storage);
   }
 
-  function ValidarEmail() {
-    const user = email.split("@")[0];
-    const dominio = email.split("@")[1];
-    
-    if(user === "" || dominio === "") {
-      Alert.alert("Email inválido", `Preencha com um email válido`, [
-        {
-          text: "OK",
-        },
-      ]);
-    }
-  }
-
   async function Dados() {
     const login = {
       key: "email",
@@ -77,10 +64,7 @@ export default function LoginEmail() {
           text: "OK",
         },
       ]);
-    } else if (email !== "") {
-      ValidarEmail()
-    }
-    else if (telefone === "") {
+    } else if (telefone === "") {
       Alert.alert(
         "Preencha todos os campos",
         `Por favor preencha seu telefone`,
@@ -184,4 +168,3 @@ export default function LoginEmail() {
     </View>
   );
 }
-

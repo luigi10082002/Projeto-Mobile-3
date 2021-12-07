@@ -41,6 +41,10 @@ export const styles = StyleSheet.create({
     width: "65%",
     height: "100%",
   },
+  Local: {
+    width: "100%",
+    height: "100%",
+  },
   buttonSave: {
     alignSelf: "center",
     alignItems: "center",
@@ -57,7 +61,7 @@ export const styles = StyleSheet.create({
   },
   listItems: {
     alignSelf: "center",
-    height: 325,
+    height: 306,
     width: "90%",
     marginTop: "2%",
   },
@@ -68,7 +72,7 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 8,
     marginBottom: "2%",
-    height: 75,
+    height: 68,
     width: "100%",
   },
   infosProd: {
@@ -88,6 +92,12 @@ export const styles = StyleSheet.create({
     fontSize: 20,
   },
   textCod: {
+    fontFamily: "Rajdhani_600SemiBold",
+    height: "auto",
+    width: "auto",
+    fontSize: 20,
+  },
+  textLocal: {
     fontFamily: "Rajdhani_600SemiBold",
     height: "auto",
     width: "auto",
@@ -122,6 +132,13 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   labelCod: {
+    backgroundColor: COLORS.Gray_Primary,
+    borderRadius: 5,
+    paddingHorizontal: "5%",
+    height: "65%",
+    width: "100%",
+  },
+  labelLocal :{
     backgroundColor: COLORS.Gray_Primary,
     borderRadius: 5,
     paddingHorizontal: "5%",

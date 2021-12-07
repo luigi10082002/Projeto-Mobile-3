@@ -41,6 +41,8 @@ export default function Historic() {
 
   const [vHora, setHora] = useState("");
 
+  const [local, setLocal] = useState("");
+
   const [list, setList] = useState(); //Lista a ser renderizada
 
   const setDataHora = () => {
@@ -189,6 +191,7 @@ export default function Historic() {
                     >
                       <Text style={styles.textCod}>{item.produto}</Text>
                       <View style={styles.infos}>
+                        <Text>{item.local} </Text>
                         {!item.dtalteracao ? (
                           <>
                             <Text>{item.date}</Text>
