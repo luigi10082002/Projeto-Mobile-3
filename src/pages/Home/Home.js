@@ -2,39 +2,22 @@ import React, { useState, useCallback } from "react";
 import {
   Text,
   View,
-  StyleSheet,
   TouchableOpacity,
-  AsyncStorage,
+  Image,
   KeyboardAvoidingView,
 } from "react-native";
-import { AntDesign, Entypo } from "@expo/vector-icons";
+import { AntDesign, Entypo, FontAwesome } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
+import Modal from "../../components/modal/ModalInfos"
 import Infos from "../../components/Infos";
-import { styles } from "./styles";
+import { styles } from "./styles"
 
 function Home() {
   //Constante de navegação
   const navigation = useNavigation();
 
-  //Constante do array dos produtos
-  const [Produto, setProduto] = useState([]);
-
-  const [hasPermission, setHasPermission] = useState(null);
-
-  //Callback do AsyncStorage dos produtos
-  useFocusEffect(
-    useCallback(() => {
-      loadSpots();
-    }, [Produto])
-  );
-
-  async function loadSpots() {
-    const response = await AsyncStorage.getItem("@Produtos");
-    const storage = response ? JSON.parse(response) : [];
-
-    setProduto(storage);
-  }
+  const [modal, setModal] = useState(false);
 
   //Navegação para a tela de adicionar produto
   function NewProduto() {
@@ -46,11 +29,19 @@ function Home() {
     navigation.navigate("Historic");
   }
 
+  function Carousel() {
+    setModal(true);
+
+    if(modal === true) {
+      setModal(false);
+    } else {
+      setModal(true)
+    }
+  }
   return (
     <View style={styles.container}>
-      {/*<KeyboardAvoidingView
-        ebehavior={Platform.OS === "ios" ? "padding" : "height"}
-      >*/}
+
+    <Image style={{height: 250, width: 250, alignSelf: "center"}} source={require('../../../assets/splash.png')} />
 
       <View style={styles.boxButton}>
         {/*Bootão para adicionar produto */}
@@ -70,7 +61,16 @@ function Home() {
         </TouchableOpacity>
       </View>
 
-      {/*</KeyboardAvoidingView>*/}
+      <View style={styles.Info}>
+        <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
+          <FontAwesome name="question-circle" size={25} color="#FFF" />
+          <Text style={styles.TextInfos}>Informações</Text>
+        </TouchableOpacity>
+      </View>
+      <Modal 
+        show={modal}
+        close={() => setModal(false)}
+      />
     </View>
   );
 }

@@ -17,7 +17,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { RectButton } from "react-native-gesture-handler";
 
 import { Header } from "../../components/Header";
-import Modal from "../../components/ModalItem";
+import Modal from "../../components/modal/ModalItem"
 import { styles } from "./styles";
 
 export default function Modules() {
@@ -238,7 +238,7 @@ export default function Modules() {
           {/*Botão de salvar*/}
           <View style={styles.buttonSave}>
             <TouchableOpacity style={styles.save} onPress={Save}>
-              <Text style={styles.textSave}>SALVAR</Text>
+              <Text style={styles.textSave}>ADICIONAR</Text>
             </TouchableOpacity>
           </View>
 

@@ -5,7 +5,6 @@ import { COLORS } from "../../components/Colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
   },
   //CSS Views
   Button: {
@@ -17,6 +16,17 @@ export const styles = StyleSheet.create({
     width: "85%",
     height: "15%",
     alignSelf: "center",
+  },
+  Info: {
+    flexDirection: 'row',
+    backgroundColor: COLORS.Blue,
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    marginTop: "10%",
+    marginRight: "5%",
+    width: "35%",
+    height: "5%",
+    borderRadius: 15
   },
   //CSS Texts
   TextBold: {
@@ -33,6 +43,14 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: "2%",
     fontFamily: "Rajdhani_600SemiBold",
+  },
+  TextInfos: {
+    alignSelf: "center",
+    alignItems: "center",
+    color: COLORS.White,
+    fontSize: 15,
+    fontFamily: "Rajdhani_600SemiBold",
+    marginLeft: "5%",
   },
   //CSS Buttons
   ButtonAdd: {
@@ -52,5 +70,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: COLORS.Gray_Secondary,
     borderRadius: 9,
+  },
+  ButtonInfos: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 })

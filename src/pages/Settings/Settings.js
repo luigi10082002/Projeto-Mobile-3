@@ -2,7 +2,6 @@ import React from "react";
 import {
   View,
   Text,
-  StyleSheet,
   Alert,
   TouchableOpacity,
   AsyncStorage,
@@ -26,25 +25,37 @@ export default function Settings() {
   }
 
   //Lógica de login com o servidor
-  function setServer() {
-    Alert.alert("Sincronizar", "Deseja sincronizar o inventário?", [
+  function setServerEMAIL() {
+    Alert.alert("Sincronizar", "Deseja enviar o inventário por email?", [
       {
         text: "CANCELAR",
         style: "cancel",
         onPress: async () => {},
       },
       {
-        text: "PROXY ERP",
-        onPress: async () => {
-          CadastroProxyERP();
-        },
-      },
-      {
-        text: "E-MAIL",
+        text: "CONFIRMAR",
+        style: "confirmar",
         onPress: async () => {
           CadastroEmail();
         },
       }
+    ]);
+  }
+
+  function setServerERP() {
+    Alert.alert("Sincronizar", "Deseja sincronizar o inventário Proxy ERP?", [
+      {
+        text: "CANCELAR",
+        style: "cancel",
+        onPress: async () => {},
+      },
+      {
+        text: "CONFIRMAR",
+        style: "confirmar",
+        onPress: async () => {
+          CadastroProxyERP();
+        },
+      },
     ]);
   }
 
@@ -69,8 +80,16 @@ export default function Settings() {
       <Header title="Configurações" />
 
       <View style={styles.boxServer}>
-        <TouchableOpacity style={styles.DeleteButton} onPress={setServer}>
-          <Text style={styles.textSincronizar}>SINCRIONIZAR INVENTÁRIO</Text>
+        <TouchableOpacity style={styles.DeleteButton} onPress={setServerERP}>
+          <Text style={styles.textSincronizar}>SINCRONIZAR INVENTÁRIO PROXY ERP</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.separador} />
+
+      <View style={styles.boxServer}>
+        <TouchableOpacity style={styles.DeleteButton} onPress={setServerEMAIL}>
+          <Text style={styles.textSincronizar}>SINCRONIZAR INVENTÁRIO EMAIL</Text>
         </TouchableOpacity>
       </View>
 

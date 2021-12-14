@@ -20,8 +20,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../../components/Header";
-import Modal from "../../components/ModalItem";
-import { COLORS } from "../../components/Colors";
+import Modal from "../../components/modal/ModalItem";
 import { styles } from "./styles"
 
 export default function Historic() {
@@ -40,8 +39,6 @@ export default function Historic() {
   const [vDate, setDate] = useState("");
 
   const [vHora, setHora] = useState("");
-
-  const [local, setLocal] = useState("");
 
   const [list, setList] = useState(); //Lista a ser renderizada
 

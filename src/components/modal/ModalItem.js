@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   Animated,
   Dimensions,
@@ -10,11 +9,12 @@ import {
   Alert,
   KeyboardAvoidingView,
   AsyncStorage,
+  StyleSheet
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
 
-import { COLORS } from "../components/Colors";
+import { COLORS } from "../Colors";
 
 const { height } = Dimensions.get("window");
 

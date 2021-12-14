@@ -48,7 +48,9 @@ export default function LoginProxy() {
       produtos: Produto,
     };
 
-    Alert.alert("Sucesso!", `Os ${Produto.length} produtos foram sincroizados.`, [
+    await api.post(data, dados);
+
+    Alert.alert("Sucesso!", `Os ${Produto.length} produtos foram sincronizados.`, [
       {
         text: "Cancelar",
         style: "Cancel",
@@ -59,7 +61,6 @@ export default function LoginProxy() {
       {
         text: "Confirmar",
         onPress: async () => {
-          await api.post(data, dados);
           GoHome();
         },
       },
