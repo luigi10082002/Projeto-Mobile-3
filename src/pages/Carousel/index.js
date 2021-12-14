@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions, StyleSheet } from 'react-native';
-
-import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
+import Carousel from 'react-native-snap-carousel';
 
 import { scrollInterpolator, animatedStyles } from './animation';
+import { styles } from '../Carousel/styles'
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -57,29 +57,3 @@ export default class Index extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  carouselContainer: {
-    marginTop: 50
-  },
-  itemContainer: {
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'dodgerblue'
-  },
-  itemLabel: {
-    color: 'white',
-    fontSize: 24
-  },
-  counter: {
-    marginTop: 25,
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center'
-  }
-});
