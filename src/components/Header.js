@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Feather } from "@expo/vector-icons";
+import { Feather, FontAwesome } from "@expo/vector-icons";
 import { Text, View, StyleSheet } from "react-native";
 //import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
@@ -31,6 +31,14 @@ export function Header({ title, action, modelo }) {
       />
 
       <Text style={styles.title}>{title}</Text>
+
+      <FontAwesome
+        onPress={handleGoBack}
+        name="question-circle"
+        size={24}
+        color={COLORS.White}
+        style={{ marginTop: "15%" }}
+      />
 
       {action ? <View>{action}</View> : <View style={{ width: 24 }} />}
     </View>

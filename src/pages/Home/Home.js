@@ -10,7 +10,6 @@ import {
 import { AntDesign, Entypo, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-import A from "../../components/modal/ModalInfos"
 import Infos from "../../components/Infos";
 import { styles } from "./styles"
 
