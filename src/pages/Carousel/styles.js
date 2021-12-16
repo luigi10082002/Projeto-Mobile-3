@@ -2,28 +2,34 @@ import { StyleSheet } from 'react-native';
 
 import { COLORS } from "../../components/Colors";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+export const styles = StyleSheet.create({  container: {
+    position: 'absolute',
+    alignSelf: 'center',
+    width: "100%",
+    height: "95%",
+    marginTop: "10%",
   },
-  carouselContainer: {
-    marginTop: 50
-  },
-  itemContainer: {
+  image: {
     width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'dodgerblue'
+    height: '73%',
   },
-  itemLabel: {
-    color: 'white',
-    fontSize: 24
-  },
-  counter: {
-    marginTop: 25,
-    fontSize: 30,
+  title: {
+    paddingTop: '2%',
+    paddingBottom: '2%',
+    paddingLeft: '3%',
+    fontSize: 23,
     fontWeight: 'bold',
-    textAlign: 'center'
+  },
+  text: {
+    fontSize: 14,
+    marginHorizontal: '3%'
+  },
+  active: {
+    backgroundColor: COLORS.Blue,
+    width: "7%",
+  },
+  back: {
+    fontSize: 20,
+    backgroundColor: '#f0f'
   }
-});
+})

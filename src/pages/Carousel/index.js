@@ -1,59 +1,33 @@
-import React, { Component } from 'react';
-import { Text, View, Dimensions, StyleSheet } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import React from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import AppIntroSlider from "react-native-app-intro-slider";
 
-import { scrollInterpolator, animatedStyles } from './animation';
-import { styles } from '../Carousel/styles'
+import data from "../../lib/DataHome";
+import { styles } from "./styles";
 
-const SLIDER_WIDTH = Dimensions.get('window').width;
-const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
-const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
+export default function Index() {
 
-const DATA = [];
-for (let i = 0; i < 10; i++) {
-  DATA.push(i)
-}
-
-export default class Index extends Component {
-  
-  state = {
-    index: 0
-  }
-
-  constructor(props) {
-    super(props);
-    this._renderItem = this._renderItem.bind(this)
-  }
-
-  _renderItem({ item }) {
-    return (
-      <View style={styles.itemContainer}>
-        <Text style={styles.itemLabel}>{`Item ${item}`}</Text>
-      </View>
-    );
-  }
-  
-  render() {
-    return (
-      <View style={styles.container}>
-        <Carousel
-          ref={(c) => this.carousel = c}
-          data={DATA}
-          renderItem={this._renderItem}
-          sliderWidth={SLIDER_WIDTH}
-          itemWidth={ITEM_WIDTH}
-          containerCustomStyle={styles.carouselContainer}
-          inactiveSlideShift={0}
-          onSnapToItem={(index) => this.setState({ index })}
-          scrollInterpolator={scrollInterpolator}
-          slideInterpolatedStyle={animatedStyles}
-          useScrollView={true}          
+  function Render({ item  }) {
+    return(
+      <View>
+        <Image
+          style={styles.image}
+          source={item.img}
         />
-        <Text style={styles.counter}
-        >
-          {this.state.index}
-        </Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.text}>{item.text}</Text>
       </View>
-    );
+    )
   }
+  return(
+    <View style={styles.container}>
+      <AppIntroSlider
+        renderItem={Render}
+        data={data}
+        activeDotStyle={styles.active}
+        showDoneButton={true}
+        renderDoneButton={() =>  <Text style={{fontSize: 20}}>Done</Text> }
+      />
+    </View>
+  )
 }

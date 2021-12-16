@@ -1,20 +1,18 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   AsyncStorage,
   Alert,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
-import { COLORS } from "../../components/Colors";
-import { styles } from "./styles"
+import { styles } from "./styles";
 import api from "../../service/api";
 
 export default function LoginEmail() {
@@ -36,20 +34,28 @@ export default function LoginEmail() {
     }, [Produto])
   );
 
+  useEffect(() => {
+    const numero = telefone.replace(/\D/g, "");
+    // (11)1111-1111
+    const DDD = numero.replace(/^(\d{2})(\d)/g, "($1)$2");
+    const final = DDD.replace(/(\d)(\d{4})$/, "$1-$2");
+    setTelefone(final);
+  }, [telefone]);
+
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
 
     setProduto(storage);
   }
-
+  
   async function Dados() {
     const login = {
       key: "email",
       name: name,
       email: email,
       telefone: telefone,
-      empresa: empresa
+      empresa: empresa,
     };
 
     if (name === "") {
@@ -91,12 +97,12 @@ export default function LoginEmail() {
         },
       ]);
     }
-    setClient(login)
-    
+    setClient(login);
+
     const dados = {
-      "cliente": Client, 
-      "produtos": Produto
-    }
+      cliente: Client,
+      produtos: Produto,
+    };
 
     await api.post(Url, dados);
   }
@@ -117,6 +123,7 @@ export default function LoginEmail() {
                   styles={styles.inputName}
                   onChangeText={setName}
                   value={name}
+                  placeholder="Nome"
                 />
               </View>
             </View>
@@ -129,6 +136,7 @@ export default function LoginEmail() {
                   onChangeText={setEmail}
                   value={email}
                   keyboardType="email-address"
+                  placeholder="Email"
                 />
               </View>
             </View>
@@ -141,7 +149,8 @@ export default function LoginEmail() {
                   onChangeText={setTelefone}
                   value={telefone}
                   keyboardType="phone-pad"
-                  maxLength={9}
+                  maxLength={14}
+                  placeholder="DDD+Número"
                 />
               </View>
             </View>
@@ -153,6 +162,7 @@ export default function LoginEmail() {
                   styles={styles.inputEmpresa}
                   onChangeText={setEmpresa}
                   value={empresa}
+                  placeholder="Empresa"
                 />
               </View>
             </View>
@@ -163,7 +173,7 @@ export default function LoginEmail() {
               </TouchableOpacity>
             </View>
           </View>
-          </ScrollView>
+        </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );

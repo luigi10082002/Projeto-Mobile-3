@@ -4,12 +4,13 @@ import {
   View,
   TouchableOpacity,
   Image,
+  ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
 import { AntDesign, Entypo, FontAwesome } from "@expo/vector-icons";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
-import Modal from "../../components/modal/ModalInfos"
+import A from "../../components/modal/ModalInfos"
 import Infos from "../../components/Infos";
 import { styles } from "./styles"
 
@@ -30,6 +31,8 @@ function Home() {
   }
 
   function Carousel() {
+    navigation.navigate("Index");
+/*
     setModal(true);
 
     if(modal === true) {
@@ -37,11 +40,13 @@ function Home() {
     } else {
       setModal(true)
     }
+    */
   }
+
   return (
     <View style={styles.container}>
 
-    <Image style={{height: 250, width: 250, alignSelf: "center"}} source={require('../../../assets/splash.png')} />
+    <Image style={{height: '23%', width: '90%', alignSelf: "center", marginTop: '10%'}} source={require('../../../assets/splash.png')} />
 
       <View style={styles.boxButton}>
         {/*Bootão para adicionar produto */}
@@ -67,10 +72,6 @@ function Home() {
           <Text style={styles.TextInfos}>Informações</Text>
         </TouchableOpacity>
       </View>
-      <Modal 
-        show={modal}
-        close={() => setModal(false)}
-      />
     </View>
   );
 }

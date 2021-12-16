@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
-  StyleSheet,
+  TouchableOpacity,
   FlatList,
   AsyncStorage,
   TextInput,
@@ -113,7 +113,7 @@ export default function Historic() {
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
   });
-
+  
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView

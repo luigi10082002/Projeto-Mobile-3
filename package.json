@@ -25,6 +25,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-app-intro-slider": "^4.0.4",
     "react-native-camera": "^4.2.1",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-paper": "^4.9.2",

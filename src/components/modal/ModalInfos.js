@@ -7,7 +7,7 @@ import Index from "../../pages/Carousel/index"
 
 const { height } = Dimensions.get('window')
 
-function Modal ({ show, close }) {
+function A ({ show, close }) {
   const [state, setState] = useState({
     opacity: new Animated.Value(0),
     container: new Animated.Value(height),
@@ -55,13 +55,15 @@ function Modal ({ show, close }) {
         }]}
       >
 
-        <Index/>
+      
 
+        
         <View style={styles.buttonClose}>
           <TouchableOpacity style={styles.Close} onPress={close}>
             <AntDesign name="closecircleo" size={45} color='#f00' />
           </TouchableOpacity>
         </View>
+        
       </Animated.View>
     </Animated.View>
   )
@@ -73,29 +75,30 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: COLORS.Black_Secondary,
-    position: 'absolute'
+    justifyContent: "center",
+    position: 'absolute',
   },
   modal: {
-    bottom: 0,
     position: 'absolute',
-    height: '88%',
-    backgroundColor: '#fff',
+    height: '80%',
     width: '100%',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    backgroundColor: COLORS.White,
+    borderRadius: 20,
     paddingLeft: 25,
     paddingRight: 25
   },
+  
   buttonClose: {
     alignSelf: "center",
     justifyContent: "center",
-    marginTop: '100%',
+    marginTop: "100%",
     width: '15%',
     height: '8%',
   },
   Close: {
     alignSelf: "center",
   },
+  
 });
 
-export default Modal
+export default A

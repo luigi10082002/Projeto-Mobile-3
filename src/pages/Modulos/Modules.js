@@ -165,6 +165,16 @@ export default function Modules() {
     }
   }
 
+  function Carousel() {
+    setModal(true);
+
+    if(modal === true) {
+      setModal(false);
+    } else {
+      setModal(true)
+    }
+  }
+  
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
