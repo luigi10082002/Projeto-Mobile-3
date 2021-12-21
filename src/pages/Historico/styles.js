@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
     position: "absolute",
     alignSelf: "flex-end",
     justifyContent: "center",
-    marginTop: 757,
+    marginTop: '33%',
     width: 50,
     height: 45,
   },
@@ -95,13 +95,6 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  /*
-  ButtonInfos: {
-    backgroundColor: '#0ff',
-    width: '10%',
-    height: '10%',
-  },
-  */
   //CSS Inputs
   input: {
     backgroundColor: COLORS.Gray_Primary,

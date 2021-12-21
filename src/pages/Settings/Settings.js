@@ -7,9 +7,10 @@ import {
   AsyncStorage,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../../components/Header";
-import { COLORS } from "../../components/Colors";
+import dataHome from "../../lib/DataHome";
 import { styles } from "./styles"
 
 export default function Settings() {
@@ -75,6 +76,14 @@ export default function Settings() {
     ]);
   }
 
+  function Carousel() {
+    navigation.navigate("Index", {
+      screen: "Index",
+      id: 1,
+      data: dataHome
+    });
+  }
+
   return (
     <View style={styles.container}>
       <Header title="Configurações" />
@@ -101,6 +110,12 @@ export default function Settings() {
         </TouchableOpacity>
       </View>
       <View style={styles.separador}/>
+
+      <View style={styles.Info}>
+        <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
+          <FontAwesome name="question-circle" size={35} color="#4B7DFE" />
+        </TouchableOpacity>      
+      </View>
     </View>
   );
 }

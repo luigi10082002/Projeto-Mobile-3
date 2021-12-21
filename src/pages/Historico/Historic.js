@@ -21,6 +21,7 @@ import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
+import dataHome from "../../lib/DataHome";
 import Modal from "../../components/modal/ModalItem";
 import { styles } from "./styles"
 
@@ -118,7 +119,11 @@ export default function Historic() {
   });
 
   function Carousel() {
-    navigation.navigate("Index");
+    navigation.navigate("Index", {
+      screen: "Index",
+      id: 1,
+      data: dataHome
+    });
   }
   
   return (
@@ -157,7 +162,7 @@ export default function Historic() {
             alignSelf: "center",
             height: "84%",
             width: "100%",
-            marginTop: "7%"
+            marginTop: "10%"
           }}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingTop: 1 }}

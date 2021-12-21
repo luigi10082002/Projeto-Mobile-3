@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.Blue,
     alignSelf: 'flex-end',
     justifyContent: 'center',
-    marginTop: "10%",
+    marginTop: "5%",
     marginRight: "5%",
     width: "35%",
     height: "5%",

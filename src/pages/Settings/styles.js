@@ -15,6 +15,14 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "13%",
   },
+  Info: {
+    position: "absolute",
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    marginTop: 400,
+    width: 50,
+    height: 45,
+  },
   //CSS Buttons
   DeleteButton: {
     width: "100%",
