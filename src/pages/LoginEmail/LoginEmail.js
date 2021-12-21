@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 
 import { Header } from "../../components/Header";
 import { styles } from "./styles";
@@ -107,6 +108,14 @@ export default function LoginEmail() {
     await api.post(Url, dados);
   }
 
+  function Carousel() {
+    navigation.navigate("Index", {
+      screen: "Index",
+      id: 1,
+      data: dataHome
+    });
+  }
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -115,6 +124,13 @@ export default function LoginEmail() {
         <Header title="Login" />
 
         <ScrollView>
+
+        <View style={styles.Info}>
+        <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
+          <FontAwesome name="question-circle" size={35} color="#4B7DFE" />
+        </TouchableOpacity>      
+      </View>
+
           <View style={styles.form}>
             <View style={styles.name}>
               <Text style={styles.textName}>Nome</Text>
