@@ -54,9 +54,10 @@ export const styles = StyleSheet.create({
     height: 50,
   },
   listProdutos: {
+    flexDirection: "row",
     marginTop: "5%",
     marginLeft: "5%",
-    width: "40%",
+    width: "90%",
     height: 35,
   },
   listItems: {
@@ -161,5 +162,9 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
+  },
+  //CSS dos Botões
+  ButtonInfos: {
+    marginLeft: '55%',
   },
 });

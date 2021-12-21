@@ -11,16 +11,24 @@ import {
   Vibration,
   ScrollView,
 } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
-import { useFocusEffect } from "@react-navigation/native";
 import { RectButton } from "react-native-gesture-handler";
+import {
+  useNavigation,
+  useFocusEffect,
+  useRoute,
+} from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
-import Modal from "../../components/modal/ModalItem"
+import Modal from "../../components/modal/ModalItem";
+import { dataModules } from "../../lib/DataAddItem";
 import { styles } from "./styles";
 
 export default function Modules() {
+  const navigation = useNavigation();
+
   //Constante do Modal
   const [modal, setModal] = useState(false);
 
@@ -166,15 +174,13 @@ export default function Modules() {
   }
 
   function Carousel() {
-    setModal(true);
-
-    if(modal === true) {
-      setModal(false);
-    } else {
-      setModal(true)
-    }
+    navigation.navigate("Index", {
+      screen: "Index",
+      id: 2,
+      data: dataModules,
+    });
   }
-  
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -255,6 +261,9 @@ export default function Modules() {
           {/*Legenda da área de "últimos itens adicionados"*/}
           <View style={styles.listProdutos}>
             <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
+            <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
+              <FontAwesome name="question-circle" size={30} color="#4B7DFE" />
+            </TouchableOpacity>
           </View>
 
           {/*Lista de produtos*/}
@@ -273,7 +282,7 @@ export default function Modules() {
                   >
                     <Text style={styles.CodProd}>{item.produto}</Text>
                     <View style={styles.infosProd}>
-                    <Text>{item.local} </Text>
+                      <Text>{item.local} </Text>
                       {!item.dtalteracao ? (
                         <>
                           <Text>{item.date}</Text>

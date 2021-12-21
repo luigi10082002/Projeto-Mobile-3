@@ -4,13 +4,13 @@ import {
   View,
   TouchableOpacity,
   Image,
-  ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
 import { AntDesign, Entypo, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import Infos from "../../components/Infos";
+import dataHome from "../../lib/DataHome";
 import { styles } from "./styles"
 
 function Home() {
@@ -21,25 +21,30 @@ function Home() {
 
   //Navegação para a tela de adicionar produto
   function NewProduto() {
-    navigation.navigate("Modules");
+    navigation.navigate("Modules", { 
+      screen: "Modules",
+      id: "2",
+    });
   }
 
   //Navegação para a tela de histórico
   function Historic() {
-    navigation.navigate("Historic");
+    navigation.navigate("Historic", {
+      screen: "Historic",
+      id: "3",
+    });
   }
 
   function Carousel() {
-    navigation.navigate("Index");
-/*
-    setModal(true);
+    navigation.navigate("Index", {
+      screen: "Index",
+      id: 1,
+      data: dataHome
+    });
+  }
 
-    if(modal === true) {
-      setModal(false);
-    } else {
-      setModal(true)
-    }
-    */
+  function teste() {
+    console.log(dataHome);
   }
 
   return (

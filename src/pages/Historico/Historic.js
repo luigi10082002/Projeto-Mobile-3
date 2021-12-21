@@ -18,12 +18,15 @@ import Animated, {
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { useFocusEffect } from "@react-navigation/native";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
 import Modal from "../../components/modal/ModalItem";
 import { styles } from "./styles"
 
 export default function Historic() {
+  const navigation = useNavigation();
+
   //Constante do Modal
   const [modal, setModal] = useState(false);
 
@@ -113,6 +116,10 @@ export default function Historic() {
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
   });
+
+  function Carousel() {
+    navigation.navigate("Index");
+  }
   
   return (
     <View style={styles.container}>
@@ -148,7 +155,7 @@ export default function Historic() {
         <Animated.View
           style={{
             alignSelf: "center",
-            height: "83%",
+            height: "84%",
             width: "100%",
             marginTop: "7%"
           }}
@@ -212,6 +219,7 @@ export default function Historic() {
             />
           </View>
         </Animated.View>
+        
       </KeyboardAvoidingView>
       <Modal
         show={modal}
@@ -220,6 +228,11 @@ export default function Historic() {
         date={vDate}
         hora={vHora}
       />
+      <View style={styles.Info}>
+        <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
+          <FontAwesome name="question-circle" size={35} color="#4B7DFE" />
+        </TouchableOpacity>      
+      </View>
     </View>
   );
 }

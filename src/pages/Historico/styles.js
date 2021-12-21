@@ -58,6 +58,14 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: '90%',
   },
+  Info: {
+    position: "absolute",
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    marginTop: 757,
+    width: 50,
+    height: 45,
+  },
   //CSS Texts
   textCod: {
     fontSize: 15,
@@ -87,6 +95,13 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  /*
+  ButtonInfos: {
+    backgroundColor: '#0ff',
+    width: '10%',
+    height: '10%',
+  },
+  */
   //CSS Inputs
   input: {
     backgroundColor: COLORS.Gray_Primary,

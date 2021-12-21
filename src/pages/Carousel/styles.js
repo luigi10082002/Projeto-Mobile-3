@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 
 import { COLORS } from "../../components/Colors";
 
-export const styles = StyleSheet.create({  container: {
+export const styles = StyleSheet.create({  
+  container: {
     position: 'absolute',
     alignSelf: 'center',
     width: "100%",
@@ -28,8 +29,10 @@ export const styles = StyleSheet.create({  container: {
     backgroundColor: COLORS.Blue,
     width: "7%",
   },
-  back: {
-    fontSize: 20,
-    backgroundColor: '#f0f'
-  }
+  Skip: {
+    marginLeft: '5%',
+  },
+  GoHome: {
+    marginRight: '5%',
+  },
 })

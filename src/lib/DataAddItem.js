@@ -1,10 +1,10 @@
-const data =
+export const dataModules =
 [
   {
     id: '1',
     title: "Adicionar Item",
     text: "A tela de adicionar item permite a adição de novos itens ao invéntário, sendo obrigarório o campo de código",
-    img: require("../../assets/assetsInfos/Home/Screenshot_20211216-094433_2.png")
+    img: require("../../assets/assetsInfos/index.png")
   },
   {
     id: '2',
@@ -13,5 +13,3 @@ const data =
     img: require("../../assets/assetsInfos/Home/Screenshot_20211216-094433_2.png")
   },
 ]
-
-export default data
