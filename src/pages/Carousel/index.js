@@ -4,9 +4,6 @@ import { FontAwesome } from "@expo/vector-icons";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
 
-import { Pages } from "../../lib/Pages";
-import dataHome from "../../lib/DataHome";
-
 import { styles } from "./styles";
 
 export default function Index() {

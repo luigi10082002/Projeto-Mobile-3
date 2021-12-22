@@ -2,9 +2,11 @@ import React, { useState, useEffect, useCallback } from "react";
 import { View, StyleSheet, Alert, AsyncStorage, Text, TouchableOpacity } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 
 import api from "../../service/api";
-import { COLORS } from "../../components/Colors";
+import { styles } from "./styles";
+import dataHome from "../../lib/DataHome";
 
 export default function LoginProxy() {
   //client/ProxyERP
@@ -86,33 +88,26 @@ export default function LoginProxy() {
     return <Text>No access to camera</Text>;
   }
 
+  function Carousel() {
+    navigation.navigate("Index", {
+      screen: "Index",
+      id: 1,
+      data: dataHome
+    });
+  }
+
   return (
     <View style={styles.container}>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
+
+      <View style={styles.Info}>
+        <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
+          <FontAwesome name="question-circle" size={35} color="#4B7DFE" />
+        </TouchableOpacity>      
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  //CSS Views
-  container: {
-    flex: 1,
-  },
-  Itens: {
-    width: "70%",
-    height: "2%",
-    marginTop: "25%",
-    position: "absolute",
-    alignSelf: "center",
-  },
-  //CSS Texts
-  text: {
-    color: COLORS.Red,
-    alignSelf: "center",
-    fontSize: 18,
-    fontFamily: "Rajdhani_600SemiBold",
-  },
-});
