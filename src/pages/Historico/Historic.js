@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
   FlatList,
   AsyncStorage,
   TextInput,
@@ -21,9 +20,8 @@ import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
-import dataHome from "../../lib/DataHome";
 import Modal from "../../components/modal/ModalItem";
-import { styles } from "./styles"
+import { styles } from "./styles";
 
 export default function Historic() {
   const navigation = useNavigation();
@@ -46,6 +44,8 @@ export default function Historic() {
 
   const [list, setList] = useState(); //Lista a ser renderizada
 
+  const [status, setStatus] = useState("");
+
   const setDataHora = () => {
     const date =
       new Date().getDate() +
@@ -66,6 +66,10 @@ export default function Historic() {
   };
 
   useEffect(() => {}, [vDate, vHora, list]);
+
+  useEffect(() => {
+    Verifica();
+  }, [modal]);
 
   //Callback do AsyncStorage dos produtos
   useFocusEffect(
@@ -118,20 +122,16 @@ export default function Historic() {
     scrollY.value = event.contentOffset.y;
   });
 
-  function Carousel() {
-    navigation.navigate("Index", {
-      screen: "Index",
-      id: 1,
-      data: dataHome
-    });
+  function Verifica() {
+    
   }
-  
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <Header title="Histórico" />
+        <Header title="Histórico" id={"3"} />
 
         {/*Input de pesquisa*/}
 
@@ -162,7 +162,7 @@ export default function Historic() {
             alignSelf: "center",
             height: "84%",
             width: "100%",
-            marginTop: "10%"
+            marginTop: "10%",
           }}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingTop: 1 }}
@@ -192,7 +192,7 @@ export default function Historic() {
                 >
                   <View style={styles.card}>
                     <RectButton
-                      style={styles.details}
+                      style={[styles.details, "valido" || "pendente" ? styles.details : styles.detailsInvalid]}
                       onPress={(e) => {
                         setModal(true);
                         setprodItem(item);
@@ -215,7 +215,11 @@ export default function Historic() {
                       </View>
                     </RectButton>
                     <View style={styles.indicator}>
-                    <FontAwesome5 name="angle-double-left" size={30} color="#f00"/>
+                      <FontAwesome5
+                        name="angle-double-left"
+                        size={30}
+                        color="#f00"
+                      />
                     </View>
                   </View>
                 </Swipeable>
@@ -224,7 +228,6 @@ export default function Historic() {
             />
           </View>
         </Animated.View>
-        
       </KeyboardAvoidingView>
       <Modal
         show={modal}
@@ -233,11 +236,6 @@ export default function Historic() {
         date={vDate}
         hora={vHora}
       />
-      <View style={styles.Info}>
-        <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
-          <FontAwesome name="question-circle" size={35} color="#4B7DFE" />
-        </TouchableOpacity>      
-      </View>
     </View>
   );
 }

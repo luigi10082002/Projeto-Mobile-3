@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     marginTop: "5%",
-    height: 64,
+    height: 60,
     width: "90%",
   },
   Qtd: {
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
     marginTop: "5%",
     marginLeft: "5%",
     width: "90%",
-    height: 35,
+    height: 20,
   },
   listItems: {
     alignSelf: "center",
@@ -162,9 +162,5 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
-  },
-  //CSS dos Botões
-  ButtonInfos: {
-    marginLeft: '55%',
-  },
+  }
 });

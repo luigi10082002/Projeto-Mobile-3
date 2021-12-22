@@ -1,12 +1,17 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Feather } from "@expo/vector-icons";
+import { Feather, FontAwesome } from "@expo/vector-icons";
 import { Text, View, StyleSheet } from "react-native";
 //import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
 import { COLORS } from "../components/Colors";
 
-export function Header({ title, action, modelo }) {
+import dataHome from "../lib/DataHome";
+import dataModules from "../lib/DataAddItem";
+import { dataList } from "../lib/DataList";
+import dataSettings from "../lib/DataSettings";
+
+export function Header({ title, action, modelo, id }) {
   const navigation = useNavigation();
 
   function handleGoBack() {
@@ -20,6 +25,36 @@ export function Header({ title, action, modelo }) {
     });
   }
 
+  function Carousel() {
+    //console.log(dataList)
+    
+    if(id === 2) {
+      navigation.navigate("Index", {
+        screen: "Index",
+        id: 2,
+        data: dataModules
+      });
+    } else if(id === '3') {
+      navigation.navigate("Index", {
+        screen: "Index",
+        id: '3',
+        data: dataList
+      });
+    } else if(id === 4) {
+      navigation.navigate("Index", {
+        screen: "Index",
+        id: 4,
+        data: dataSettings
+      });
+    } else {
+      navigation.navigate("Index", {
+        screen: "Index",
+        data: dataHome
+      });
+    }
+    
+  }
+
   return (
     <View style={styles.container}>
       <Feather
@@ -27,10 +62,18 @@ export function Header({ title, action, modelo }) {
         name="arrow-left"
         size={24}
         color={COLORS.White}
-        style={{ marginTop: "15%" }}
+        style={{ marginTop: "12.5%", marginHorizontal: "5%" }}
       />
 
       <Text style={styles.title}>{title}</Text>
+        
+        <FontAwesome
+        name="question-circle"
+        onPress={Carousel}
+        size={25}
+        color="#FFF"
+        style={{ marginTop: "12%" }}
+      />
 
       {action ? <View>{action}</View> : <View style={{ width: 24 }} />}
     </View>
@@ -40,9 +83,9 @@ export function Header({ title, action, modelo }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 85,
+    height: 90,
     //paddingTop: getStatusBarHeight(),
-    paddingHorizontal: 24,
+    //paddingHorizontal: 10,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -54,6 +97,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     color: COLORS.White,
-    marginTop: "15%",
+    marginTop: "12.5%",
   },
 });

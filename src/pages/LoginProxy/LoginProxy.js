@@ -102,12 +102,6 @@ export default function LoginProxy() {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-
-      <View style={styles.Info}>
-        <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
-          <FontAwesome name="question-circle" size={35} color="#4B7DFE" />
-        </TouchableOpacity>      
-      </View>
     </View>
   );
 }

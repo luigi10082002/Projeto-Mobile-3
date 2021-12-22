@@ -9,12 +9,12 @@ export const styles = StyleSheet.create({
   //CSS Views
   Button: {
     width: "85%",
-    height: "15%",
+    height: "10%",
     alignSelf: "center",
   },
   boxButton: {
     width: "85%",
-    height: "15%",
+    height: "10%",
     alignSelf: "center",
   },
   Info: {
@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: "5%",
     marginRight: "5%",
-    width: "35%",
-    height: "5%",
+    width: "45%",
+    height: "7%",
     borderRadius: 15
   },
   //CSS Texts
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     color: COLORS.White,
-    fontSize: 15,
+    fontSize: 17,
     fontFamily: "Rajdhani_600SemiBold",
     marginLeft: "5%",
   },

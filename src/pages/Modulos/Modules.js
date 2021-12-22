@@ -18,12 +18,10 @@ import { RectButton } from "react-native-gesture-handler";
 import {
   useNavigation,
   useFocusEffect,
-  useRoute,
 } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
 import Modal from "../../components/modal/ModalItem";
-import { dataModules } from "../../lib/DataAddItem";
 import { styles } from "./styles";
 
 export default function Modules() {
@@ -36,9 +34,10 @@ export default function Modules() {
   const [scanned, setScanned] = useState(true);
 
   //Constantes que armazenam os dados dos produto
-  const [qtd, setQtd] = useState(1);
+  const [qtd, setQtd] = useState(0);
   const [codigo, setCodigo] = useState("");
   const [local, setLocal] = useState("");
+  const [status, setStatus] = useState("");
 
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);
@@ -105,7 +104,7 @@ export default function Modules() {
   //Lógica do scanner
   async function handleBarCodeScanned({ data }) {
     setCodigo(data);
-    setQtd(1);
+    setQtd(0);
     setScanned(true);
   }
 
@@ -126,10 +125,11 @@ export default function Modules() {
       date: vDate,
       hora: vHora,
       local: local,
+      status: "valido",
     };
 
     //Verificação se algum campo do produto está vazio
-    if (qtd <= 0 || codigo == "") {
+    if (qtd < 0 || codigo == "") {
       Alert.alert("Erro", "O produto não contem as informações necessárias", [
         {
           text: "OK",
@@ -137,8 +137,10 @@ export default function Modules() {
       ]);
     } else {
       //Adiciona o produto no array
-      if (qtd <= 0) {
-        qtd = 1;
+      if(qtd === 0) {
+        setStatus("pendente")
+      } else {
+        setStatus("valido")
       }
       const storage = await AsyncStorage.getItem("@Produtos");
       const Produto = storage ? JSON.parse(storage) : [];
@@ -167,26 +169,19 @@ export default function Modules() {
       */
 
       setCodigo("");
-      setQtd(1);
+      setQtd(0);
       setLocal("");
       Vibration.vibrate();
     }
+    console.log(status)
   }
-
-  function Carousel() {
-    navigation.navigate("Index", {
-      screen: "Index",
-      id: 2,
-      data: dataModules,
-    });
-  }
-
+  
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <Header title="Contagem de Inventário" />
+        <Header title="Contagem de Inventário" id={2} />
 
         <ScrollView>
           {/*Scanner*/}
@@ -244,7 +239,7 @@ export default function Modules() {
                 onChangeText={setQtd}
                 value={qtd}
                 keyboardType="numeric"
-                placeholder="1"
+                placeholder="0"
                 maxLength={4}
                 textAlign="right"
               />
@@ -261,9 +256,6 @@ export default function Modules() {
           {/*Legenda da área de "últimos itens adicionados"*/}
           <View style={styles.listProdutos}>
             <Text style={styles.textList}>ÚLTIMOS ITENS</Text>
-            <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
-              <FontAwesome name="question-circle" size={30} color="#4B7DFE" />
-            </TouchableOpacity>
           </View>
 
           {/*Lista de produtos*/}

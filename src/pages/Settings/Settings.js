@@ -86,7 +86,7 @@ export default function Settings() {
 
   return (
     <View style={styles.container}>
-      <Header title="Configurações" />
+      <Header title="Configurações" id={4}/>
 
       <View style={styles.boxServer}>
         <TouchableOpacity style={styles.DeleteButton} onPress={setServerERP}>
@@ -110,12 +110,6 @@ export default function Settings() {
         </TouchableOpacity>
       </View>
       <View style={styles.separador}/>
-
-      <View style={styles.Info}>
-        <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
-          <FontAwesome name="question-circle" size={35} color="#4B7DFE" />
-        </TouchableOpacity>      
-      </View>
     </View>
   );
 }

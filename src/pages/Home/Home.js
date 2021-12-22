@@ -17,13 +17,11 @@ function Home() {
   //Constante de navegação
   const navigation = useNavigation();
 
-  const [modal, setModal] = useState(false);
-
   //Navegação para a tela de adicionar produto
   function NewProduto() {
     navigation.navigate("Modules", { 
       screen: "Modules",
-      id: "2",
+      id: '2',
     });
   }
 
@@ -31,26 +29,21 @@ function Home() {
   function Historic() {
     navigation.navigate("Historic", {
       screen: "Historic",
-      id: "3",
+      id: '3',
     });
   }
 
   function Carousel() {
     navigation.navigate("Index", {
       screen: "Index",
-      id: 1,
       data: dataHome
     });
-  }
-
-  function teste() {
-    console.log(dataHome);
   }
 
   return (
     <View style={styles.container}>
 
-    <Image style={{height: '23%', width: '90%', alignSelf: "center", marginTop: '10%'}} source={require('../../../assets/splash.png')} />
+    <Image style={{height: '23%', width: '90%', alignSelf: "center", marginTop: '20%'}} source={require('../../../assets/splash.png')} />
 
       <View style={styles.boxButton}>
         {/*Bootão para adicionar produto */}
@@ -73,7 +66,7 @@ function Home() {
       <View style={styles.Info}>
         <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
           <FontAwesome name="question-circle" size={25} color="#FFF" />
-          <Text style={styles.TextInfos}>Informações</Text>
+          <Text style={styles.TextInfos}>Como Funciona</Text>
         </TouchableOpacity>
       </View>
     </View>

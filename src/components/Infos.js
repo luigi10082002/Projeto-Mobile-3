@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   infos: {
     flexDirection: "row",
     alignSelf: "center",
-    height: 150,
+    height: 120,
     width: "90%",
   },
   boxProdutos: {

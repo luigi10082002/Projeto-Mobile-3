@@ -29,18 +29,14 @@ export default function Index() {
   );
 
   function GoBack() {
-    if(id === 1) {
-      navigation.navigate("Home")
-    } else if(id === 2) {
+    if(id === 2) {
       navigation.navigate("Modules")
     } else if(id === 3) {
       navigation.navigate("Historic")
     } else if(id === 4) {
       navigation.navigate("Settings")
-    } else if(id === 5) {
-      navigation.navigate("LoginProxy")
-    } else if(id === 6) {
-      navigation.navigate("LoginEmail")
+    } else {
+      navigation.navigate("Home")
     }
   }
 

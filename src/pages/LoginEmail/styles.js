@@ -35,14 +35,6 @@ export const styles = StyleSheet.create({
     height: 70,
     marginTop: "6%",
   },
-  Info: {
-    position: "absolute",
-    alignSelf: "flex-end",
-    justifyContent: "center",
-    marginTop: '2%',
-    width: 50,
-    height: 45,
-  },
   //CSS Button
   button: {
     backgroundColor: COLORS.Blue,

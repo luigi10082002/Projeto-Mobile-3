@@ -11,8 +11,11 @@ export const styles = StyleSheet.create({
     marginTop: "10%",
   },
   image: {
-    width: '100%',
-    height: '73%',
+    alignSelf: "center",
+    marginTop: '10%',
+    width: 350,
+    height: 500,
+    borderRadius: 15
   },
   title: {
     paddingTop: '2%',

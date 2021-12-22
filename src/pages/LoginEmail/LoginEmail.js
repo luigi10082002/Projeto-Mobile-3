@@ -125,12 +125,6 @@ export default function LoginEmail() {
 
         <ScrollView>
 
-        <View style={styles.Info}>
-        <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
-          <FontAwesome name="question-circle" size={35} color="#4B7DFE" />
-        </TouchableOpacity>      
-      </View>
-
           <View style={styles.form}>
             <View style={styles.name}>
               <Text style={styles.textName}>Nome</Text>

@@ -58,14 +58,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: '90%',
   },
-  Info: {
-    position: "absolute",
-    alignSelf: "flex-end",
-    justifyContent: "center",
-    marginTop: '33%',
-    width: 50,
-    height: 45,
-  },
   //CSS Texts
   textCod: {
     fontSize: 15,
@@ -91,6 +83,12 @@ export const styles = StyleSheet.create({
   },
   details: {
     backgroundColor: COLORS.Gray_Tertiary,
+    borderRadius: 8,
+    width: "100%",
+    height: "100%",
+  },
+  detailsInvalid: {
+    backgroundColor: COLORS.Red,
     borderRadius: 8,
     width: "100%",
     height: "100%",

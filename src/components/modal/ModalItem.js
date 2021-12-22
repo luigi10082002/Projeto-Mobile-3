@@ -71,7 +71,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
   );
 
   async function Add() {
-    if (qtd <= 0 || codigo == "") {
+    if (qtd < 0 || codigo == "") {
       Alert.alert("Erro", "O produto não contem as informações necessárias", [
         {
           text: "OK",
@@ -84,7 +84,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
 
       const index = Produto.findIndex((element) => element.id == produtos.id);
 
-      if (index >= 0) {
+      if (index >= 0 || qtd === 0) {
         Produto[index].qtd = parseInt(qtd);
         Produto[index].produto = codigo;
         Produto[index].dtalteracao = `${date} - ${hora}`;
