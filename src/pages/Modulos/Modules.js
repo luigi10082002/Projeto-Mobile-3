@@ -173,7 +173,6 @@ export default function Modules() {
       setLocal("");
       Vibration.vibrate();
     }
-    console.log(status)
   }
   
   return (
