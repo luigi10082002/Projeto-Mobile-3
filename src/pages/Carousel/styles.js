@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
   image: {
     alignSelf: "center",
     marginTop: '10%',
-    width: 350,
-    height: 500,
+    width: '90%',
+    height: '68%',
     borderRadius: 15
   },
   title: {
