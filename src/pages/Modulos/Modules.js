@@ -185,7 +185,7 @@ export default function Modules() {
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <Header title="Contagem de Inventário" id={2} />
+        <Header title="Adicionar Item" id={2} />
 
         <ScrollView>
           {/*Scanner*/}

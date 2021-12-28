@@ -124,7 +124,7 @@ export default function Historic() {
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <HeaderSemGuia title="Histórico" id={3} />
+        <HeaderSemGuia title="Itens Listados" id={3} />
 
         {/*Input de pesquisa*/}
 

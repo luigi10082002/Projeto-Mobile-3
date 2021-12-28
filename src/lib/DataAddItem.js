@@ -4,7 +4,7 @@ const dataModules =
     id: '1',
     title: "Adicionar Item",
     text: "Para adicionar um item, primeiro mire sua câmera no código de barras e aperte o botão 'capturar'!",
-    img: require("../../assets/assetsInfos/QR.png")
+    img: require("../../assets/assetsInfos/QR2.png")
   },
   {
     id: '2',

@@ -22,7 +22,7 @@ const dataSettings =
     id: '4',
     title: "Tela inicial",
     text: "Caso você ainda não seja cliente Proxy, conheça nosso ERP! Você também pode receber seu inventário por e-mail clicando em 'Sincronizar Inventário E-mail'.",
-    img: require("../../assets/assetsInfos/email.png")
+    img: require("../../assets/assetsInfos/email2.png")
   },
 ]
 

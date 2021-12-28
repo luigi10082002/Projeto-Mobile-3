@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     fontFamily: "Rajdhani_600SemiBold",
     flex: 1,
     textAlign: "center",
+    marginRight: "5%",
     fontSize: 20,
     color: COLORS.White,
     marginTop: "12.5%",
@@ -148,8 +149,8 @@ const estilo = StyleSheet.create({
   title: {
     fontFamily: "Rajdhani_600SemiBold",
     flex: 1,
-    marginLeft: "25%",
-    //textAlign: "center",
+    textAlign: "center",
+    marginRight: "10%",
     fontSize: 20,
     color: COLORS.White,
     marginTop: "12.5%",

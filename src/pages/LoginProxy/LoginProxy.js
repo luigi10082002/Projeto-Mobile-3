@@ -7,6 +7,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import api from "../../service/api";
 import { styles } from "./styles";
 import dataHome from "../../lib/DataHome";
+import { HeaderSemGuia } from "../../components/Header";
 
 export default function LoginProxy() {
   //client/ProxyERP
@@ -88,16 +89,9 @@ export default function LoginProxy() {
     return <Text>No access to camera</Text>;
   }
 
-  function Carousel() {
-    navigation.navigate("Index", {
-      screen: "Index",
-      id: 1,
-      data: dataHome
-    });
-  }
-
   return (
     <View style={styles.container}>
+
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}

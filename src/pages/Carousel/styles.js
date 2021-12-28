@@ -14,8 +14,9 @@ export const styles = StyleSheet.create({
     borderRadius: 15
   },
   text: {
+    width: '90%',
+    marginLeft: '5%',
     marginTop: '5%',
-    paddingHorizontal: "5%",
     fontSize: 14,
     alignContent: "center",
   },
