@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   listItems: {
     alignSelf: "center",
-    height: "77%",
+    height: "64%",
     width: "90%",
   },
   delete: {

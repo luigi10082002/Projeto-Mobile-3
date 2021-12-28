@@ -125,23 +125,19 @@ export default function Modules() {
       date: vDate,
       hora: vHora,
       local: local,
-      status: "valido",
+      status: status,
     };
 
     //Verificação se algum campo do produto está vazio
-    if (qtd < 0 || codigo == "") {
+    if (codigo == "") {
       Alert.alert("Erro", "O produto não contem as informações necessárias", [
         {
           text: "OK",
         },
       ]);
     } else {
+     
       //Adiciona o produto no array
-      if(qtd === 0) {
-        setStatus("pendente")
-      } else {
-        setStatus("valido")
-      }
       const storage = await AsyncStorage.getItem("@Produtos");
       const Produto = storage ? JSON.parse(storage) : [];
 
@@ -168,6 +164,7 @@ export default function Modules() {
       ]);
       */
 
+      Verificar();
       setCodigo("");
       setQtd(0);
       setLocal("");
@@ -175,6 +172,14 @@ export default function Modules() {
     }
   }
   
+  function Verificar() {
+    if(qtd > 0) {
+      return setStatus(true)
+    } else {
+      return setStatus(false)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView

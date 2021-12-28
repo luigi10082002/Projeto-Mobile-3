@@ -4,29 +4,20 @@ import { COLORS } from "../../components/Colors";
 
 export const styles = StyleSheet.create({  
   container: {
-    position: 'absolute',
-    alignSelf: 'center',
-    width: "100%",
-    height: "95%",
-    marginTop: "10%",
+    flex: 1
   },
   image: {
     alignSelf: "center",
-    marginTop: '10%',
+    marginTop: '8%',
     width: '90%',
     height: '68%',
     borderRadius: 15
   },
-  title: {
-    paddingTop: '2%',
-    paddingBottom: '2%',
-    paddingLeft: '3%',
-    fontSize: 23,
-    fontWeight: 'bold',
-  },
   text: {
+    marginTop: '5%',
+    paddingHorizontal: "5%",
     fontSize: 14,
-    marginHorizontal: '3%'
+    alignContent: "center",
   },
   active: {
     backgroundColor: COLORS.Blue,

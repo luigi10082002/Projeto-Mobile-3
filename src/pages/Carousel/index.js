@@ -42,13 +42,14 @@ export default function Index() {
 
   function Render({ item  }) {
     return(
-      <View>
+      <View style={styles.container}>
         <Image
           style={styles.image}
           source={item.img}
         />
-        <Text style={styles.title}>{item.title}</Text>
+        <View style={styles.textView}>
         <Text style={styles.text}>{item.text}</Text>
+        </View>
       </View>
     )
   }

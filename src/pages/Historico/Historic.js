@@ -8,6 +8,7 @@ import {
   Alert,
   ScrollView,
   KeyboardAvoidingView,
+  TouchableOpacity,
 } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import Animated, {
@@ -19,7 +20,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-import { Header } from "../../components/Header";
+import { HeaderSemGuia } from "../../components/Header";
 import Modal from "../../components/modal/ModalItem";
 import { styles } from "./styles";
 
@@ -34,6 +35,7 @@ export default function Historic() {
 
   //Constante do código do produto
   const [codigo, setCodigo] = useState("");
+  const [status, setStatus] = useState("");
 
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);
@@ -41,10 +43,9 @@ export default function Historic() {
   const [vDate, setDate] = useState("");
 
   const [vHora, setHora] = useState("");
+  const [items, setItems] = useState(0);
 
   const [list, setList] = useState(); //Lista a ser renderizada
-
-  const [status, setStatus] = useState("");
 
   const setDataHora = () => {
     const date =
@@ -66,10 +67,6 @@ export default function Historic() {
   };
 
   useEffect(() => {}, [vDate, vHora, list]);
-
-  useEffect(() => {
-    Verifica();
-  }, [modal]);
 
   //Callback do AsyncStorage dos produtos
   useFocusEffect(
@@ -122,16 +119,12 @@ export default function Historic() {
     scrollY.value = event.contentOffset.y;
   });
 
-  function Verifica() {
-    
-  }
-
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <Header title="Histórico" id={"3"} />
+        <HeaderSemGuia title="Histórico" id={3} />
 
         {/*Input de pesquisa*/}
 
@@ -192,7 +185,7 @@ export default function Historic() {
                 >
                   <View style={styles.card}>
                     <RectButton
-                      style={[styles.details, "valido" || "pendente" ? styles.details : styles.detailsInvalid]}
+                      style={styles.details}
                       onPress={(e) => {
                         setModal(true);
                         setprodItem(item);

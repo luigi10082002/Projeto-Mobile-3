@@ -8,7 +8,6 @@ import { COLORS } from "../components/Colors";
 
 import dataHome from "../lib/DataHome";
 import dataModules from "../lib/DataAddItem";
-import { dataList } from "../lib/DataList";
 import dataSettings from "../lib/DataSettings";
 
 export function Header({ title, action, modelo, id }) {
@@ -25,9 +24,7 @@ export function Header({ title, action, modelo, id }) {
     });
   }
 
-  function Carousel() {
-    //console.log(dataList)
-    
+  function Carousel() {    
     if(id === 2) {
       navigation.navigate("Index", {
         screen: "Index",
@@ -35,24 +32,28 @@ export function Header({ title, action, modelo, id }) {
         data: dataModules
       });
     } else if(id === '3') {
+      return false;
+      /*
       navigation.navigate("Index", {
         screen: "Index",
         id: '3',
         data: dataList
       });
+      */
     } else if(id === 4) {
       navigation.navigate("Index", {
         screen: "Index",
         id: 4,
         data: dataSettings
       });
+    } else if(id === 5) {
+      return false;
     } else {
       navigation.navigate("Index", {
         screen: "Index",
         data: dataHome
       });
     }
-    
   }
 
   return (
@@ -95,6 +96,60 @@ const styles = StyleSheet.create({
     fontFamily: "Rajdhani_600SemiBold",
     flex: 1,
     textAlign: "center",
+    fontSize: 20,
+    color: COLORS.White,
+    marginTop: "12.5%",
+  },
+});
+
+export function HeaderSemGuia({ title, action, modelo }) {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    const tipo = modelo === "" ? "Home" : modelo;
+    const screen = modelo === "Modules" ? "" : modelo === "Produto" ? "" : "";
+
+    navigation.navigate("Home", {
+      id: screen,
+      screen: "Modules",
+      backScreen: "Home",
+    });
+  }
+
+  return (
+    <View style={estilo.container}>
+      <Feather
+        onPress={handleGoBack}
+        name="arrow-left"
+        size={24}
+        color={COLORS.White}
+        style={{ marginTop: "12.5%", marginHorizontal: "5%" }}
+      />
+
+      <Text style={estilo.title}>{title}</Text>
+
+      {action ? <View>{action}</View> : <View style={{ width: 24 }} />}
+    </View>
+  );
+}
+
+
+const estilo = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: 90,
+    //paddingTop: getStatusBarHeight(),
+    //paddingHorizontal: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: COLORS.Blue,
+  },
+  title: {
+    fontFamily: "Rajdhani_600SemiBold",
+    flex: 1,
+    marginLeft: "25%",
+    //textAlign: "center",
     fontSize: 20,
     color: COLORS.White,
     marginTop: "12.5%",

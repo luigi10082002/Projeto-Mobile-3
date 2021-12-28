@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: COLORS.White,
     position: "absolute",
-    height: "35%",
+    height: "45%",
     width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

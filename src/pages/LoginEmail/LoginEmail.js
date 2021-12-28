@@ -12,7 +12,7 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 
-import { Header } from "../../components/Header";
+import { HeaderSemGuia } from "../../components/Header";
 import { styles } from "./styles";
 import api from "../../service/api";
 
@@ -121,7 +121,7 @@ export default function LoginEmail() {
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <Header title="Login" />
+        <HeaderSemGuia title="Login" id={5}/>
 
         <ScrollView>
 
