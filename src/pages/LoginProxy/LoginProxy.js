@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { View, StyleSheet, Alert, AsyncStorage, Text, TouchableOpacity } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import DeviceInfo from 'react-native-device-info';
 
 import api from "../../service/api";
 import { styles } from "./styles";
@@ -24,10 +23,6 @@ export default function LoginProxy() {
     }, [Produto])
   );
 
-  useEffect(() => {
-    IdCelular()
-  })
-
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
     const storage = response ? JSON.parse(response) : [];
@@ -45,10 +40,6 @@ export default function LoginProxy() {
       setHasPermission(status === "granted");
     })();
   }, []);
-
-  function IdCelular() {
-    setId(DeviceInfo.getUniqueId())
-  }
 
   async function handleBarCodeScanned({ data }) {
     setUrl(data);
