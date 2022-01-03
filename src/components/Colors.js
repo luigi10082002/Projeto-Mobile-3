@@ -14,4 +14,5 @@ export const COLORS = {
 
   Black: "#000",
   Black_Secondary: "rgba(0, 0, 0, 0.5)",
+  Black_Tertiary: "rgba(0, 0, 0, 0.1)",
 };

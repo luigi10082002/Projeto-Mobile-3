@@ -6,19 +6,31 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  btnClose: {
+    marginTop: '13%',
+    marginRight: '5%',
+    alignSelf: 'flex-end',
+  },
+  Done: {
+    marginHorizontal: '5%'
+  },
+  Prev: {
+    marginHorizontal: '20%'
+  },
   image: {
     alignSelf: "center",
-    marginTop: '8%',
     width: '90%',
     height: '68%',
     borderRadius: 15
   },
-  text: {
+  textView: {
+    alignSelf: "center",
     width: '90%',
-    marginLeft: '5%',
     marginTop: '5%',
+  },
+  text: {
+    textAlign: 'center',
     fontSize: 14,
-    alignContent: "center",
   },
   active: {
     backgroundColor: COLORS.Blue,

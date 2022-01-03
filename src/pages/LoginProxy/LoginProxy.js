@@ -2,12 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { View, StyleSheet, Alert, AsyncStorage, Text, TouchableOpacity } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
+import DeviceInfo from 'react-native-device-info';
 
 import api from "../../service/api";
 import { styles } from "./styles";
-import dataHome from "../../lib/DataHome";
-import { HeaderSemGuia } from "../../components/Header";
 
 export default function LoginProxy() {
   //client/ProxyERP
@@ -18,12 +16,17 @@ export default function LoginProxy() {
   const [scanned, setScanned] = useState(false);
   const [Produto, setProduto] = useState([]);
   const [Url, setUrl] = useState()
+  const [id, setId] = useState("")
 
   useFocusEffect(
     useCallback(() => {
       loadSpots();
     }, [Produto])
   );
+
+  useEffect(() => {
+    IdCelular()
+  })
 
   async function loadSpots() {
     const response = await AsyncStorage.getItem("@Produtos");
@@ -43,12 +46,17 @@ export default function LoginProxy() {
     })();
   }, []);
 
+  function IdCelular() {
+    setId(DeviceInfo.getUniqueId())
+  }
+
   async function handleBarCodeScanned({ data }) {
     setUrl(data);
     setScanned(true);
 
     const dados = {
-      produtos: Produto,
+      id: id,
+      //produtos: Produto,
     };
 
     await api.post(data, dados);

@@ -119,6 +119,11 @@ export default function Historic() {
     scrollY.value = event.contentOffset.y;
   });
 
+  function Verifica() {
+    console.log(list.toString());
+  }
+  
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView

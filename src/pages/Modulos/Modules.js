@@ -11,7 +11,6 @@ import {
   Vibration,
   ScrollView,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
 import { RectButton } from "react-native-gesture-handler";

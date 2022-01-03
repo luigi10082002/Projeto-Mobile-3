@@ -39,10 +39,15 @@ export default function Index() {
       navigation.navigate("Home")
     }
   }
-
+   
   function Render({ item  }) {
     return(
       <View style={styles.container}>
+        <View styles={styles.close}>
+        <TouchableOpacity style={styles.btnClose} onPress={GoBack}>
+          <FontAwesome name="remove" size={38} color="#f00" />
+        </TouchableOpacity>
+      </View>
         <Image
           style={styles.image}
           source={item.img}
@@ -53,23 +58,33 @@ export default function Index() {
       </View>
     )
   }
+
   return(
     <View style={styles.container}>
+
       <AppIntroSlider
         renderItem={Render}
         data={info}
         activeDotStyle={styles.active}
-        showSkipButton={true}
-        renderSkipButton={() => 
-          <View style={styles.Skip}>
-            <FontAwesome name="check-square-o" size={35} color="#4B7DFE"/>
+
+        showDoneButton={true}
+        showNextButton={true}
+        showPrevButton={true}
+
+        renderDoneButton={() =>
+          <View style={styles.Done}>
+            <TouchableOpacity onPress={GoBack}>
+              <FontAwesome name="check" size={38} color="#4B7DFE" />
+            </TouchableOpacity>
           </View>
         }
-        showDoneButton={true}
-        renderDoneButton={() => 
-          <TouchableOpacity style={styles.GoHome} onPress={GoBack}>
-            <FontAwesome name="sign-out" size={35} color="#4B7DFE"/>
-          </TouchableOpacity>
+
+        renderNextButton={() =>
+          <FontAwesome name="chevron-right" size={38} color="#4B7DFE" style={styles.Done}/>
+        }
+
+        renderPrevButton={() =>
+          <FontAwesome name="chevron-left" size={38} color="#4B7DFE" style={styles.Prev}/>
         }
       />
     </View>

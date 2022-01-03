@@ -37,8 +37,8 @@ export default function LoginEmail() {
 
   useEffect(() => {
     const numero = telefone.replace(/\D/g, "");
-    // (11)1111-1111
-    const DDD = numero.replace(/^(\d{2})(\d)/g, "($1)$2");
+    // (11) 1111-1111
+    const DDD = numero.replace(/^(\d{2})(\d)/g, "($1) $2");
     const final = DDD.replace(/(\d)(\d{4})$/, "$1-$2");
     setTelefone(final);
   }, [telefone]);
