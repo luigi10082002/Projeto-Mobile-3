@@ -40,13 +40,22 @@ function Home() {
     });
   }
 
+  function Login() {
+    navigation.navigate("LoginProxy")
+  }
+
   return (
     <View style={styles.container}>
 
-    <Image style={{height: '23%', width: '90%', alignSelf: "center", marginTop: '20%'}} source={require('../../../assets/splash.png')} />
+    <Image style={{height: '15%', width: '90%', alignSelf: "center", marginTop: '15%'}} source={require('../../../assets/splash.png')} />
+
+    <Text style={styles.TextTitle}>Inventário de Estoque</Text>
+
+    <View style={styles.separador}/>
 
       <View style={styles.boxButton}>
         {/*Bootão para adicionar produto */}
+        <Text style={styles.Legenda}>Inicie ou continue o inventário em andamento</Text>
         <TouchableOpacity style={styles.ButtonAdd} onPress={NewProduto}>
           <Entypo name="plus" size={35} color="#FFF" />
           <Text style={styles.TextADD}>ADICIONAR ITEM</Text>
@@ -57,15 +66,27 @@ function Home() {
 
       <View style={styles.Button}>
         {/*Botão que leva ao histórico*/}
+        <Text style={styles.LegendaHistorico}>Pesquise e edite produtos já contados</Text>
         <TouchableOpacity style={styles.ButtonHistoric} onPress={Historic}>
           <AntDesign name="clockcircleo" size={20} color="#FFF" />
-          <Text style={styles.TextList}>ITENS LISTADOS</Text>
+          <Text style={styles.TextList}>ITENS CONTADOS</Text>
         </TouchableOpacity>
       </View>
 
+      <View style={styles.separadorDown}/>
+
       <View style={styles.Info}>
+        <TouchableOpacity style={styles.ButtonLogin} onPress={Login}>
+        <View style={styles.IconLogin}>
+          <AntDesign name="sync" size={20} color="#FFF" />
+          </View>
+          <Text style={styles.TextInfos}>Inventário proxy ERP</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
-          <FontAwesome name="question-circle" size={25} color="#FFF" />
+          <View style={styles.IconQuestion}>
+            <FontAwesome name="question-circle" size={25} color="#FFF"/>
+          </View>
           <Text style={styles.TextInfos}>Como Funciona</Text>
         </TouchableOpacity>
       </View>

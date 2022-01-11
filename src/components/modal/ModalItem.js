@@ -9,7 +9,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   AsyncStorage,
-  StyleSheet
+  StyleSheet,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
@@ -132,6 +132,10 @@ export default function Modal({ show, close, produtos, date, hora }) {
             ebehavior={Platform.OS === "ios" ? "padding" : "height"}
           >
             <View style={styles.header}>
+              <TouchableOpacity style={styles.Back} onPress={close}>
+                <AntDesign name="arrowleft" size={30} color="#fff" />
+              </TouchableOpacity>
+
               <Text style={styles.textHeader}>Edição de Produto</Text>
             </View>
 
@@ -167,11 +171,13 @@ export default function Modal({ show, close, produtos, date, hora }) {
               </TouchableOpacity>
             </View>
 
-            <View style={styles.buttonClose}>
-              <TouchableOpacity style={styles.Close} onPress={close}>
-                <AntDesign name="closecircleo" size={40} color='#f00' />
-              </TouchableOpacity>
-            </View>
+            {/*
+              <View style={styles.buttonClose}>
+                <TouchableOpacity style={styles.Close} onPress={close}>
+                  <AntDesign name="closecircleo" size={40} color='#f00' />
+                </TouchableOpacity>
+              </View>
+            */}
           </KeyboardAvoidingView>
         </View>
       </Animated.View>
@@ -194,11 +200,11 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: COLORS.White,
     position: "absolute",
-    height: "45%",
+    height: "38%",
     width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    bottom: 0
+    bottom: 0,
   },
   info: {
     flexDirection: "row",
@@ -222,9 +228,9 @@ const styles = StyleSheet.create({
     height: 50,
   },
   header: {
+    flexDirection: "row",
     backgroundColor: COLORS.Blue,
     alignItems: "center",
-    justifyContent: "center",
     height: "20%",
     width: "100%",
     borderTopLeftRadius: 20,
@@ -259,7 +265,7 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     fontFamily: "Rajdhani_600SemiBold",
-    textAlign: "center",
+    marginLeft: "15%",
     fontSize: 20,
     color: COLORS.White,
   },
@@ -287,5 +293,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 8,
+  },
+  Back: {
+    marginLeft: "5%",
   },
 });

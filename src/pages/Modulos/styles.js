@@ -69,16 +69,19 @@ export const styles = StyleSheet.create({
   card: {
     flex: 1,
     backgroundColor: COLORS.Gray_Tertiary,
+    justifyContent: "center",
     flexDirection: "row",
     alignSelf: "center",
     borderRadius: 8,
     marginBottom: "2%",
-    height: 68,
+    height: 60,
     width: "100%",
   },
   infosProd: {
     flexDirection: "row",
+    //CSS que torna as informações do item uma linha
     marginLeft: "5%",
+    marginTop: "6%",
   },
   details: {
     width: "100%",
@@ -117,7 +120,10 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
     marginLeft: "5%",
-    marginTop: "5%",
+    //marginTop: "5%",
+  },
+  ProdCod:{
+    fontWeight: "bold",
   },
   buttonText: {
     fontSize: 18,
@@ -162,5 +168,13 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
-  }
+  },
+  View: {
+    flexDirection: "row",
+  },
+  LegendaLocal: {
+    fontFamily: "Rajdhani_600SemiBold",
+    fontSize: 16,
+    marginTop: "0.5%",
+  },
 });

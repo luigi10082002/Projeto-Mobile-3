@@ -8,25 +8,23 @@ export const styles = StyleSheet.create({
   },
   //CSS Views
   Button: {
-    width: "85%",
+    width: "75%",
     height: "10%",
     alignSelf: "center",
   },
   boxButton: {
-    width: "85%",
+    marginTop: "5%",
+    width: "75%",
     height: "10%",
     alignSelf: "center",
   },
   Info: {
     flexDirection: 'row',
-    backgroundColor: COLORS.Blue,
-    alignSelf: 'flex-end',
+    alignSelf: "center",
     justifyContent: 'center',
     marginTop: "5%",
-    marginRight: "5%",
-    width: "45%",
-    height: "7%",
-    borderRadius: 15
+    width: "90%",
+    height: "5%",
   },
   //CSS Texts
   TextBold: {
@@ -48,9 +46,14 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     color: COLORS.White,
-    fontSize: 17,
+    fontSize: 15,
     fontFamily: "Rajdhani_600SemiBold",
     marginLeft: "5%",
+  },
+  TextTitle: {
+    alignSelf: "center",
+    fontFamily: "Rajdhani_600SemiBold",
+    fontSize: 23,
   },
   //CSS Buttons
   ButtonAdd: {
@@ -72,7 +75,59 @@ export const styles = StyleSheet.create({
     borderRadius: 9,
   },
   ButtonInfos: {
+    backgroundColor: COLORS.Blue,
     flexDirection: "row",
     alignItems: "center",
+    marginLeft: "5%",
+    height: "130%",
+    width: "42%",
+    borderRadius: 15,
+  },
+  ButtonLogin: {
+    backgroundColor: COLORS.Blue,
+    flexDirection: "row",
+    alignItems: "center",
+    height: "130%",
+    width: "53%",
+    borderRadius: 15,
+  },
+  //CSS Icons
+  IconQuestion: {
+    marginLeft: "5%",
+  },
+  IconLogin: {
+    marginLeft: "5%",
+  },
+  separador:{
+    backgroundColor: COLORS.Black,
+    alignSelf: "center",
+    marginTop: "5%",
+    height: '0.1%',
+    width: '90%',
+  },
+  separadorDown:{
+    backgroundColor: COLORS.Black,
+    alignSelf: "center",
+    marginTop: "13%",
+    height: '0.1%',
+    width: '90%',
+  },
+  Legenda: {
+    alignSelf: "center",
+    textAlign: "center",
+    fontFamily: "Rajdhani_600SemiBold",
+    width: "105%"
+  },
+  LegendaHistorico: {
+    alignSelf: "center",
+    textAlign: "center",
+    fontFamily: "Rajdhani_600SemiBold",
+    marginTop: "5%",
+    width: "85%"
+  },
+  LegendaQr: {
+    fontFamily: "Rajdhani_600SemiBold",
+    marginTop: "5%",
+    marginLeft: "7%",
   },
 })

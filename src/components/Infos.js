@@ -41,18 +41,24 @@ export default function Infos() {
   }
 
   return (
+    <>
+    <Text style={styles.Legenda}>Informações do inventário em andamento</Text>
     <SafeAreaView style={styles.infos}>
       <View style={styles.boxProdutos}>
+        <View style={styles.header}>
         <Text style={styles.TextProd}>Total de Produtos</Text>
+        </View>
         <Text style={styles.TextNumber}>{Produto.length}</Text>
       </View>
 
       <View style={styles.boxTotal}>
-        <Text style={styles.TextProdutos}>Quantidade de</Text>
-        <Text style={styles.TextItens}>Itens</Text>
+        <View style={styles.header}>
+        <Text style={styles.TextProdutos}>Qtd. de Itens contados</Text>
+        </View>
         <Text style={styles.TextNumber}>{items}</Text>
       </View>
     </SafeAreaView>
+    </>
   );
 }
 
@@ -61,27 +67,25 @@ const styles = StyleSheet.create({
   infos: {
     flexDirection: "row",
     alignSelf: "center",
-    height: 120,
-    width: "90%",
+    height: 70,
+    width: "80%",
   },
   boxProdutos: {
     backgroundColor: COLORS.Gray_Primary,
     alignItems: "center",
     alignSelf: "center",
-    justifyContent: "center",
     marginLeft: "3%",
     width: "45%",
-    height: "75%",
+    height: "100%",
     borderRadius: 8,
   },
   boxTotal: {
     backgroundColor: COLORS.Gray_Primary,
     alignItems: "center",
     alignSelf: "center",
-    justifyContent: "center",
     marginLeft: "4%",
     width: "45%",
-    height: "75%",
+    height: "100%",
     borderRadius: 8,
   },
   //CSS Texts
@@ -94,18 +98,28 @@ const styles = StyleSheet.create({
   TextProdutos: {
     alignSelf: "center",
     marginTop: "5%",
-    fontSize: 18,
+    fontSize: 13,
     fontFamily: "Rajdhani_600SemiBold",
   },
   TextProd: {
     alignSelf: "center",
     marginTop: "6%",
-    fontSize: 18,
+    fontSize: 13,
     fontFamily: "Rajdhani_600SemiBold",
   },
-  TextItens: {
-    alignSelf: "center",
-    fontSize: 18,
+  header: {
+    backgroundColor: COLORS.Gray_Quaternary,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    width: "100%",
+    height: "35%",
+  },
+  Legenda: {
     fontFamily: "Rajdhani_600SemiBold",
+    textAlign: "center",
+    alignSelf: "center",
+    height: "auto",
+    width: "73%",
+    marginTop: "9%"
   },
 });

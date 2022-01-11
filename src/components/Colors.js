@@ -11,6 +11,7 @@ export const COLORS = {
   Gray_Primary: "#DCDCDC",
   Gray_Secondary: "#696969",
   Gray_Tertiary: "#D3D3D3",
+  Gray_Quaternary: "#A9A9A9",
 
   Black: "#000",
   Black_Secondary: "rgba(0, 0, 0, 0.5)",

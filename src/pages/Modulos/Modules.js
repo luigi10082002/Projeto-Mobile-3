@@ -14,10 +14,7 @@ import {
 import { BarCodeScanner } from "expo-barcode-scanner";
 import uuid from "react-native-uuid";
 import { RectButton } from "react-native-gesture-handler";
-import {
-  useNavigation,
-  useFocusEffect,
-} from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { Header } from "../../components/Header";
 import Modal from "../../components/modal/ModalItem";
@@ -135,7 +132,6 @@ export default function Modules() {
         },
       ]);
     } else {
-     
       //Adiciona o produto no array
       const storage = await AsyncStorage.getItem("@Produtos");
       const Produto = storage ? JSON.parse(storage) : [];
@@ -166,16 +162,15 @@ export default function Modules() {
       Verificar();
       setCodigo("");
       setQtd(0);
-      setLocal("");
       Vibration.vibrate();
     }
   }
-  
+
   function Verificar() {
-    if(qtd > 0) {
-      return setStatus(true)
+    if (qtd > 0) {
+      return setStatus(true);
     } else {
-      return setStatus(false)
+      return setStatus(false);
     }
   }
 
@@ -187,6 +182,25 @@ export default function Modules() {
         <Header title="Adicionar Item" id={2} />
 
         <ScrollView>
+          <View style={styles.Infos}>
+            <View style={styles.Local}>
+              <View style={styles.View}>
+                <Text style={styles.textLocal}>Local</Text>
+                <Text style={styles.LegendaLocal}>
+                  {" "}
+                  (digite o local do inventário)
+                </Text>
+              </View>
+              <TextInput
+                style={styles.labelLocal}
+                autoCorrect={false}
+                onChangeText={setLocal}
+                value={local}
+                placeholder="Local"
+                textAlign="right"
+              />
+            </View>
+          </View>
           {/*Scanner*/}
           <View style={styles.scanner}>
             <BarCodeScanner
@@ -206,22 +220,12 @@ export default function Modules() {
           </View>
 
           <View style={styles.Infos}>
-            <View style={styles.Local}>
-              <Text style={styles.textLocal}>Local</Text>
-              <TextInput
-                style={styles.labelLocal}
-                autoCorrect={false}
-                onChangeText={setLocal}
-                value={local}
-                placeholder="Local"
-                textAlign="right"
-              />
-            </View>
-          </View>
-
-          <View style={styles.Infos}>
             <View style={styles.Cod}>
-              <Text style={styles.textCod}>Código</Text>
+              <View style={styles.View}>
+                <Text style={styles.textCod}>Código</Text>
+                <Text style={{ color: "#f00", fontSize: 15 }}>*</Text>
+              </View>
+              <View style={styles.View}></View>
               <TextInput
                 style={styles.labelCod}
                 autoCorrect={false}
@@ -235,7 +239,10 @@ export default function Modules() {
             </View>
 
             <View style={styles.Qtd}>
-              <Text style={styles.textQtd}>Quantidade</Text>
+              <View style={styles.View}>
+                <Text style={styles.textQtd}>Quantidade</Text>
+                <Text style={{ color: "#f00", fontSize: 15}}>*</Text>
+              </View>
               <TextInput
                 style={styles.labelQtd}
                 autoCorrect={false}
@@ -275,8 +282,9 @@ export default function Modules() {
                       setprodItem(item);
                     }}
                   >
-                    <Text style={styles.CodProd}>{item.produto}</Text>
+                    {/*<Text style={styles.CodProd}>{item.produto}</Text>*/}
                     <View style={styles.infosProd}>
+                      <Text style={styles.CodProd}>{item.produto} </Text>
                       <Text>{item.local} </Text>
                       {!item.dtalteracao ? (
                         <>
