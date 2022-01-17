@@ -73,9 +73,7 @@ export default function Modules() {
     const hora =
       new Date().getHours() +
       ":" +
-      new Date().getMinutes() +
-      ":" +
-      new Date().getSeconds();
+      new Date().getMinutes()
 
     setDate(date);
     setHora(hora);
@@ -186,10 +184,7 @@ export default function Modules() {
             <View style={styles.Local}>
               <View style={styles.View}>
                 <Text style={styles.textLocal}>Local</Text>
-                <Text style={styles.LegendaLocal}>
-                  {" "}
-                  (digite o local do inventário)
-                </Text>
+                <Text style={styles.LegendaLocal}> (digite o local do inventário)</Text>
               </View>
               <TextInput
                 style={styles.labelLocal}
@@ -198,6 +193,7 @@ export default function Modules() {
                 value={local}
                 placeholder="Local"
                 textAlign="right"
+                maxLength={10}
               />
             </View>
           </View>
@@ -250,7 +246,7 @@ export default function Modules() {
                 value={qtd}
                 keyboardType="numeric"
                 placeholder="0"
-                maxLength={4}
+                maxLength={5}
                 textAlign="right"
               />
             </View>
@@ -282,21 +278,28 @@ export default function Modules() {
                       setprodItem(item);
                     }}
                   >
-                    {/*<Text style={styles.CodProd}>{item.produto}</Text>*/}
-                    <View style={styles.infosProd}>
-                      <Text style={styles.CodProd}>{item.produto} </Text>
-                      <Text>{item.local} </Text>
-                      {!item.dtalteracao ? (
+                    <View style={styles.Destaque}>
+                    {!item.novolocal ? (
                         <>
-                          <Text>{item.date}</Text>
-                          <Text> {item.hora}</Text>
+                          <Text style={styles.CodProd}>{item.local}</Text>
                         </>
                       ) : (
-                        <Text>{item.dtalteracao}</Text>
+                        <Text style={styles.CodProd}> {item.novolocal}</Text>
                       )}
-                      <Text> - </Text>
-                      <Text>{item.qtd} </Text>
-                      <Text>unidade(s)</Text>
+                    <View style={styles.infosProd}>
+                      <Text> {item.produto} </Text>
+                      {!item.dtalteracao ? (
+                        <>
+                          <Text style={styles.DataHora}> {item.date}</Text>
+                          <Text style={styles.DataHora}> {item.hora}</Text>
+                        </>
+                      ) : (
+                        <Text> {item.dtalteracao}</Text>
+                      )}
+                    </View>
+                    </View>
+                    <View style={styles.DestaqueQtd}>
+                    <Text style={styles.infosProdQtd}>{item.qtd}</Text>
                     </View>
                   </RectButton>
                 </View>
@@ -313,6 +316,7 @@ export default function Modules() {
         close={() => setModal(false)}
         date={vDate}
         hora={vHora}
+        lugar={local}
       />
     </View>
   );

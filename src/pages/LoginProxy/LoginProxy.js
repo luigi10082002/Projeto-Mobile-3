@@ -1,10 +1,19 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { View, StyleSheet, Alert, AsyncStorage, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Alert,
+  AsyncStorage,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import BarcodeMask from 'react-native-barcode-mask';
 
 import api from "../../service/api";
 import { styles } from "./styles";
+import { HeaderSemGuia } from "../../components/Header";
 
 export default function LoginProxy() {
   //client/ProxyERP
@@ -14,8 +23,8 @@ export default function LoginProxy() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [Produto, setProduto] = useState([]);
-  const [Url, setUrl] = useState()
-  const [id, setId] = useState("")
+  const [Url, setUrl] = useState();
+  const [id, setId] = useState("");
 
   useFocusEffect(
     useCallback(() => {
@@ -52,24 +61,28 @@ export default function LoginProxy() {
 
     await api.post(data, dados);
 
-    Alert.alert("Sucesso!", `Os ${Produto.length} produtos foram sincronizados.`, [
-      {
-        text: "Cancelar",
-        style: "Cancel",
-        onPress: async () => {
-          GoHome();
-        }
-      },
-      {
-        text: "Confirmar",
-        onPress: async () => {
-          GoHome();
+    Alert.alert(
+      "Sucesso!",
+      `Os ${Produto.length} produtos foram sincronizados.`,
+      [
+        {
+          text: "Cancelar",
+          style: "Cancel",
+          onPress: async () => {
+            GoHome();
+          },
         },
-      },
-    ]);
+        {
+          text: "Confirmar",
+          onPress: async () => {
+            GoHome();
+          },
+        },
+      ]
+    );
   }
 
-  useEffect(() => {
+  {/*useEffect(() => {
     Alert.alert(
       "Sincronizar",
       `Entre no sistema Proxy ERP e gere o código QR de sincronização de inventário.`,
@@ -79,8 +92,8 @@ export default function LoginProxy() {
         },
       ]
     );
-  }, []);
-  
+  }, []);*/}
+
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;
   }
@@ -90,11 +103,19 @@ export default function LoginProxy() {
 
   return (
     <View style={styles.container}>
+      <HeaderSemGuia title="SINCRONIZAÇÃO PROXY ERP" id={3} />
 
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
+        style={{ height: '100%', width: '100%' }}
+      >
+        <View style={{position: 'absolute', backgroundColor: '#fff', height: 88}}>
+        <Text style={styles.txt}>Entre no sistema Proxy ERP e gere o código QR de sincronização de inventário.</Text>
+        </View>
+
+        <BarcodeMask edgeColor="#62B1F6" showAnimatedLine/>
+
+      </BarCodeScanner>
     </View>
   );
 }

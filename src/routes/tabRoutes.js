@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/Feather";
 
 import Home from "../pages/Home/Home";
 import Settings from "../pages/Settings/Settings";
+import Index from '../pages/Carousel/Home';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,10 @@ export const TabNavi = () => {
 
             case "Settings":
               iconName = "settings";
+              break;
+
+            case "Carousel":
+              iconName = "help-circle";
               break;
           }
 
@@ -41,6 +46,7 @@ export const TabNavi = () => {
     >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen name="Carousel" component={Index} />
     </Tab.Navigator>
   );
 };

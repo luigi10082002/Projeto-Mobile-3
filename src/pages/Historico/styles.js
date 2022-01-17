@@ -41,27 +41,27 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     marginBottom: "2%",
-    height: 75,
+    height: 65,
     width: "100%",
   },
   infos: {
     flexDirection: "row",
+    width: "96%",
     marginLeft: "5%",
   },
   indicator: {
-    width: 'auto',
-    height: 'auto',
+    backgroundColor: COLORS.Red,
+    width: '0.01%',
+    height: '100%',
     position: "absolute",
     borderBottomRightRadius: 8,
     borderTopRightRadius: 8,
-    alignSelf: "center",
     justifyContent: "center",
-    marginLeft: '90%',
+    marginLeft: '98.5%',
   },
   //CSS Texts
   textCod: {
     fontSize: 15,
-    fontWeight: "bold",
     marginLeft: "5%",
     marginTop: "5%",
   },
@@ -72,7 +72,7 @@ export const styles = StyleSheet.create({
   //CSS Buttons
   buttonDelete: {
     alignSelf: "center",
-    marginTop: "25%",
+    marginTop: "17%",
   },
   btn: {
     justifyContent: "center",
@@ -82,6 +82,7 @@ export const styles = StyleSheet.create({
     height: "100%",
   },
   details: {
+    flexDirection: "row",
     backgroundColor: COLORS.Gray_Tertiary,
     borderRadius: 8,
     width: "100%",
@@ -102,4 +103,21 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
     borderTopLeftRadius: 8,
   },
+  Destaque: {
+    width: "75%",
+    height: "100%",
+  },
+  infosProdQtd: {
+    fontSize: 20,
+  },
+  DestaqueQtd: {
+    height: "35%",
+    width: "21%",
+    marginTop: "8.8%",
+    justifyContent: "center",
+    alignItems: "flex-end"
+  },
+  DataHora: {
+    color: COLORS.Gray
+  }
 });

@@ -18,9 +18,10 @@ import { COLORS } from "../Colors";
 
 const { height } = Dimensions.get("window");
 
-export default function Modal({ show, close, produtos, date, hora }) {
+export default function Modal({ show, close, produtos, date, hora, lugar }) {
   const [qtd, setQtd] = useState(1);
   const [codigo, setCodigo] = useState();
+  const [local, setLocal] = useState("");
   const [modal, setModal] = useState(show);
   const [Produto, setProduto] = useState([]);
   const [list, setList] = useState(); //Lista a ser renderizada
@@ -67,6 +68,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
     useCallback(() => {
       setCodigo(produtos.produto);
       setQtd(produtos.qtd);
+      setLocal(produtos.lugar);
     }, [produtos])
   );
 
@@ -87,6 +89,7 @@ export default function Modal({ show, close, produtos, date, hora }) {
       if (index >= 0 || qtd === 0) {
         Produto[index].qtd = parseInt(qtd);
         Produto[index].produto = codigo;
+        Produto[index].novolocal = local;
         Produto[index].dtalteracao = `${date} - ${hora}`;
         await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
       }
@@ -138,6 +141,19 @@ export default function Modal({ show, close, produtos, date, hora }) {
 
               <Text style={styles.textHeader}>Edição de Produto</Text>
             </View>
+
+            <View style={styles.View}>
+              <Text style={styles.textLocal}>Local</Text>
+            </View>
+            <TextInput
+              style={styles.labelLocal}
+              autoCorrect={false}
+              onChangeText={setLocal}
+              value={local}
+              placeholder="Local"
+              textAlign="right"
+              maxLength={10}
+            />
 
             <View style={styles.info}>
               <Text style={styles.textCod}>Código</Text>
@@ -296,5 +312,23 @@ const styles = StyleSheet.create({
   },
   Back: {
     marginLeft: "5%",
+  },
+  View: {
+    flexDirection: "row",
+  },
+  labelLocal :{
+    backgroundColor: COLORS.Gray_Primary,
+    alignSelf: "center",
+    borderRadius: 5,
+    paddingHorizontal: "5%",
+    height: "15%",
+    width: "90%",
+  },
+  textLocal: {
+    fontFamily: "Rajdhani_600SemiBold",
+    height: "auto",
+    width: "auto",
+    fontSize: 20,
+    marginLeft: '5%'
   },
 });

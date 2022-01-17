@@ -35,7 +35,7 @@ export default function Historic() {
 
   //Constante do código do produto
   const [codigo, setCodigo] = useState("");
-  const [status, setStatus] = useState("");
+  const [local, setLocal] = useState("");
 
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);
@@ -122,7 +122,6 @@ export default function Historic() {
   function Verifica() {
     console.log(list.toString());
   }
-  
 
   return (
     <View style={styles.container}>
@@ -196,29 +195,31 @@ export default function Historic() {
                         setprodItem(item);
                       }}
                     >
-                      <Text style={styles.textCod}>{item.produto}</Text>
+                    <View style={styles.Destaque}>
+                      {!item.novolocal ? (
+                        <>
+                          <Text style={styles.textCod}> {item.local}</Text>
+                        </>
+                      ) : (
+                        <Text style={styles.textCod}> {item.novolocal}</Text>
+                      )}
                       <View style={styles.infos}>
-                        <Text>{item.local} </Text>
+                        <Text> {item.produto} </Text>
                         {!item.dtalteracao ? (
                           <>
-                            <Text>{item.date}</Text>
-                            <Text> {item.hora}</Text>
+                            <Text style={styles.DataHora}> {item.date}</Text>
+                            <Text style={styles.DataHora}> {item.hora}</Text>
                           </>
                         ) : (
-                          <Text>{item.dtalteracao}</Text>
+                          <Text> {item.dtalteracao}</Text>
                         )}
-                        <Text> - </Text>
-                        <Text>{item.qtd} </Text>
-                        <Text>unidade(s)</Text>
                       </View>
+                      </View>
+                      <View style={styles.DestaqueQtd}>
+                    <Text style={styles.infosProdQtd}>{item.qtd}</Text>
+                    </View>                    
                     </RectButton>
-                    <View style={styles.indicator}>
-                      <FontAwesome5
-                        name="angle-double-left"
-                        size={30}
-                        color="#f00"
-                      />
-                    </View>
+                    <View style={styles.indicator} />
                   </View>
                 </Swipeable>
               )}
@@ -233,6 +234,7 @@ export default function Historic() {
         close={() => setModal(false)}
         date={vDate}
         hora={vHora}
+        lugar={local}
       />
     </View>
   );

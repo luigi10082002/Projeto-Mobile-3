@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   image: {
     alignSelf: "center",
     width: '90%',
-    height: '61%',
+    height: '60%',
     borderRadius: 15
   },
   textView: {

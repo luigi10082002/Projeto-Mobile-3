@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: "center",
     justifyContent: 'center',
-    marginTop: "5%",
     width: "90%",
     height: "5%",
   },
@@ -48,7 +47,7 @@ export const styles = StyleSheet.create({
     color: COLORS.White,
     fontSize: 15,
     fontFamily: "Rajdhani_600SemiBold",
-    marginLeft: "5%",
+    marginLeft: "6%",
   },
   TextTitle: {
     alignSelf: "center",
@@ -129,5 +128,19 @@ export const styles = StyleSheet.create({
     fontFamily: "Rajdhani_600SemiBold",
     marginTop: "5%",
     marginLeft: "7%",
+  },
+  LegendaSincBtn: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginTop: "5%",
+    width: "90%",
+  },
+  textLegendaERP: {
+    fontFamily: "Rajdhani_600SemiBold",
+    marginLeft: "6%"
+  },
+  textLegendaEMAIL: {
+    fontFamily: "Rajdhani_600SemiBold",
+    marginLeft: "16%"
   },
 })

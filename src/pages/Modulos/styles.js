@@ -74,16 +74,16 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 8,
     marginBottom: "2%",
-    height: 60,
+    height: 55,
     width: "100%",
   },
   infosProd: {
     flexDirection: "row",
-    //CSS que torna as informações do item uma linha
-    marginLeft: "5%",
-    marginTop: "6%",
+    width: "97%",
+    marginLeft: "4%",
   },
   details: {
+    flexDirection: "row",
     width: "100%",
     height: "100%",
     borderRadius: 8,
@@ -118,9 +118,8 @@ export const styles = StyleSheet.create({
   },
   CodProd: {
     fontSize: 15,
-    fontWeight: "bold",
     marginLeft: "5%",
-    //marginTop: "5%",
+    marginTop: '2%'
   },
   ProdCod:{
     fontWeight: "bold",
@@ -129,6 +128,13 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Rajdhani_600SemiBold",
     color: COLORS.White,
+  },
+  DestaqueQtd: {
+    marginTop: '5.2%',
+    width: "21%",
+    height: '50%',
+    justifyContent: "center",
+    alignItems: "flex-end",
   },
   //CSS dos Inputs
   labelQtd: {
@@ -177,4 +183,14 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: "0.5%",
   },
+  infosProdQtd: {
+    fontSize: 18,
+  },
+  Destaque: {
+    width: "75%",
+    height: "100%",
+  },
+  DataHora: {
+    color: COLORS.Gray
+  }
 });

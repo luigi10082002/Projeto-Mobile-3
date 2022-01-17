@@ -34,10 +34,7 @@ function Home() {
   }
 
   function Carousel() {
-    navigation.navigate("Index", {
-      screen: "Index",
-      data: dataHome
-    });
+    navigation.navigate("LoginEmail")
   }
 
   function Login() {
@@ -47,7 +44,7 @@ function Home() {
   return (
     <View style={styles.container}>
 
-    <Image style={{height: '15%', width: '90%', alignSelf: "center", marginTop: '15%'}} source={require('../../../assets/splash.png')} />
+    <Image style={{height: '12%', width: '70%', alignSelf: "center", marginTop: '15%'}} source={require('../../../assets/splash.png')} />
 
     <Text style={styles.TextTitle}>Inventário de Estoque</Text>
 
@@ -75,19 +72,24 @@ function Home() {
 
       <View style={styles.separadorDown}/>
 
+      <View style={styles.LegendaSincBtn}>
+      <Text style={styles.textLegendaERP}>Sincronizar Inventário</Text>
+      <Text style={styles.textLegendaEMAIL}>Exportar Inventário</Text>
+      </View>
+
       <View style={styles.Info}>
         <TouchableOpacity style={styles.ButtonLogin} onPress={Login}>
         <View style={styles.IconLogin}>
-          <AntDesign name="sync" size={20} color="#FFF" />
+          <FontAwesome name="refresh" size={20} color="#FFF" />
           </View>
-          <Text style={styles.TextInfos}>Inventário proxy ERP</Text>
+          <Text style={styles.TextInfos}>Sistema Proxy ERP</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.ButtonInfos} onPress={Carousel}>
           <View style={styles.IconQuestion}>
-            <FontAwesome name="question-circle" size={25} color="#FFF"/>
+            <FontAwesome name="download" size={20} color="#FFF"/>
           </View>
-          <Text style={styles.TextInfos}>Como Funciona</Text>
+          <Text style={styles.TextInfos}>Formato Excel</Text>
         </TouchableOpacity>
       </View>
     </View>
