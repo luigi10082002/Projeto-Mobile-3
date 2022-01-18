@@ -15,6 +15,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { HeaderSemGuia } from "../../components/Header";
 import { styles } from "./styles";
 import api from "../../service/api";
+import { apiEmail } from "../../service/api";
 
 export default function LoginEmail() {
   //client/Email
@@ -105,15 +106,7 @@ export default function LoginEmail() {
       produtos: Produto,
     };
 
-    await api.post(Url, dados);
-  }
-
-  function Carousel() {
-    navigation.navigate("Index", {
-      screen: "Index",
-      id: 1,
-      data: dataHome
-    });
+    await apiEmail.post( dados);
   }
 
   return (

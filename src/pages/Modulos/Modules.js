@@ -61,19 +61,19 @@ export default function Modules() {
       setDataHora();
     }, [Produto])
   );
-
+  
   const setDataHora = () => {
     const date =
       new Date().getDate() +
       "/" +
-      (new Date().getMonth() + 1) +
+      (new Date().getMonth() + 1 .toString()) +
       "/" +
       new Date().getFullYear();
 
     const hora =
       new Date().getHours() +
       ":" +
-      new Date().getMinutes()
+      new Date().getMinutes().toString()
 
     setDate(date);
     setHora(hora);
@@ -112,6 +112,8 @@ export default function Modules() {
 
   //Parametros que são armazenados dos produtos
   async function Save() {
+    console.log(vDate);
+    
     const newProd = {
       id: uuid.v4(),
       produto: codigo,
@@ -156,11 +158,13 @@ export default function Modules() {
         },
       ]);
       */
+      
 
       Verificar();
       setCodigo("");
       setQtd(0);
       Vibration.vibrate();
+      
     }
   }
 

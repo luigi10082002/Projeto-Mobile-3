@@ -113,7 +113,7 @@ export const styles = StyleSheet.create({
   DestaqueQtd: {
     height: "35%",
     width: "21%",
-    marginTop: "8.8%",
+    marginTop: "8.5%",
     justifyContent: "center",
     alignItems: "flex-end"
   },
