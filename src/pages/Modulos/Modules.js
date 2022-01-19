@@ -33,7 +33,6 @@ export default function Modules() {
   const [qtd, setQtd] = useState(0);
   const [codigo, setCodigo] = useState("");
   const [local, setLocal] = useState("");
-  const [status, setStatus] = useState("");
 
   //Cosntante de seleção de item do modal
   const [prodItem, setprodItem] = useState([]);
@@ -115,13 +114,12 @@ export default function Modules() {
     console.log(vDate);
     
     const newProd = {
-      id: uuid.v4(),
       produto: codigo,
+      id: uuid.v4(),
       qtd: qtd,
       date: vDate,
       hora: vHora,
       local: local,
-      status: status,
     };
 
     //Verificação se algum campo do produto está vazio

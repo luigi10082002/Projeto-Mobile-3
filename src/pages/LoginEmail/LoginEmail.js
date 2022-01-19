@@ -10,12 +10,10 @@ import {
   ScrollView,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
 
 import { HeaderSemGuia } from "../../components/Header";
 import { styles } from "./styles";
-import api from "../../service/api";
-import { apiEmail } from "../../service/api";
+import apiEmail from "../../service/api";
 
 export default function LoginEmail() {
   //client/Email
@@ -26,8 +24,10 @@ export default function LoginEmail() {
   const [empresa, setEmpresa] = useState("");
   const [Client, setClient] = useState([]);
   const [Produto, setProduto] = useState([]);
+  const [dados, setDados] = useState();
   const [Url, setUrl] = useState(
-    "https://sistema.homologa.proxy.com.br/batch/testes/post.php"
+    //"https://sistema.homologa.proxy.com.br/batch/testes/post.php"
+    //"http://localhost/127.0.0.1:3312/meudb/usuarios"
   );
 
   useFocusEffect(
@@ -106,7 +106,9 @@ export default function LoginEmail() {
       produtos: Produto,
     };
 
-    await apiEmail.post( dados);
+    setDados(dados)
+
+    await apiEmail.post(Url, dados);
   }
 
   return (

@@ -1,13 +1,20 @@
 import axios from 'axios';
 
-export const api = axios.create({
+const api = axios.create({
   baseURL: ""
 })
 
+/*
 export const apiEmail = axios.create({
-  baseURL: fetch('http://127.0.0.1/meudb/usuarios', {
-			method: 'post',
-    })
+    fetch('http://localhost/127.0.0.1:3312/meudb/usuarios', {
+method: 'POST',
+headers: {
+  Accept: 'application/json',
+  'Content-Type': 'application/json'
+},
+
 })
+})
+*/
 
 export default api;
