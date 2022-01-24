@@ -1,79 +1,52 @@
 <?php
-  /*
-    *Conectar APP à base de dados; X
-    *Pegar base de dados;
-    *Abrir o a base de dados;
-    *Separar itens;
-    *Organizar dados; X
-  */
+$rotas = [
+  'email' => 'main@email'
+];
 
-  //*Conectar APP à base ed dados;
-    //OBS: Onde esta com um "X", é preciso substiruir depois.
-    /*
-    $host = "127.0.0.1";
-    $usuario = "root";
-    $senha = "";
-    $database = "";
+$action = 'email';
 
-    $link = mysqli_connect($host,$usuario, $senha, $database) or die(mysqli_error());
-
-    $connection = mysqli_connect($host,$usuario);
-    $X = $_POST['X'];
-
-    $sql = "INSERT INTO X VALUES";
-    $sql .= "('$X')";
-
-    mysqli_query($db, $sql) or die("Erro ao tentar cadastrar registro");
-    mysqli_close($db);
-
-
-  //*Pegar base de dados;
-
-  //*Abrir o a base de dados;
-
-  //*Separar itens;
-
-  */
-  //*Organizar dados;
-  $dados = [
-    $array_header = array(
-      'Codigo',
-      'Id',
-      'Quantidade',
-      'Data',
-      'Hora',
-      'Local'
-    ),
-    $array_content = array(
-        '0' => 'produto',
-        '1' => 'id',
-        '2' => 'qtd',
-        '3' => 'data',
-        '4' => 'hora',
-        '5' => 'local',
-    ),
-  ];
-
-  $f = fopen('dados.csv', 'w');
-  foreach ($dados as $linha) {
-      fputcsv($f, $linha);
+if(isset($_POST['a'])){
+  if(!key_exists($_POST['a'], $rotas)){
+    $action = 'email';
+  } else {
+    $action = $_POST['a'];
   }
-  fclose($f);
+}
+
+$partes = explode('@', $rotas[$action]);
+$controller = $partes[0];
+$method = $partes[1];
+
+echo "$controller - $method";
+
+/*
+//Definição de legendas do csv
+$chave = ["Id", "Codigo", "Quantidade", "Data", "Hora", "Local"];
+
+//Array que armazana os dados passados pelo BD
+$info;
+
+//pecorrendo os registros da consulta e armazena tudo na variável $info.
+while($aux = mysqli_fetch_assoc($sql)) {
+  $info = array(
+    $chave,
+    $aux["id"],
+    $aux["Produto"],
+    $aux["Quantidade"],
+    $aux["Data"],
+    $aux["Hora"],
+    $aux["Local"],
+  );
+};
+// Abrir/criar arquivo
+$arquivo = fopen('fileEmail.csv', 'w');
+
+foreach ($sql as $chave => $info) {
+  fputcsv($arquivo, $info);
+ };
 
 
-$array_header = array(
-  'Codigo',
-  'Id',
-  'Quantidade',
-  'Data',
-  'Hora',
-  'Local'
-);
-
-  $string_content = implode(", ", $array_content);
-  $string_header = implode(", ", $array_header);
-
-  echo($string_header);
-  echo "</br>";
-  echo($string_content);
+// Fechar o arquivo
+fclose($arquivo);
+*/
 ?>
