@@ -111,8 +111,6 @@ export default function Modules() {
 
   //Parametros que são armazenados dos produtos
   async function Save() {
-    console.log(vDate);
-    
     const newProd = {
       produto: codigo,
       id: uuid.v4(),
@@ -157,20 +155,10 @@ export default function Modules() {
       ]);
       */
       
-
-      Verificar();
       setCodigo("");
       setQtd(0);
       Vibration.vibrate();
       
-    }
-  }
-
-  function Verificar() {
-    if (qtd > 0) {
-      return setStatus(true);
-    } else {
-      return setStatus(false);
     }
   }
 

@@ -8,6 +8,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   ScrollView,
+  Linking,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -26,8 +27,7 @@ export default function LoginEmail() {
   const [Produto, setProduto] = useState([]);
   const [dados, setDados] = useState();
   const [Url, setUrl] = useState(
-    //"https://sistema.homologa.proxy.com.br/batch/testes/post.php"
-    //"http://localhost/127.0.0.1:3312/meudb/usuarios"
+    //"localhost/PHP/APP/"
   );
 
   useFocusEffect(
@@ -50,7 +50,7 @@ export default function LoginEmail() {
 
     setProduto(storage);
   }
-  
+
   async function Dados() {
     const login = {
       key: "email",
@@ -105,10 +105,23 @@ export default function LoginEmail() {
       cliente: Client,
       produtos: Produto,
     };
+    setDados(dados);
 
-    setDados(dados)
+    await apiEmail.post(dados);
 
-    await apiEmail.post(Url, dados);
+    /*
+    await fetch("http://localhost/PHP/APP/", {
+      method: "POST",
+      headers: {
+        Accept: "json",
+        "Content-Type": "json",
+      },
+      body: JSON.stringify({
+        cliente: Client,
+        produtos: Produto,
+      }),
+    });
+    */
   }
 
   return (
@@ -116,10 +129,9 @@ export default function LoginEmail() {
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <HeaderSemGuia title="Login" id={5}/>
+        <HeaderSemGuia title="Login" id={5} />
 
         <ScrollView>
-
           <View style={styles.form}>
             <View style={styles.name}>
               <Text style={styles.textName}>Nome</Text>
