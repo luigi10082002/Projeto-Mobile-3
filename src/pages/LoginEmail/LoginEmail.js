@@ -27,7 +27,8 @@ export default function LoginEmail() {
   const [Produto, setProduto] = useState([]);
   const [dados, setDados] = useState();
   const [Url, setUrl] = useState(
-    //"localhost/PHP/APP/"
+    "http://192.168.15.47/PHP/APP/"
+    //"https://sistema.homologa.proxy.com.br/batch/testes/post.php"
   );
 
   useFocusEffect(
@@ -53,7 +54,6 @@ export default function LoginEmail() {
 
   async function Dados() {
     const login = {
-      key: "email",
       name: name,
       email: email,
       telefone: telefone,
@@ -105,23 +105,9 @@ export default function LoginEmail() {
       cliente: Client,
       produtos: Produto,
     };
-    setDados(dados);
+    setDados(Url, dados);
 
-    await apiEmail.post(dados);
-
-    /*
-    await fetch("http://localhost/PHP/APP/", {
-      method: "POST",
-      headers: {
-        Accept: "json",
-        "Content-Type": "json",
-      },
-      body: JSON.stringify({
-        cliente: Client,
-        produtos: Produto,
-      }),
-    });
-    */
+    await apiEmail.post(Url, dados);
   }
 
   return (
@@ -129,7 +115,7 @@ export default function LoginEmail() {
       <KeyboardAvoidingView
         ebehavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <HeaderSemGuia title="Login" id={5} />
+        <HeaderSemGuia title="Enviar" id={5} />
 
         <ScrollView>
           <View style={styles.form}>

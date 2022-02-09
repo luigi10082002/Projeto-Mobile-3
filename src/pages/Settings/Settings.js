@@ -27,7 +27,7 @@ export default function Settings() {
 
   //Lógica de login com o servidor
   function setServerEMAIL() {
-    Alert.alert("Sincronizar", "Deseja enviar o inventário por email?", [
+    Alert.alert("Enviar", "Deseja enviar o inventário por email?", [
       {
         text: "CANCELAR",
         style: "cancel",
@@ -98,7 +98,7 @@ export default function Settings() {
 
       <View style={styles.boxServer}>
         <TouchableOpacity style={styles.DeleteButton} onPress={setServerEMAIL}>
-          <Text style={styles.textSincronizar}>SINCRONIZAR INVENTÁRIO EMAIL</Text>
+          <Text style={styles.textSincronizar}>ENVIAR INVENTÁRIO POR EMAIL</Text>
         </TouchableOpacity>
       </View>
 

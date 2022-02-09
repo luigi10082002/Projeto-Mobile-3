@@ -62,17 +62,18 @@ export default function Modules() {
   );
   
   const setDataHora = () => {
-    const date =
-      new Date().getDate() +
-      "/" +
-      (new Date().getMonth() + 1 .toString()) +
-      "/" +
-      new Date().getFullYear();
+    const data = new Date();
+    
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = data.getFullYear();
 
-    const hora =
-      new Date().getHours() +
-      ":" +
-      new Date().getMinutes().toString()
+    const date = `${dia}/${mes}/${ano}`
+
+    const h = String(data.getHours()).padStart(2, '0');
+    const min = String(data.getMinutes()).padStart(2, '0');
+
+    const hora = `${h}:${min}`
 
     setDate(date);
     setHora(hora);
@@ -117,7 +118,7 @@ export default function Modules() {
       qtd: qtd,
       date: vDate,
       hora: vHora,
-      local: local,
+      local: local
     };
 
     //Verificação se algum campo do produto está vazio
