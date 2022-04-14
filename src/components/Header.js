@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.Blue,
   },
   title: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     flex: 1,
     textAlign: "center",
     marginRight: "5%",
@@ -147,11 +147,11 @@ const estilo = StyleSheet.create({
     backgroundColor: COLORS.Blue,
   },
   title: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     flex: 1,
     textAlign: "center",
     marginRight: "10%",
-    fontSize: 20,
+    fontSize: 18,
     color: COLORS.White,
     marginTop: "12.5%",
   },

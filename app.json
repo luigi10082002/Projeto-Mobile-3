@@ -4,11 +4,11 @@
     "slug": "inventario-proxy-erp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.jpg",
+    "icon": "./assets/icone_proxy.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_proxy.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#E8EEFA"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,8 +23,8 @@
     "android": {
       "package": "com.proxy.InventarioProxyERP",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.jpg",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/icone_proxy.png",
+        "backgroundColor": "#E8EEFA"
       }
     }
   }

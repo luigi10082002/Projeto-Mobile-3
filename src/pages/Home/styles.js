@@ -26,33 +26,31 @@ export const styles = StyleSheet.create({
     height: "5%",
   },
   //CSS Texts
-  TextBold: {
-    fontSize: 33,
-    fontFamily: "Rajdhani_600SemiBold",
-  },
   TextADD: {
     color: COLORS.White,
-    fontSize: 20,
-    fontFamily: "Rajdhani_600SemiBold",
+    fontSize: 17,
+    fontFamily: "Poppins_400Regular",
   },
   TextList: {
     color: COLORS.White,
-    fontSize: 20,
+    fontSize: 17,
     marginLeft: "2%",
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
   },
   TextInfos: {
     alignSelf: "center",
     alignItems: "center",
     color: COLORS.White,
-    fontSize: 15,
-    fontFamily: "Rajdhani_600SemiBold",
+    fontSize: 13,
+    fontFamily: "Poppins_400Regular",
     marginLeft: "6%",
   },
   TextTitle: {
     alignSelf: "center",
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     fontSize: 23,
+    color: COLORS.Gray_Secondary,
+    marginTop: "5%",
   },
   //CSS Buttons
   ButtonAdd: {
@@ -98,14 +96,14 @@ export const styles = StyleSheet.create({
     marginLeft: "5%",
   },
   separador:{
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.Gray_Secondary,
     alignSelf: "center",
     marginTop: "5%",
     height: '0.1%',
     width: '90%',
   },
   separadorDown:{
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.Gray_Secondary,
     alignSelf: "center",
     marginTop: "13%",
     height: '0.1%',
@@ -114,18 +112,20 @@ export const styles = StyleSheet.create({
   Legenda: {
     alignSelf: "center",
     textAlign: "center",
-    fontFamily: "Rajdhani_600SemiBold",
+    fontSize: 12,
+    fontFamily: "Poppins_400Regular",
     width: "105%"
   },
   LegendaHistorico: {
     alignSelf: "center",
     textAlign: "center",
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
+    fontSize: 12,
     marginTop: "5%",
     width: "85%"
   },
   LegendaQr: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     marginTop: "5%",
     marginLeft: "7%",
   },
@@ -136,11 +136,13 @@ export const styles = StyleSheet.create({
     width: "90%",
   },
   textLegendaERP: {
-    fontFamily: "Rajdhani_600SemiBold",
-    marginLeft: "6%"
+    fontFamily: "Poppins_400Regular",
+    marginLeft: "4%",
+    fontSize: 14
   },
   textLegendaEMAIL: {
-    fontFamily: "Rajdhani_600SemiBold",
-    marginLeft: "16%"
+    fontFamily: "Poppins_400Regular",
+    marginLeft: "8%",
+    fontSize: 14
   },
 })

@@ -21,7 +21,7 @@ export default function Index() {
       <View style={styles.container}>
         <View styles={styles.close}>
         <TouchableOpacity style={styles.btnClose} onPress={GoBack}>
-          <FontAwesome name="remove" size={38} color="#f00" />
+          <FontAwesome name="remove" size={38} color="#E76B09" />
         </TouchableOpacity>
       </View>
         <Image
@@ -50,17 +50,17 @@ export default function Index() {
         renderDoneButton={() =>
           <View style={styles.Done}>
             <TouchableOpacity onPress={GoBack}>
-              <FontAwesome name="check" size={38} color="#4B7DFE" />
+              <FontAwesome name="check" size={38} color="#1151CC" />
             </TouchableOpacity>
           </View>
         }
 
         renderNextButton={() =>
-          <FontAwesome name="chevron-right" size={38} color="#4B7DFE" style={styles.Done}/>
+          <FontAwesome name="chevron-right" size={38} color="#1151CC" style={styles.Done}/>
         }
 
         renderPrevButton={() =>
-          <FontAwesome name="chevron-left" size={38} color="#4B7DFE" style={styles.Prev}/>
+          <FontAwesome name="chevron-left" size={38} color="#1151CC" style={styles.Prev}/>
         }
       />
     </View>

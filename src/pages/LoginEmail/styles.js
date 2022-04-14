@@ -48,24 +48,24 @@ export const styles = StyleSheet.create({
   },
   //CSS Texts
   textName: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     fontSize: 20,
   },
   textEmail: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     fontSize: 20,
   },
   textTelefone: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     fontSize: 20,
   },
   textEmpresa: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     fontSize: 20,
   },
   textSave: {
     color: COLORS.White,
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     fontSize: 20,
   },
   //CSS Inputs

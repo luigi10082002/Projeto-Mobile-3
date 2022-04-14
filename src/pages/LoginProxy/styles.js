@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   txt: {
     textAlign: 'center',
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     fontSize: 20
   },
 });

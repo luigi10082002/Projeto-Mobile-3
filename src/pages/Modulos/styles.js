@@ -90,31 +90,31 @@ export const styles = StyleSheet.create({
   },
   //CSS dos Textos
   textQtd: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     height: "auto",
     width: "auto",
-    fontSize: 20,
+    fontSize: 16,
   },
   textCod: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     height: "auto",
     width: "auto",
-    fontSize: 20,
+    fontSize: 16,
   },
   textLocal: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     height: "auto",
     width: "auto",
-    fontSize: 20,
+    fontSize: 16,
   },
   textSave: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     color: COLORS.White,
-    fontSize: 20,
+    fontSize: 19,
   },
   textList: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
+    fontFamily: "Poppins_400Regular",
+    fontSize: 18,
   },
   CodProd: {
     fontSize: 15,
@@ -125,8 +125,8 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   buttonText: {
-    fontSize: 18,
-    fontFamily: "Rajdhani_600SemiBold",
+    fontSize: 16,
+    fontFamily: "Poppins_400Regular",
     color: COLORS.White,
   },
   DestaqueQtd: {
@@ -179,7 +179,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
   LegendaLocal: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     fontSize: 16,
     marginTop: "0.5%",
   },

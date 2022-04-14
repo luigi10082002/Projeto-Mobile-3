@@ -44,7 +44,7 @@ function Home() {
   return (
     <View style={styles.container}>
 
-    <Image style={{height: '12%', width: '70%', alignSelf: "center", marginTop: '15%'}} source={require('../../../assets/splash.png')} />
+    <Image style={{height: '8%', width: '60%', alignSelf: "center", marginTop: '18%'}} source={require('../../../assets/logotipo-proxy.png')} />
 
     <Text style={styles.TextTitle}>Inventário de Estoque</Text>
 

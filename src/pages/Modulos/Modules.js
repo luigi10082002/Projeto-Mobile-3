@@ -210,7 +210,7 @@ export default function Modules() {
             <View style={styles.Cod}>
               <View style={styles.View}>
                 <Text style={styles.textCod}>Código</Text>
-                <Text style={{ color: "#f00", fontSize: 15 }}>*</Text>
+                <Text style={{ color: "#E76B09", fontSize: 15 }}>*</Text>
               </View>
               <View style={styles.View}></View>
               <TextInput
@@ -228,7 +228,7 @@ export default function Modules() {
             <View style={styles.Qtd}>
               <View style={styles.View}>
                 <Text style={styles.textQtd}>Quantidade</Text>
-                <Text style={{ color: "#f00", fontSize: 15}}>*</Text>
+                <Text style={{ color: "#E76B09", fontSize: 15}}>*</Text>
               </View>
               <TextInput
                 style={styles.labelQtd}

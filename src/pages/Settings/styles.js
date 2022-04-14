@@ -23,25 +23,19 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   //CSS Texts
-  text: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-    marginLeft: "5%",
-    alignSelf: "center",
-  },
   textDelete: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
+    fontFamily: "Poppins_400Regular",
+    fontSize: 18,
     color: COLORS.Red,
   },
   textSincronizar: {
-    fontFamily: "Rajdhani_600SemiBold",
-    fontSize: 20,
-    color: COLORS.Black,
+    fontFamily: "Poppins_400Regular",
+    fontSize: 18,
+    color: COLORS.Gray_Secondary,
   },
   //CSS Line
   separador: {
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.Gray_Secondary,
     width: "100%",
     height: 1,
   },

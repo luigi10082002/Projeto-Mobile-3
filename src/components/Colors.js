@@ -1,15 +1,15 @@
 export const COLORS = {
-  Blue: "#4B7DFE",
-  Red: "#f00",
+  Blue: "#1151CC",
+  Red: "#E76B09",
 
-  White: "#fff",
+  White: "#E8EEFA",
   White_Secondary: '#f4f3f4',
   White_Tertiary: '#f0f0f0',
   White_Quaternary: '#eeee',
 
   Gray: '#767577',
   Gray_Primary: "#DCDCDC",
-  Gray_Secondary: "#696969",
+  Gray_Secondary: "#3F3D3D",
   Gray_Tertiary: "#D3D3D3",
   Gray_Quaternary: "#A9A9A9",
 

@@ -113,7 +113,7 @@ export default function LoginProxy() {
         <Text style={styles.txt}>Entre no sistema Proxy ERP e gere o código QR de sincronização de inventário.</Text>
         </View>
 
-        <BarcodeMask edgeColor="#62B1F6" showAnimatedLine/>
+        <BarcodeMask edgeColor="#1151CC" showAnimatedLine/>
 
       </BarCodeScanner>
     </View>

@@ -93,19 +93,19 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "bold",
     fontSize: 30,
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
   },
   TextProdutos: {
     alignSelf: "center",
     marginTop: "5%",
-    fontSize: 13,
-    fontFamily: "Rajdhani_600SemiBold",
+    fontSize: 11,
+    fontFamily: "Poppins_400Regular",
   },
   TextProd: {
     alignSelf: "center",
     marginTop: "6%",
     fontSize: 13,
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
   },
   header: {
     backgroundColor: COLORS.Gray_Quaternary,
@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
     height: "35%",
   },
   Legenda: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
+    fontSize: 12,
     textAlign: "center",
     alignSelf: "center",
     height: "auto",

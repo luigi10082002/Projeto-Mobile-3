@@ -262,25 +262,25 @@ const styles = StyleSheet.create({
   },
   //CSS dos Textos
   textQtd: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     height: "auto",
     width: "32%",
     marginLeft: "50%",
     fontSize: 20,
   },
   textCod: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     height: "auto",
     width: "auto",
     fontSize: 20,
   },
   textSave: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     color: COLORS.White,
     fontSize: 20,
   },
   textHeader: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     marginLeft: "15%",
     fontSize: 20,
     color: COLORS.White,
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   textLocal: {
-    fontFamily: "Rajdhani_600SemiBold",
+    fontFamily: "Poppins_400Regular",
     height: "auto",
     width: "auto",
     fontSize: 20,
