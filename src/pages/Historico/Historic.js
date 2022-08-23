@@ -98,7 +98,8 @@ export default function Historic() {
   }
 
   async function handleRemove(item) {
-    const id = list.findIndex((element) => element.id == item.id);
+    
+    const id = Produto.findIndex((element) => element.id == item.id);
     Alert.alert("Remover", `Deseja remover este produto?`, [
       {
         text: "Não",
@@ -107,8 +108,8 @@ export default function Historic() {
       {
         text: "Sim",
         onPress: async () => {
-          list.splice(id, 1);
-          await AsyncStorage.setItem("@Produtos", JSON.stringify(list));
+          Produto.splice(id, 1);
+          await AsyncStorage.setItem("@Produtos", JSON.stringify(Produto));
         },
       },
     ]);
@@ -118,10 +119,6 @@ export default function Historic() {
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
   });
-
-  function Verifica() {
-    console.log(list.toString());
-  }
 
   return (
     <View style={styles.container}>
